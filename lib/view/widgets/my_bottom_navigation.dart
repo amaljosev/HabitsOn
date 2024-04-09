@@ -14,7 +14,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
     return Obx(() => CurvedNavigationBar(
           key: homeCtrl.bottomNavigationKey,
           index: 0,
-          height: 76.0,
+          height: 70.0,
           items: [
             CurvedNavigationBarItem(
                 icon: homeCtrl.page.value == 0

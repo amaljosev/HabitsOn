@@ -71,12 +71,7 @@ RxList<Categories> categoryList = [
         color: Colors.deepPurple,
       ),
       title: 'Sleep'),
-  Categories(
-      icon: const Icon(
-        Icons.currency_rupee,
-        color: Colors.deepPurple,
-      ),
-      title: 'Limit spending'),
+  
   Categories(
       icon: const Icon(
         Icons.directions_run,
