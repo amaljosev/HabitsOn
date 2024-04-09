@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/home_controller.dart';
 
+import '../core/constants.dart';
+
 class MyBottomNavigationWidget extends StatelessWidget {
   const MyBottomNavigationWidget({
     super.key,
@@ -20,12 +22,12 @@ class MyBottomNavigationWidget extends StatelessWidget {
                 icon: homeCtrl.page.value == 0
                     ? const Icon(
                         Icons.home,
-                        color: Colors.white, 
+                        color: Colors.white,
                         size: 35,
                       )
                     : const Icon(
                         Icons.home_outlined,
-                        color: Color.fromARGB(255, 25, 78, 122),
+                        color: primaryColor,
                         size: 35,
                       ),
                 label: "Home"),
@@ -38,7 +40,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
                       )
                     : const Icon(
                         Icons.assignment_outlined,
-                        color:Color.fromARGB(255, 25, 78, 122),
+                        color: primaryColor,
                         size: 35,
                       ),
                 label: "Habits"),
@@ -51,7 +53,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
                       )
                     : const Icon(
                         Icons.add,
-                        color:Color.fromARGB(255, 25, 78, 122),
+                        color: primaryColor,
                         size: 35,
                       ),
                 label: "New Habit"),
@@ -64,7 +66,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
                       )
                     : const Icon(
                         Icons.insert_chart_outlined_sharp,
-                        color: Color.fromARGB(255, 25, 78, 122),
+                        color: primaryColor,
                         size: 35,
                       ),
                 label: "Analyse"),
@@ -77,13 +79,13 @@ class MyBottomNavigationWidget extends StatelessWidget {
                       )
                     : const Icon(
                         Icons.person_outline,
-                        color: Color.fromARGB(255, 25, 78, 122),
+                        color: primaryColor,
                         size: 35,
                       ),
                 label: "Me"),
           ],
-          buttonBackgroundColor: const Color.fromARGB(255, 25, 78, 122),
-          buttonLabelColor: const Color.fromARGB(255, 25, 78, 122),
+          buttonBackgroundColor: primaryColor,
+          buttonLabelColor: primaryColor,
           backgroundColor: Colors.transparent,
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 600),

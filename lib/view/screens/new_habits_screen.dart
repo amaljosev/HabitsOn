@@ -1,12 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/counter_widget.dart';
+import 'package:habitson/view/widgets/doitat_widget.dart';
 import 'package:habitson/view/widgets/my_form_widget.dart';
 import 'package:habitson/view/widgets/week_selector_widget.dart';
-
 
 final habitCtrl = Get.put(NewHabitsController());
 
@@ -20,6 +19,7 @@ class ScreenNewHabits extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       children: [
+        kHeight,
         kHeight,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,12 +39,9 @@ class ScreenNewHabits extends StatelessWidget {
             hint: 'Target Days',
             icon: const Icon(Icons.calendar_month),
             controller: habitCtrl.targetCtrl),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Select Days',
-            style: titleStyle,
-          ),
+        Text(
+          'Select Days',
+          style: titleStyle,
         ),
         SizedBox(
           height: size.height * 0.1,
@@ -53,25 +50,41 @@ class ScreenNewHabits extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.all(size.width * 0.01),
               child: WeekDayWidget(
-                title: habitCtrl.weekDayss.keys.toList()[index],
+                title: habitCtrl.weekDays.keys.toList()[index],
                 index: index,
               ),
             ),
-            itemCount: habitCtrl.weekDayss.keys.length,
+            itemCount: habitCtrl.weekDays.keys.length,
           ),
         ),
-        Row(
-          children: [
-            Text(
-              'Set Counter',
-              style: titleStyle,
-            ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.info_outline))
-          ],
+        kHeight,
+        Text(
+          'Set Counter',
+          style: titleStyle,
         ),
         const CounterWidget(),
+        kHeight,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            'Do it at',
+            style: titleStyle,
+          ),
+        ),
+        const DoItAtWidget(),
+        kHeight,
+        ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+              backgroundColor: primaryColor,
+              shape: const ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.all(const Radius.circular(15)))),
+          child: const Text(
+            'Start',
+            style: TextStyle(color: Colors.white),
+          ),
+        )
       ],
     );
   }
 }
-
