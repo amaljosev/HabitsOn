@@ -44,11 +44,11 @@ class ScreenNewHabits extends StatelessWidget {
           style: titleStyle,
         ),
         SizedBox(
-          height: size.height * 0.1,
+          height: size.height * 0.1, 
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.all(size.width * 0.01),
+              padding: EdgeInsets.all(size.width * 0.01),   
               child: WeekDayWidget(
                 title: habitCtrl.weekDays.keys.toList()[index],
                 index: index,

@@ -20,7 +20,7 @@ class CounterWidget extends StatelessWidget {
           width: 100,
           height: 100,
           child: SelectorWheel(
-            childCount: 10,
+            childCount: 100, 
             convertIndexToValue: (int index) {
               final value = index + 1;
               return SelectorWheelValue(

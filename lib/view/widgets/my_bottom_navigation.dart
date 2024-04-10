@@ -86,7 +86,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
           ],
           buttonBackgroundColor: primaryColor,
           buttonLabelColor: primaryColor,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.deepOrange,
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 600),
           onTap: (index) {

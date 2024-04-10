@@ -17,13 +17,13 @@ class CalenderWidget extends StatelessWidget {
       calendarStyle: CalendarStyle(
         outsideDaysVisible: true,
         todayDecoration: BoxDecoration(
-          color: Colors.indigo.shade900,
+          color: Colors.indigo.shade800, 
           shape: BoxShape.circle,
         ),
       ),
       daysOfWeekStyle: const DaysOfWeekStyle(
-        weekdayStyle: TextStyle(color: Colors.indigo),
-        weekendStyle: TextStyle(color: Colors.indigo),
+        weekdayStyle: TextStyle(color: Colors.white),
+        weekendStyle: TextStyle(color: Colors.white), 
       ),
       headerStyle: HeaderStyle(
         rightChevronVisible: false,
@@ -32,7 +32,7 @@ class CalenderWidget extends StatelessWidget {
         headerPadding: const EdgeInsets.all(15),
         formatButtonVisible: false,
         titleTextStyle: const TextStyle(
-            color: Colors.indigo,
+            color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold),
       ),

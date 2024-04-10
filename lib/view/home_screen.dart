@@ -31,10 +31,10 @@ class ScreenHome extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Container(
                     height: homeCtrl.page.value == 0
-                        ? size.height * 0.71
+                        ? size.height * 0.73
                         : size.height * 0.86, 
                     decoration: BoxDecoration(
-                        color: Colors.grey.shade100,
+                        color: ThemeData.dark().primaryColor,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),

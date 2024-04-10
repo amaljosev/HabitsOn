@@ -22,6 +22,7 @@ class WeekDayWidget extends StatelessWidget {
                 !habitCtrl.weekDays.values.toList()[index].value;
           },
           child: CircleAvatar(
+         
             backgroundColor: habitCtrl.weekDays.values.toList()[index].value
                 ? primaryColor
                 : Colors.grey,
