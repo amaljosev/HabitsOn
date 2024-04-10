@@ -31,8 +31,8 @@ RxList<Categories> categoryList = [
       title: 'Study'),
   Categories(
       icon: const Icon(
-        Icons.fitness_center,
-        color: Colors.black,
+        Icons.fitness_center, 
+        color: Colors.white,
       ),
       title: 'Workout'),
   Categories(

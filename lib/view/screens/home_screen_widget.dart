@@ -31,11 +31,31 @@ class ScreenHomeWidget extends StatelessWidget {
         ):const Row(), 
         Expanded(
             child: ListView.builder(
-          itemBuilder: (context, index) =>  ListTile(  
+          itemBuilder: (context, index) {
+            final list=habitCtrl.habitsList[index];
+          return  ListTile(  
             
-            trailing: Radio(value: false, groupValue: [], onChanged:(Value){}),  
-            title: Text(habitCtrl.habitsList[index].habitName),
-          ),
+            trailing: Radio(value: false, groupValue: [], onChanged:(value){}),  
+            title: Container( 
+              height: 50, 
+              decoration:  BoxDecoration(
+                color: habitCtrl.colors[list.backgroundColorIndex],
+                borderRadius: const BorderRadius.all(Radius.circular(10))
+              ),  
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  
+                  Padding(
+                    padding: const EdgeInsets.only(left: 19.0), 
+                    child: Text(list.habitName,style: titleStyle), 
+                  ),
+                ],
+              ),
+            ),
+          );
+          },
           itemCount: habitCtrl.habitsList.length, 
         )),
       ],
