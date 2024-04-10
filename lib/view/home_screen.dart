@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/home_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/screens/analyse_screen.dart';
 import 'package:habitson/view/screens/habits_screen.dart';
@@ -8,6 +9,7 @@ import 'package:habitson/view/screens/new_habits_screen.dart';
 import 'package:habitson/view/screens/profile_screen.dart';
 import 'package:habitson/view/widgets/calender_widget.dart';
 import 'package:habitson/view/widgets/my_bottom_navigation.dart';
+final homeCtrl = Get.put(HomeController());
 
 class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});

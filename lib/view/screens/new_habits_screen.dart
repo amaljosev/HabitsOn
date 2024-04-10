@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/home_controller.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/counter_widget.dart';
@@ -7,7 +9,9 @@ import 'package:habitson/view/widgets/doitat_widget.dart';
 import 'package:habitson/view/widgets/my_form_widget.dart';
 import 'package:habitson/view/widgets/week_selector_widget.dart';
 
-final habitCtrl = Get.put(NewHabitsController());
+final habitCtrl = Get.find<NewHabitsController>();
+final homeCtrl = Get.find<HomeController>();
+
 
 class ScreenNewHabits extends StatelessWidget {
   const ScreenNewHabits({super.key});
@@ -34,21 +38,21 @@ class ScreenNewHabits extends StatelessWidget {
         MyFormWidget(
             hint: 'Habit name',
             icon: const Icon(Icons.edit),
-            controller: habitCtrl.habitNameCtrl),
+            controller: habitCtrl.habitNameCtrl,isTarget: false),
         MyFormWidget(
             hint: 'Target Days',
             icon: const Icon(Icons.calendar_month),
-            controller: habitCtrl.targetCtrl),
+            controller: habitCtrl.targetCtrl,isTarget: true,),
         Text(
           'Select Days',
           style: titleStyle,
         ),
         SizedBox(
-          height: size.height * 0.1, 
+          height: size.height * 0.1,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.all(size.width * 0.01),   
+              padding: EdgeInsets.all(size.width * 0.01),
               child: WeekDayWidget(
                 title: habitCtrl.weekDays.keys.toList()[index],
                 index: index,
@@ -74,11 +78,14 @@ class ScreenNewHabits extends StatelessWidget {
         const DoItAtWidget(),
         kHeight,
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () async{
+            final bool response=await habitCtrl.onSubmit(); 
+            response?homeCtrl.page.value=0:Get.snackbar('Something went Wrong', 'Please check your internet connection and try again'); 
+          },  
           style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,
               shape: const ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.all(const Radius.circular(15)))),
+                  borderRadius: BorderRadius.all(Radius.circular(15)))),
           child: const Text(
             'Start',
             style: TextStyle(color: Colors.white),

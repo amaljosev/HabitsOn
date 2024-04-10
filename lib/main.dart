@@ -1,8 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/model/habit_models/habit_model.dart';
 import 'package:habitson/view/home_screen.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  if (!Hive.isAdapterRegistered(HabitModelAdapter().typeId)) {
+    Hive.registerAdapter(HabitModelAdapter()); 
+  }
   runApp(const MyApp());
 }
 
@@ -14,7 +24,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'HabitsOn',
       theme: ThemeData(
-        brightness: Brightness.dark, 
+        brightness: Brightness.dark,
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
