@@ -94,7 +94,7 @@ class ScreenNewHabits extends StatelessWidget {
             response
                 ? homeCtrl.page.value = 0
                 : Get.snackbar('Something went Wrong',
-                    'Please check your internet connection and try again');
+                    'Please check the given details and try again'); 
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,

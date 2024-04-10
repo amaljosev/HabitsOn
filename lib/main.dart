@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/model/habit_models/habit_model.dart';
 import 'package:habitson/view/home_screen.dart';
+import 'package:habitson/view/screens/started_habit_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         'home': (context) => const ScreenHome(),
+        'started_habit': (context) => const ScreenStartedHabit(), 
       },
       initialRoute: 'home',
     );
