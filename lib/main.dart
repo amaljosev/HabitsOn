@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/model/habit_models/habit_model.dart';
 import 'package:habitson/view/home_screen.dart';
+import 'package:habitson/view/screens/start_default_habit.dart';
 import 'package:habitson/view/screens/started_habit_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'home': (context) => const ScreenHome(),
         'started_habit': (context) => const ScreenStartedHabit(), 
+        'start_default_habit': (context) => const ScreenStartDefaultHabit(),
       },
       initialRoute: 'home',
     );

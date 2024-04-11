@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/home_controller.dart';
 
 import '../core/constants.dart';
@@ -83,16 +84,17 @@ class MyBottomNavigationWidget extends StatelessWidget {
                         size: 35,
                       ),
                 label: "Me"),
-          ], 
+          ],
           buttonBackgroundColor: primaryColor,
           buttonLabelColor: primaryColor,
           backgroundColor: Colors.deepPurpleAccent,
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 600),
           onTap: (index) {
+            homeCtrl.page.value == 2 ? habitCtrl.habitNameCtrl.text = '' : null;
             homeCtrl.page.value = index;
           },
-          letIndexChange: (index) => true,
+         
         ));
   }
 }

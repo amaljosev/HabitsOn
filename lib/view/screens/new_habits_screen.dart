@@ -13,14 +13,15 @@ final habitCtrl = Get.find<NewHabitsController>();
 final homeCtrl = Get.find<HomeController>();
 
 class ScreenNewHabits extends StatelessWidget {
-  const ScreenNewHabits({super.key});
+  const ScreenNewHabits({super.key, required});
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 15),
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       children: [
         kHeight,
         kHeight,
@@ -50,11 +51,11 @@ class ScreenNewHabits extends StatelessWidget {
           style: titleStyle,
         ),
         SizedBox(
-          height: size.height * 0.1, 
+          height: size.height * 0.1,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.all(size.width * 0.015), 
+              padding: EdgeInsets.all(size.width * 0.015),
               child: WeekDayWidget(
                 title: habitCtrl.weekDays.keys.toList()[index],
                 index: index,
@@ -63,7 +64,6 @@ class ScreenNewHabits extends StatelessWidget {
             itemCount: habitCtrl.weekDays.keys.length,
           ),
         ),
-      
         Text(
           'Set Counter',
           style: titleStyle,
@@ -86,15 +86,14 @@ class ScreenNewHabits extends StatelessWidget {
             style: titleStyle,
           ),
         ),
-        const ColorPickerWidget(), 
-        
+        const ColorPickerWidget(),
         ElevatedButton(
           onPressed: () async {
             final bool response = await habitCtrl.onSubmit();
             response
                 ? homeCtrl.page.value = 0
                 : Get.snackbar('Something went Wrong',
-                    'Please check the given details and try again'); 
+                    'Please check the given details and try again');
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,
@@ -104,8 +103,8 @@ class ScreenNewHabits extends StatelessWidget {
             'Start',
             style: TextStyle(color: secondaryColor),
           ),
-          
-        ),kHeight ,
+        ),
+        kHeight,
         kHeight
       ],
     );

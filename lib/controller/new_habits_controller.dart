@@ -33,7 +33,7 @@ class NewHabitsController extends GetxController {
     'Evening',
     'Night'
   ];
-  RxInt pickedDayTimeIndex = 0.obs; 
+  RxInt pickedDayTimeIndex = 0.obs;
   Map<String, RxBool> weekDays = {
     'MON': true.obs,
     'TUE': true.obs,
@@ -43,6 +43,38 @@ class NewHabitsController extends GetxController {
     'SAT': true.obs,
     'SUN': true.obs
   };
+  List<String> units = [
+    'Hours',
+    'Minutes',
+    'Pages',
+    'Kilometer',
+    'Laps',
+    'Meter',
+    'Liter',
+    'Cups',
+  ];
+  Map<String,List<String>> weelValues={
+    'Meditation':['Hours','Minutes'],
+    'Reading':['Hours','Minutes','Pages'], 
+    'Walking':['Hours','Minutes','Kilometer','Meter','Laps'],
+    'Study':['Hours','Minutes','Pages','Chapters'],
+    'Workout':['Hours','Minutes'],
+    'Art':['Hours','Minutes'],
+    'Drink Water':['Cups','Liter'],
+    'Sports':['Hours','Minutes'],
+    'Social':['Hours','Minutes'],
+    'Cleaning':['Hours','Minutes'],
+    'Sleep':['Hours','Minutes'],
+    'Running':['Hours','Minutes','Kilometer','Meter','Laps'],
+    'Swimming':['Hours','Minutes','Laps'],
+    'Gardening':['Hours','Minutes'],
+    'Yoga':['Hours','Minutes'],
+    'cycling':['Hours','Minutes','Kilometer','Meter','Laps'],
+    'Warm up':['Hours','Minutes'],
+    'Practice breathing':['Hours','Minutes'],
+    'Keep a journal':['Pages'],
+  };
+ 
 
   bool areAllValuesFalse(Map<String, RxBool> map) {
     for (final value in map.values) {
@@ -72,23 +104,23 @@ class NewHabitsController extends GetxController {
     } else {
       weekDays.forEach((key, value) {
         if (value.isTrue) {
-          selectDaysList.add(key); 
+          selectDaysList.add(key);
         }
       });
 
       final HabitModel habitData = HabitModel(
           id: DateTime.now().toString(),
-          habitName: habitNameCtrl.text.toUpperCase(), 
+          habitName: habitNameCtrl.text, 
           duration: int.parse(targetCtrl.text),
           selectedDays: selectDaysList,
           goalCount: counterWeelValue.value,
-          goalName: categoryWeelValue.value.toUpperCase(), 
-          doItAt: pickedDayTimeIndex.value, 
+          goalName: categoryWeelValue.value.toUpperCase(),
+          doItAt: pickedDayTimeIndex.value,
           streak: 0,
           startedDate: DateTime.now(),
           latestDate: DateTime.now(),
           isComplete: false,
-          backgroundColorIndex: pickedColorIndex.value); 
+          backgroundColorIndex: pickedColorIndex.value);
 
       response.value = await addHabit(habitData);
     }
@@ -105,7 +137,7 @@ class NewHabitsController extends GetxController {
         'SAT': true.obs,
         'SUN': true.obs
       };
-      pickedDayTimeIndex.value=0; 
+      pickedDayTimeIndex.value = 0;
       counterWeelValue.value = '1';
       categoryWeelValue.value = 'Hours';
       pickedColorIndex.value = 1;

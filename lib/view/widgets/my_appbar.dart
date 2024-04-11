@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/hive_functions/habits_functions.dart';
 
 class HabitsAppBar extends StatelessWidget {
   const HabitsAppBar({
@@ -15,7 +16,10 @@ class HabitsAppBar extends StatelessWidget {
         children: [
           Card(
             child: IconButton(
-                onPressed: () => Get.back(),
+                onPressed: () {
+                  habitCtrl.habitNameCtrl.text='';
+                  Get.back(); 
+                },
                 icon: const Icon(Icons.arrow_back)),
           ),
           const Row(
