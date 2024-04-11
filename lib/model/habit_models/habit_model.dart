@@ -10,13 +10,13 @@ class HabitModel {
   @HiveField(2)
   final int duration;
   @HiveField(3)
-  final List<bool> selectedDays;
+  final List<String> selectedDays; 
   @HiveField(4)
   final String goalCount;
   @HiveField(5)
   final String goalName;
   @HiveField(6)
-  final List<bool> doItAt;
+  final int doItAt;
   @HiveField(7)
   final int streak;
   @HiveField(8)
@@ -29,7 +29,7 @@ class HabitModel {
   final int backgroundColorIndex;
 
   HabitModel(
-      {required this.id,
+      {required this.id, 
       required this.habitName,
       required this.duration,
       required this.selectedDays,

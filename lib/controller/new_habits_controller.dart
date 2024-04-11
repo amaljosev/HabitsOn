@@ -25,7 +25,15 @@ class NewHabitsController extends GetxController {
     Colors.blue
   ];
   RxInt pickedColorIndex = 1.obs;
-
+  List<String> timingList = [
+    'Any Time',
+    'Morning',
+    'Noon',
+    'After Noon',
+    'Evening',
+    'Night'
+  ];
+  RxInt pickedDayTimeIndex = 0.obs; 
   Map<String, RxBool> weekDays = {
     'MON': true.obs,
     'TUE': true.obs,
@@ -35,12 +43,7 @@ class NewHabitsController extends GetxController {
     'SAT': true.obs,
     'SUN': true.obs
   };
-  Map<String, RxBool> doItAt = {
-    'Any Time': true.obs,
-    'Morning': false.obs,
-    'Noon': false.obs,
-    'Evening': false.obs
-  };
+
   bool areAllValuesFalse(Map<String, RxBool> map) {
     for (final value in map.values) {
       if (value.value) {
@@ -51,13 +54,11 @@ class NewHabitsController extends GetxController {
   }
 
   Future<bool> onSubmit() async {
-    final List<bool> selectDaysList = [];
-    final List<bool> selectTimeList = [];
+    final List<String> selectDaysList = [];
 
     final RxBool response = false.obs;
     if (habitNameCtrl.text.isEmpty) {
       Get.snackbar('Habit Name', 'Please Enter your Habit Name');
-      
     } else if (targetCtrl.text.isEmpty) {
       Get.snackbar('Target Days',
           'Please Enter a target in days eg:10 ten stands for 10 days');
@@ -68,29 +69,26 @@ class NewHabitsController extends GetxController {
     } else if (areAllValuesFalse(weekDays)) {
       Get.snackbar('Week Selection',
           'Please Enter the particular days you plan to do Habits');
-    } else if (areAllValuesFalse(doItAt)) {
-      Get.snackbar(
-          'Do It At', 'Please Enter the particular Time you plan to do Habits');
     } else {
-      weekDays.values.toList().forEach((element) {
-        selectDaysList.add(element.value);
+      weekDays.forEach((key, value) {
+        if (value.isTrue) {
+          selectDaysList.add(key); 
+        }
       });
-      doItAt.values.toList().forEach((element) {
-        selectTimeList.add(element.value);
-      });
+
       final HabitModel habitData = HabitModel(
           id: DateTime.now().toString(),
-          habitName: habitNameCtrl.text,
+          habitName: habitNameCtrl.text.toUpperCase(), 
           duration: int.parse(targetCtrl.text),
           selectedDays: selectDaysList,
           goalCount: counterWeelValue.value,
-          goalName: categoryWeelValue.value,
-          doItAt: selectTimeList,
+          goalName: categoryWeelValue.value.toUpperCase(), 
+          doItAt: pickedDayTimeIndex.value, 
           streak: 0,
           startedDate: DateTime.now(),
           latestDate: DateTime.now(),
           isComplete: false,
-          backgroundColorIndex: pickedColorIndex.value);
+          backgroundColorIndex: pickedColorIndex.value); 
 
       response.value = await addHabit(habitData);
     }
@@ -107,12 +105,7 @@ class NewHabitsController extends GetxController {
         'SAT': true.obs,
         'SUN': true.obs
       };
-      doItAt = {
-        'Any Time': true.obs,
-        'Morning': false.obs,
-        'Noon': false.obs,
-        'Evening': false.obs
-      };
+      pickedDayTimeIndex.value=0; 
       counterWeelValue.value = '1';
       categoryWeelValue.value = 'Hours';
       pickedColorIndex.value = 1;

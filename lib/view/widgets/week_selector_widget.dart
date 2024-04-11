@@ -30,7 +30,7 @@ class WeekDayWidget extends StatelessWidget {
               title,
               style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold, 
                   color: habitCtrl.weekDays.values.toList()[index].value
-                      ? Colors.white
+                      ? secondaryColor 
                       : Colors.black),
             ),
           ),

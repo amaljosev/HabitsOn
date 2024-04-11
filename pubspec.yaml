@@ -43,6 +43,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   slider_button: ^2.1.0
+  lottie: ^3.1.0
   
 
 dev_dependencies: 
@@ -71,7 +72,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/assets/ 
+    - assets/ 
+    - assets/lottie/habit_bg.json 
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

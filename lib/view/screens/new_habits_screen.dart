@@ -50,7 +50,7 @@ class ScreenNewHabits extends StatelessWidget {
           style: titleStyle,
         ),
         SizedBox(
-          height: size.height * 0.1,
+          height: size.height * 0.1, 
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => Padding(
@@ -87,7 +87,7 @@ class ScreenNewHabits extends StatelessWidget {
           ),
         ),
         const ColorPickerWidget(), 
-        kHeight,
+        
         ElevatedButton(
           onPressed: () async {
             final bool response = await habitCtrl.onSubmit();
@@ -102,9 +102,11 @@ class ScreenNewHabits extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(15)))),
           child: const Text(
             'Start',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: secondaryColor),
           ),
-        )
+          
+        ),kHeight ,
+        kHeight
       ],
     );
   }

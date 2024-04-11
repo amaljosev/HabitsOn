@@ -22,7 +22,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
                 icon: homeCtrl.page.value == 0
                     ? const Icon(
                         Icons.home,
-                        color: Colors.white,
+                        color: secondaryColor,
                         size: 35,
                       )
                     : const Icon(
@@ -35,7 +35,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
                 icon: homeCtrl.page.value == 1
                     ? const Icon(
                         Icons.assignment_sharp,
-                        color: Colors.white,
+                        color: secondaryColor,
                         size: 35,
                       )
                     : const Icon(
@@ -48,7 +48,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
                 icon: homeCtrl.page.value == 2
                     ? const Icon(
                         Icons.add,
-                        color: Colors.white,
+                        color: secondaryColor,
                         size: 35,
                       )
                     : const Icon(
@@ -61,7 +61,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
                 icon: homeCtrl.page.value == 3
                     ? const Icon(
                         Icons.bar_chart_rounded,
-                        color: Colors.white,
+                        color: secondaryColor,
                         size: 35,
                       )
                     : const Icon(
@@ -74,7 +74,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
                 icon: homeCtrl.page.value == 4
                     ? const Icon(
                         Icons.person,
-                        color: Colors.white,
+                        color: secondaryColor,
                         size: 35,
                       )
                     : const Icon(
@@ -83,10 +83,10 @@ class MyBottomNavigationWidget extends StatelessWidget {
                         size: 35,
                       ),
                 label: "Me"),
-          ],
+          ], 
           buttonBackgroundColor: primaryColor,
           buttonLabelColor: primaryColor,
-          backgroundColor: Colors.deepOrange,
+          backgroundColor: Colors.deepPurpleAccent,
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 600),
           onTap: (index) {
