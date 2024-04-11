@@ -44,8 +44,6 @@ class ScreenHomeWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 final list = habitCtrl.habitsList[index];
                 return ListTile(
-                  trailing: Radio(
-                      value: false, groupValue: [], onChanged: (value) {}),
                   title: InkWell(
                     onTap: () => Get.toNamed('started_habit', arguments: index),
                     child: Container(

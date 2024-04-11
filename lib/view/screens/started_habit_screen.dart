@@ -33,7 +33,7 @@ class ScreenStartedHabit extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const HabitsAppBar(),
+                 HabitsAppBar(index: index), 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Container(

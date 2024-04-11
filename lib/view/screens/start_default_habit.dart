@@ -4,7 +4,6 @@ import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/view/widgets/color_picker_widget.dart';
 import 'package:habitson/view/widgets/counter_widget.dart';
 import 'package:habitson/view/widgets/doitat_widget.dart';
-import 'package:habitson/view/widgets/my_appbar.dart';
 import 'package:habitson/view/widgets/my_form_widget.dart';
 import 'package:habitson/view/widgets/week_selector_widget.dart';
 import 'package:lottie/lottie.dart';
@@ -20,7 +19,7 @@ class ScreenStartDefaultHabit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final List<String> list=Get.arguments; 
+    final List<String> list = Get.arguments;
     return Scaffold(
       backgroundColor: primaryColor,
       body: SafeArea(
@@ -36,7 +35,18 @@ class ScreenStartDefaultHabit extends StatelessWidget {
               ),
               Column(
                 children: [
-                  const HabitsAppBar(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        
+                        Card(
+                            child: IconButton(
+                                onPressed: () => Get.back(),
+                                icon: const Icon(Icons.arrow_back))),
+                      ],
+                    ),
+                  ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -96,7 +106,9 @@ class ScreenStartDefaultHabit extends StatelessWidget {
                               'Set Counter',
                               style: titleStyle,
                             ),
-                             CounterWidget(categoryList: list,), 
+                            CounterWidget(
+                              categoryList: list,
+                            ),
                             kHeight,
                             Padding(
                               padding: const EdgeInsets.all(8.0),

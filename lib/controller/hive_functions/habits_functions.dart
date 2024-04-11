@@ -30,10 +30,15 @@ Future<bool> getallDatas() async {
   }
 }
 
-Future<void> deleteData(int id) async {
-  final habitsDB = await Hive.openBox<HabitModel>('habits_db');
+Future<bool> deleteData(int id) async {
+  try {
+    final habitsDB = await Hive.openBox<HabitModel>('habits_db');
   await habitsDB.deleteAt(id);
   getallDatas();
+  return true;
+  } catch (e) {
+    return false;
+  }
 }
 
 Future<void> updateList(int id, HabitModel value) async {
