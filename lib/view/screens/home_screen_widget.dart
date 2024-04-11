@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/screens/new_habits_screen.dart';
@@ -59,7 +60,13 @@ class ScreenHomeWidget extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 19.0),
-                            child: Text(list.habitName, style: titleStyle),
+                            child: Text(list.habitName,
+                                style: list.backgroundColorIndex == 0
+                                    ? GoogleFonts.unbounded(
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 15,
+                                        color: Colors.grey.shade700)
+                                    : titleStyle),
                           ),
                         ],
                       ),

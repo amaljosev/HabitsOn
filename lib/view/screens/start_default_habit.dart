@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/view/widgets/color_picker_widget.dart';
@@ -21,7 +20,7 @@ class ScreenStartDefaultHabit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    final List<String> list=Get.arguments; 
     return Scaffold(
       backgroundColor: primaryColor,
       body: SafeArea(
@@ -97,7 +96,7 @@ class ScreenStartDefaultHabit extends StatelessWidget {
                               'Set Counter',
                               style: titleStyle,
                             ),
-                            const CounterWidget(),
+                             CounterWidget(categoryList: list,), 
                             kHeight,
                             Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -120,10 +119,14 @@ class ScreenStartDefaultHabit extends StatelessWidget {
                               onPressed: () async {
                                 final bool response =
                                     await habitCtrl.onSubmit();
-                                response
-                                    ? Get.back()
-                                    : Get.snackbar('Something went Wrong',
-                                        'Please check the given details and try again');
+
+                                if (response) {
+                                  homeCtrl.page.value = 0;
+                                  Get.back();
+                                } else {
+                                  Get.snackbar('Something went Wrong',
+                                      'Please check the given details and try again');
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: primaryColor,

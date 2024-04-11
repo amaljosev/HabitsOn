@@ -13,7 +13,7 @@ Future<void> main() async {
 
   await Hive.initFlutter();
   if (!Hive.isAdapterRegistered(HabitModelAdapter().typeId)) {
-    Hive.registerAdapter(HabitModelAdapter()); 
+    Hive.registerAdapter(HabitModelAdapter());
   }
   runApp(const MyApp());
 }
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         'home': (context) => const ScreenHome(),
-        'started_habit': (context) => const ScreenStartedHabit(), 
+        'started_habit': (context) => const ScreenStartedHabit(),
         'start_default_habit': (context) => const ScreenStartDefaultHabit(),
       },
       initialRoute: 'home',

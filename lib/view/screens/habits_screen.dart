@@ -19,9 +19,15 @@ class ScreenHabits extends StatelessWidget {
         title: Text(categoriesCtrl.categoryList[index].title),
         leading: categoriesCtrl.categoryList[index].icon,
         onTap: () {
+          List<String> data = [];
+          habitCtrl.weelValues.forEach((key, value) {
+            if (key == categoriesCtrl.categoryList[index].title) {
+              data.addAll(value);
+            }
+          });
           habitCtrl.habitNameCtrl.text =
               categoriesCtrl.categoryList[index].title;
-          Get.toNamed('start_default_habit');
+          Get.toNamed('start_default_habit', arguments: data);
         },
       ),
       itemCount: categoriesCtrl.categoryList.length,

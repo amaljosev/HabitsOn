@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
@@ -11,7 +10,9 @@ final habitCtrl = Get.find<NewHabitsController>();
 class CounterWidget extends StatelessWidget {
   const CounterWidget({
     super.key,
+    required this.categoryList,
   });
+  final List<String> categoryList;
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +42,14 @@ class CounterWidget extends StatelessWidget {
           height: 100,
           child: SelectorWheel(
             width: 100,
-            childCount: 6,
+            childCount: categoryList.isEmpty
+                ? habitCtrl.units.length
+                : categoryList.length,
             convertIndexToValue: (int index) {
-              final value =habitCtrl.units[index];  
-              return SelectorWheelValue(  
+              final value = categoryList.isEmpty
+                  ? habitCtrl.units[index]
+                  : categoryList[index];
+              return SelectorWheelValue(
                 label: value,
                 value: value,
                 index: index,

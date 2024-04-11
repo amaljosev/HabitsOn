@@ -68,7 +68,7 @@ class ScreenNewHabits extends StatelessWidget {
           'Set Counter',
           style: titleStyle,
         ),
-        const CounterWidget(),
+        const CounterWidget(categoryList: [],), 
         kHeight,
         Padding(
           padding: const EdgeInsets.all(8.0),

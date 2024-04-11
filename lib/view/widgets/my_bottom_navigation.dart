@@ -94,7 +94,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
             homeCtrl.page.value == 2 ? habitCtrl.habitNameCtrl.text = '' : null;
             homeCtrl.page.value = index;
           },
-         
+          letIndexChange: (index) => true,
         ));
   }
 }

@@ -53,28 +53,27 @@ class NewHabitsController extends GetxController {
     'Liter',
     'Cups',
   ];
-  Map<String,List<String>> weelValues={
-    'Meditation':['Hours','Minutes'],
-    'Reading':['Hours','Minutes','Pages'], 
-    'Walking':['Hours','Minutes','Kilometer','Meter','Laps'],
-    'Study':['Hours','Minutes','Pages','Chapters'],
-    'Workout':['Hours','Minutes'],
-    'Art':['Hours','Minutes'],
-    'Drink Water':['Cups','Liter'],
-    'Sports':['Hours','Minutes'],
-    'Social':['Hours','Minutes'],
-    'Cleaning':['Hours','Minutes'],
-    'Sleep':['Hours','Minutes'],
-    'Running':['Hours','Minutes','Kilometer','Meter','Laps'],
-    'Swimming':['Hours','Minutes','Laps'],
-    'Gardening':['Hours','Minutes'],
-    'Yoga':['Hours','Minutes'],
-    'cycling':['Hours','Minutes','Kilometer','Meter','Laps'],
-    'Warm up':['Hours','Minutes'],
-    'Practice breathing':['Hours','Minutes'],
-    'Keep a journal':['Pages'],
+  Map<String, List<String>> weelValues = {
+    'Meditation': ['Hours', 'Minutes'],
+    'Reading': ['Hours', 'Minutes', 'Pages'],
+    'Walking': ['Hours', 'Minutes', 'Kilometer', 'Meter', 'Laps'],
+    'Study': ['Hours', 'Minutes', 'Pages', 'Chapters'],
+    'Workout': ['Hours', 'Minutes'],
+    'Art': ['Hours', 'Minutes'],
+    'Drink Water': ['Cups', 'Liter'],
+    'Sports': ['Hours', 'Minutes'],
+    'Social': ['Hours', 'Minutes'],
+    'Cleaning': ['Hours', 'Minutes'],
+    'Sleep': ['Hours', 'Minutes'],
+    'Running': ['Hours', 'Minutes', 'Kilometer', 'Meter', 'Laps'],
+    'Swimming': ['Hours', 'Minutes', 'Laps'],
+    'Gardening': ['Hours', 'Minutes'],
+    'Yoga': ['Hours', 'Minutes'],
+    'cycling': ['Hours', 'Minutes', 'Kilometer', 'Meter', 'Laps'],
+    'Warm up': ['Hours', 'Minutes'],
+    'Practice breathing': ['Hours', 'Minutes'],
+    'Keep a journal': ['Pages'],
   };
- 
 
   bool areAllValuesFalse(Map<String, RxBool> map) {
     for (final value in map.values) {
@@ -110,7 +109,7 @@ class NewHabitsController extends GetxController {
 
       final HabitModel habitData = HabitModel(
           id: DateTime.now().toString(),
-          habitName: habitNameCtrl.text, 
+          habitName: habitNameCtrl.text,
           duration: int.parse(targetCtrl.text),
           selectedDays: selectDaysList,
           goalCount: counterWeelValue.value,
