@@ -38,12 +38,13 @@ dependencies:
   curved_navigation_bar_with_label: ^2.1.4
   get: ^4.6.6
   table_calendar: ^3.1.1
-  google_fonts: ^6.2.0
+  google_fonts: ^6.2.0 
   selector_wheel: ^1.1.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  slider_button: ^2.1.0
-  lottie: ^3.1.0
+  lottie: ^3.1.0 
+  slide_to_act: ^2.0.2
+  shared_preferences: ^2.2.3 
  
   
 

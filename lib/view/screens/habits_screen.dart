@@ -6,7 +6,7 @@ import 'package:habitson/controller/home_controller.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 
-final categoriesCtrl = Get.put(CategoriesController());
+final categoriesCtrl = Get.find<CategoriesController>();
 final homeCtrl = Get.find<HomeController>();
 final habitCtrl = Get.find<NewHabitsController>();
 final startedHabitCtrl = Get.find<StartedHabitController>();

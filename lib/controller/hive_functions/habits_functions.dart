@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
+import 'package:habitson/model/analyse_models/analyse_model.dart';
 import 'package:habitson/model/habit_models/habit_model.dart';
 import 'package:hive/hive.dart';
 
@@ -58,7 +59,9 @@ Future<int> calculateTotalHabitsStarted() async {
 }
 
 Future<void> clearDatabase() async {
+  final analyseDb = await Hive.openBox<AnalyseModel>('analyse_db'); 
   final habitsDB = await Hive.openBox<HabitModel>('habits_db');
   await habitsDB.clear();
+  await analyseDb.clear();
   getallDatas();
 }

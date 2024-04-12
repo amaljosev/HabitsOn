@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/hive_functions/analyse_functions.dart';
 import 'package:habitson/controller/hive_functions/habits_functions.dart';
+import 'package:habitson/model/analyse_models/analyse_model.dart';
 import 'package:habitson/model/habit_models/habit_model.dart';
 import 'package:habitson/view/screens/home_screen_widget.dart';
 
@@ -118,15 +120,27 @@ class NewHabitsController extends GetxController {
           goalCount: counterWeelValue.value,
           goalName: categoryWeelValue.value.toUpperCase(),
           doItAt: pickedDayTimeIndex.value,
-          streak: 0,
+          streak: analyseCtrl.streakCount.value,
           startedDate: DateTime.now(),
           latestDate: DateTime.now(),
           isComplete: false,
           backgroundColorIndex: pickedColorIndex.value);
+      final analyseData = AnalyseModel(
+          id: DateTime.now().toString(),
+          habitName: habitNameCtrl.text, 
+          targetDays: int.parse(targetCtrl.text),
+          completedDays: analyseCtrl.daysCompleted.value,
+          targetCategory: int.parse(counterWeelValue.value),
+          completedCategory: analyseCtrl.goalCompleted.value,
+          currentStreak: analyseCtrl.streakCount.value,
+          bestStreak: analyseCtrl.higestStreak.value);
 
       response.value = startedHCtrl.isModify.value
-          ? await updateList(startedHCtrl.habitIndex.value, habitData)
-          : await addHabit(habitData);
+          ? await updateList(startedHCtrl.habitIndex.value, habitData).then(
+              (value) =>
+                  updateAnalyseList(startedHCtrl.habitIndex.value, analyseData))
+          : await addHabit(habitData)
+              .then((value) => addToAnalyse(analyseData));
     }
 
     if (response.value) {
@@ -141,7 +155,7 @@ class NewHabitsController extends GetxController {
         'SAT': true.obs,
         'SUN': true.obs
       };
-      weelValues.clear(); 
+      weelValues.clear();
       pickedDayTimeIndex.value = 0;
       counterWeelValue.value = '1';
       categoryWeelValue.value = 'Hours';

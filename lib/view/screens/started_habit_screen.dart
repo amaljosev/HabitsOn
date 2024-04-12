@@ -1,18 +1,19 @@
-
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:habitson/controller/hive_functions/habits_functions.dart';
+import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/habit_day_detail_widget.dart';
 import 'package:habitson/view/widgets/my_appbar.dart';
 import 'package:lottie/lottie.dart';
-import 'package:slider_button/slider_button.dart';
+import 'package:slide_to_act/slide_to_act.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
 final startedHabitCtrl = Get.find<StartedHabitController>();
+final analyseCtrl = Get.find<HabitOperationsController>();
 
 class ScreenStartedHabit extends StatelessWidget {
   const ScreenStartedHabit({super.key});
@@ -21,6 +22,12 @@ class ScreenStartedHabit extends StatelessWidget {
   Widget build(BuildContext context) {
     final list = habitCtrl.habitsList[startedHabitCtrl.habitIndex.value];
     final List<String> workoutDays = list.selectedDays;
+    final analyzeList =
+        analyseCtrl.analyseList[startedHabitCtrl.habitIndex.value];
+    analyseCtrl.goalCompleted.value = analyzeList.completedCategory;
+    analyseCtrl.daysCompleted.value = analyzeList.completedDays;
+    analyseCtrl.streakCount.value = analyzeList.currentStreak;
+    analyseCtrl.higestStreak.value = analyzeList.bestStreak;
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: primaryColor,
@@ -29,12 +36,11 @@ class ScreenStartedHabit extends StatelessWidget {
           Lottie.asset(
             'assets/lottie/habit_bg.json',
             fit: BoxFit.cover,
-          ), 
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              HabitsAppBar(
-                  index: startedHabitController.habitIndex.value),
+              HabitsAppBar(index: startedHabitController.habitIndex.value),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Container(
@@ -66,7 +72,7 @@ class ScreenStartedHabit extends StatelessWidget {
                               size: size,
                               goalName: list.goalName.toUpperCase(),
                               completedData:
-                                  startedHabitCtrl.goalCompleted.toString(),
+                                  analyseCtrl.goalCompleted.toString(),
                               target: list.goalCount,
                               finishedOrStreak: 'FINISHED',
                               targetOrStreak: 'Target'),
@@ -74,69 +80,47 @@ class ScreenStartedHabit extends StatelessWidget {
                               size: size,
                               goalName: 'DAYS',
                               completedData:
-                                  startedHabitCtrl.daysCompleted.toString(),
+                                  analyseCtrl.daysCompleted.toString(),
                               target: list.duration.toString(),
                               finishedOrStreak: 'FINISHED',
                               targetOrStreak: 'Target'),
                           HabitCompletionDetailWidget(
                               size: size,
                               goalName: 'CURRENT',
-                              completedData:
-                                  startedHabitCtrl.streakCount.toString(),
-                              target:
-                                  startedHabitCtrl.higestStreak.toString(),
+                              completedData: analyseCtrl.streakCount.toString(),
+                              target: analyseCtrl.higestStreak.toString(),
                               finishedOrStreak: 'STREAK',
                               targetOrStreak: 'Best'),
                         ],
                       ),
                       kHeight,
-                      SliderButton(
-                        backgroundColor: primaryColor,
-                        buttonColor: Colors.deepOrange,
-                        buttonSize: 50,
-                        action: () async {
-                          return await getallDatas();
-                        },
-                        label: const Text(
-                          "One Lap completed",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 17,
-                          ),
-                        ),
-                        boxShadow: BoxShadow(
-                          color: Colors.white.withOpacity(0.5),
-                          blurRadius: 15.0,
-                        ),
-                        icon: const Icon(
-                          Icons.check_rounded,
-                          color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                        child: SlideAction(
+                          textStyle: titleStyle,
+                          animationDuration: const Duration(milliseconds: 600),
+                          text: "Complete one Lap ",
+                          innerColor: Colors.deepOrange,
+                          outerColor: primaryColor,
+                          onSubmit: () async {
+                            log('submited');
+                            return true;
+                          },
                         ),
                       ),
                       kHeight,
-                      SliderButton(
-                        backgroundColor: primaryColor,
-                        buttonColor: Colors.deepOrange,
-                        buttonSize: 50,
-                        action: () async {
-                          return await getallDatas();
-                        },
-                        label: const Text(
-                          "finished all Laps",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 17,
-                          ),
-                        ),
-                        boxShadow: BoxShadow(
-                          color: Colors.white.withOpacity(0.5),
-                          blurRadius: 15.0,
-                        ),
-                        icon: const Icon(
-                          Icons.check_rounded,
-                          color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                        child: SlideAction(
+                          textStyle: titleStyle,
+                          animationDuration: const Duration(milliseconds: 600),
+                          text: "Finish all Laps",
+                          innerColor: Colors.deepOrange,
+                          outerColor: primaryColor,
+                          onSubmit: () async {
+                            log('submited');
+                            return true;
+                          },
                         ),
                       ),
                       const Spacer(),
@@ -163,8 +147,8 @@ class ScreenStartedHabit extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: IconButton(
                                       onPressed: () {},
-                                      icon: const Icon(
-                                          Icons.bar_chart_rounded)),
+                                      icon:
+                                          const Icon(Icons.bar_chart_rounded)),
                                 ),
                               ),
                               const Text('Analayse')

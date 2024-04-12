@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/model/analyse_models/analyse_model.dart';
 import 'package:habitson/model/habit_models/habit_model.dart';
 import 'package:habitson/view/home_screen.dart';
 import 'package:habitson/view/screens/start_default_habit.dart';
@@ -14,6 +15,9 @@ Future<void> main() async {
   await Hive.initFlutter();
   if (!Hive.isAdapterRegistered(HabitModelAdapter().typeId)) {
     Hive.registerAdapter(HabitModelAdapter());
+  }
+  if (!Hive.isAdapterRegistered(AnalyseModelAdapter().typeId)) {
+    Hive.registerAdapter(AnalyseModelAdapter());
   }
   runApp(const MyApp());
 }
@@ -33,7 +37,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'home': (context) => const ScreenHome(),
         'started_habit': (context) => const ScreenStartedHabit(),
-        'start_default_habit': (context) => const ScreenStartDefaultHabit(),   
+        'start_default_habit': (context) => const ScreenStartDefaultHabit(),
       },
       initialRoute: 'home',
     );

@@ -7,8 +7,8 @@ import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/screens/new_habits_screen.dart';
 
-final habitCtrl = Get.put(NewHabitsController());
-final startedHCtrl=Get.put(StartedHabitController());
+final habitCtrl = Get.find<NewHabitsController>(); 
+final startedHCtrl=Get.find<StartedHabitController>();
 
 class ScreenHomeWidget extends StatelessWidget {
   const ScreenHomeWidget({super.key});

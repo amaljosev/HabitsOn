@@ -1,16 +1,18 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/hive_functions/habits_functions.dart';
+import 'package:habitson/controller/new_habits_controller.dart';
 
 enum Options { reset, delete }
 
+final analyseCtrl = Get.find<HabitOperationsController>();
+final habitCtrl = Get.find<NewHabitsController>();
+
 class StartedHabitController extends GetxController {
   RxInt habitIndex = 0.obs;
-  RxInt goalCompleted = 0.obs;
-  RxInt daysCompleted = 0.obs;
-  RxInt streakCount = 0.obs;
-  RxInt higestStreak = 0.obs;
+
   RxString selectedValue = ''.obs;
   var selectedOption = Rx<Options>(Options.delete);
   RxBool isModify = false.obs;
@@ -71,5 +73,10 @@ class StartedHabitController extends GetxController {
     habitCtrl.counterWeelValue.value = '1';
     habitCtrl.categoryWeelValue.value = 'Hours';
     habitCtrl.pickedColorIndex.value = 1;
+
+    analyseCtrl.daysCompleted.value = 0;
+    analyseCtrl.goalCompleted.value = 0;
+    analyseCtrl.higestStreak.value = 0;
+    analyseCtrl.streakCount.value = 0;
   }
 }

@@ -11,14 +11,13 @@ import 'package:habitson/view/widgets/calender_widget.dart';
 import 'package:habitson/view/widgets/my_bottom_navigation.dart';
 import 'package:lottie/lottie.dart';
 
-final homeCtrl = Get.put(HomeController());
-
 class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final homeCtrl = Get.put(HomeController()); 
 
     return Obx(() => Scaffold(
           bottomNavigationBar: const MyBottomNavigationWidget(),
