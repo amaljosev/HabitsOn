@@ -13,7 +13,7 @@ class StartedHabitController extends GetxController {
   RxInt higestStreak = 0.obs;
   RxString selectedValue = ''.obs;
   var selectedOption = Rx<Options>(Options.delete);
-  RxBool isModify=false.obs;
+  RxBool isModify = false.obs;
 
   Future<void> handleOptionSelected(Options option, int index) async {
     selectedOption.value = option;
@@ -57,7 +57,7 @@ class StartedHabitController extends GetxController {
   void resetDatas() {
     habitCtrl.habitNameCtrl.text = '';
     habitCtrl.targetCtrl.text = '';
-
+    habitCtrl.options.clear();
     habitCtrl.weekDays = {
       'MON': true.obs,
       'TUE': true.obs,

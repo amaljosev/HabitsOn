@@ -141,6 +141,7 @@ class NewHabitsController extends GetxController {
         'SAT': true.obs,
         'SUN': true.obs
       };
+      weelValues.clear(); 
       pickedDayTimeIndex.value = 0;
       counterWeelValue.value = '1';
       categoryWeelValue.value = 'Hours';

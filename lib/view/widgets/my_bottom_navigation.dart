@@ -1,12 +1,12 @@
 import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/home_controller.dart';
+import 'package:habitson/controller/started_habit_controller.dart';
 
 import '../core/constants.dart';
 
-class MyBottomNavigationWidget extends StatelessWidget {
+class MyBottomNavigationWidget extends StatelessWidget { 
   const MyBottomNavigationWidget({
     super.key,
   });
@@ -14,6 +14,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeCtrl = Get.find<HomeController>();
+    final sHCtrl=Get.put(StartedHabitController()); 
     return Obx(() => CurvedNavigationBar(
           key: homeCtrl.bottomNavigationKey,
           index: 0,
@@ -91,7 +92,10 @@ class MyBottomNavigationWidget extends StatelessWidget {
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 600),
           onTap: (index) {
-            homeCtrl.page.value == 2 ? habitCtrl.habitNameCtrl.text = '' : null;
+            if (homeCtrl.page.value == 2) {
+              sHCtrl.resetDatas();
+            }
+            
             homeCtrl.page.value = index;
           },
           letIndexChange: (index) => true,
