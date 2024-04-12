@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
@@ -46,18 +47,18 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
 
     return Scaffold(
       backgroundColor: primaryColor,
-      body: SafeArea(
-        child: Container(
-          decoration: const BoxDecoration(
-            color: primaryColor,
-          ),
-          child: Stack(
-            children: [
-              Lottie.asset(
-                'assets/lottie/habit_bg.json',
-                fit: BoxFit.cover,
-              ),
-              Column(
+      body: Container(
+        decoration: const BoxDecoration(
+          color: primaryColor,
+        ),
+        child: Stack(
+          children: [
+            Lottie.asset(
+              'assets/lottie/habit_bg.json',
+              fit: BoxFit.cover,
+            ),
+            SafeArea(
+              child: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -154,7 +155,7 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                               onPressed: () async {
                                 final bool response =
                                     await habitCtrl.onSubmit();
-
+                    
                                 if (response) {
                                   homeCtrl.page.value = 0;
                                   Get.back();
@@ -182,8 +183,8 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

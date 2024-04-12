@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/model/habit_models/habit_model.dart';
+import 'package:habitson/view/screens/home_screen_widget.dart';
 
 class NewHabitsController extends GetxController {
   @override
@@ -123,7 +124,9 @@ class NewHabitsController extends GetxController {
           isComplete: false,
           backgroundColorIndex: pickedColorIndex.value);
 
-      response.value = await addHabit(habitData);
+      response.value = startedHCtrl.isModify.value
+          ? await updateList(startedHCtrl.habitIndex.value, habitData)
+          : await addHabit(habitData);
     }
 
     if (response.value) {
