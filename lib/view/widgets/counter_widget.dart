@@ -10,9 +10,9 @@ final habitCtrl = Get.find<NewHabitsController>();
 class CounterWidget extends StatelessWidget {
   const CounterWidget({
     super.key,
-    required this.categoryList,
+
   });
-  final List<String> categoryList;
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +42,13 @@ class CounterWidget extends StatelessWidget {
           height: 100,
           child: SelectorWheel(
             width: 100,
-            childCount: categoryList.isEmpty
+            childCount: habitCtrl.options.isEmpty
                 ? habitCtrl.units.length
-                : categoryList.length,
+                : habitCtrl.options.length, 
             convertIndexToValue: (int index) {
-              final value = categoryList.isEmpty
+              final value = habitCtrl.options.isEmpty
                   ? habitCtrl.units[index]
-                  : categoryList[index];
+                  : habitCtrl.options[index];
               return SelectorWheelValue(
                 label: value,
                 value: value,

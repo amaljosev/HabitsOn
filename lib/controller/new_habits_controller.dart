@@ -75,6 +75,8 @@ class NewHabitsController extends GetxController {
     'Keep a journal': ['Pages'],
   };
 
+  RxList<String> options = <String>[].obs;
+
   bool areAllValuesFalse(Map<String, RxBool> map) {
     for (final value in map.values) {
       if (value.value) {

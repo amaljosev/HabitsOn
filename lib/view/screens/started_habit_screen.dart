@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/hive_functions/habits_functions.dart';
@@ -10,17 +12,16 @@ import 'package:lottie/lottie.dart';
 import 'package:slider_button/slider_button.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
-final startedHabitCtrl = Get.put(StartedHabitController());
+final startedHabitCtrl = Get.find<StartedHabitController>();
 
 class ScreenStartedHabit extends StatelessWidget {
   const ScreenStartedHabit({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final int index = Get.arguments;
-    final list = habitCtrl.habitsList[index];
+    final list = habitCtrl.habitsList[startedHabitCtrl.habitIndex.value];
     final List<String> workoutDays = list.selectedDays;
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: primaryColor,
       body: SafeArea(
@@ -29,11 +30,12 @@ class ScreenStartedHabit extends StatelessWidget {
             Lottie.asset(
               'assets/lottie/habit_bg.json',
               fit: BoxFit.cover,
-            ),
+            ), 
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 HabitsAppBar(index: index), 
+                HabitsAppBar(
+                    index: startedHabitController.habitIndex.value),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Container(
@@ -82,9 +84,10 @@ class ScreenStartedHabit extends StatelessWidget {
                                 goalName: 'CURRENT',
                                 completedData:
                                     startedHabitCtrl.streakCount.toString(),
-                                target: startedHabitCtrl.higestStreak.toString(), 
+                                target:
+                                    startedHabitCtrl.higestStreak.toString(),
                                 finishedOrStreak: 'STREAK',
-                                targetOrStreak: 'Best'), 
+                                targetOrStreak: 'Best'),
                           ],
                         ),
                         kHeight,

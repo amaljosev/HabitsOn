@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'home': (context) => const ScreenHome(),
         'started_habit': (context) => const ScreenStartedHabit(),
-        'start_default_habit': (context) => const ScreenStartDefaultHabit(),
+        'start_default_habit': (context) => const ScreenStartDefaultHabit(),   
       },
       initialRoute: 'home',
     );

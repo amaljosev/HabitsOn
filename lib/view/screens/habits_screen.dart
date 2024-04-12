@@ -1,12 +1,15 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/categories_controller.dart';
 import 'package:habitson/controller/home_controller.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
+import 'package:habitson/controller/started_habit_controller.dart';
 
 final categoriesCtrl = Get.put(CategoriesController());
 final homeCtrl = Get.find<HomeController>();
 final habitCtrl = Get.find<NewHabitsController>();
+final startedHabitCtrl = Get.find<StartedHabitController>();
 
 class ScreenHabits extends StatelessWidget {
   const ScreenHabits({super.key});
@@ -19,15 +22,17 @@ class ScreenHabits extends StatelessWidget {
         title: Text(categoriesCtrl.categoryList[index].title),
         leading: categoriesCtrl.categoryList[index].icon,
         onTap: () {
-          List<String> data = [];
+          startedHabitCtrl.resetDatas();
           habitCtrl.weelValues.forEach((key, value) {
             if (key == categoriesCtrl.categoryList[index].title) {
-              data.addAll(value);
+              habitCtrl.options.clear();
+              habitCtrl.options.addAll(value);
             }
           });
           habitCtrl.habitNameCtrl.text =
               categoriesCtrl.categoryList[index].title;
-          Get.toNamed('start_default_habit', arguments: data);
+          startedHabitCtrl.isModify.value = false;
+          Get.toNamed('start_default_habit');
         },
       ),
       itemCount: categoriesCtrl.categoryList.length,

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:habitson/controller/hive_functions/habits_functions.dart';
-
+import 'package:habitson/controller/new_habits_controller.dart';
 import '../../controller/started_habit_controller.dart';
 
 final startedHabitController = Get.find<StartedHabitController>();
+final habitCtrl = Get.find<NewHabitsController>();
 
 class HabitsAppBar extends StatelessWidget {
   const HabitsAppBar({
-    super.key, required this.index,
+    super.key,
+    required this.index,
   });
-final int index;
+  final int index;
   @override
   Widget build(BuildContext context) {
-   
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -22,22 +22,25 @@ final int index;
           Card(
             child: IconButton(
                 onPressed: () {
-                  habitCtrl.habitNameCtrl.text = '';
+                  startedHabitController.resetDatas();
                   Get.back();
                 },
                 icon: const Icon(Icons.arrow_back)),
           ),
           Row(
             children: [
-              const Card(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.edit),
-                ),
+              Card(
+                child: IconButton(
+                    onPressed: () {
+                      startedHabitController.isModify.value = true;
+                      Get.toNamed('start_default_habit');
+                    },
+                    icon: const Icon(Icons.edit)),
               ),
               Card(
-                child: PopupMenuButton<Options>( 
-                  onSelected: (value) => startedHabitController.handleOptionSelected(value,index),
+                child: PopupMenuButton<Options>(
+                  onSelected: (value) =>
+                      startedHabitController.handleOptionSelected(value, index),
                   itemBuilder: (context) => [
                     const PopupMenuItem(
                         value: Options.reset, child: Text('Reset')),

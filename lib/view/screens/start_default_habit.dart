@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
+import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/widgets/color_picker_widget.dart';
 import 'package:habitson/view/widgets/counter_widget.dart';
 import 'package:habitson/view/widgets/doitat_widget.dart';
@@ -12,14 +14,36 @@ import '../core/constants.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
 final homeCtrl = Get.find<HomeController>();
+final startedHabitCtrl = Get.find<StartedHabitController>();
 
-class ScreenStartDefaultHabit extends StatelessWidget {
+class ScreenStartDefaultHabit extends StatefulWidget {
   const ScreenStartDefaultHabit({super.key});
+
+  @override
+  State<ScreenStartDefaultHabit> createState() =>
+      _ScreenStartDefaultHabitState();
+}
+
+class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
+  @override
+  void initState() {
+    super.initState();
+
+    if (startedHabitCtrl.isModify.value) {
+      startedHabitCtrl.setDatas();
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    startedHabitCtrl.resetDatas();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final List<String> list = Get.arguments;
+
     return Scaffold(
       backgroundColor: primaryColor,
       body: SafeArea(
@@ -39,10 +63,11 @@ class ScreenStartDefaultHabit extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        
                         Card(
                             child: IconButton(
-                                onPressed: () => Get.back(),
+                                onPressed: () {
+                                  Get.back();
+                                },
                                 icon: const Icon(Icons.arrow_back))),
                       ],
                     ),
@@ -106,9 +131,7 @@ class ScreenStartDefaultHabit extends StatelessWidget {
                               'Set Counter',
                               style: titleStyle,
                             ),
-                            CounterWidget(
-                              categoryList: list,
-                            ),
+                            const CounterWidget(),
                             kHeight,
                             Padding(
                               padding: const EdgeInsets.all(8.0),

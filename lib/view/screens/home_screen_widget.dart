@@ -1,16 +1,19 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
+import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/screens/new_habits_screen.dart';
 
 final habitCtrl = Get.put(NewHabitsController());
+final startedHCtrl=Get.put(StartedHabitController());
 
 class ScreenHomeWidget extends StatelessWidget {
   const ScreenHomeWidget({super.key});
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Obx(() => Column(
           children: [
@@ -45,7 +48,11 @@ class ScreenHomeWidget extends StatelessWidget {
                 final list = habitCtrl.habitsList[index];
                 return ListTile(
                   title: InkWell(
-                    onTap: () => Get.toNamed('started_habit', arguments: index),
+                    onTap: () {
+                      startedHCtrl.habitIndex.value=index;
+                      Get.toNamed('started_habit'
+                        );
+                    },
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(
