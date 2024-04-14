@@ -29,11 +29,12 @@ class ScreenStartedHabit extends StatelessWidget {
     analyseCtrl.streakCount.value = analyzeList.currentStreak;
     analyseCtrl.higestStreak.value = analyzeList.bestStreak;
     final Size size = MediaQuery.of(context).size;
+    analyseCtrl.habitName.value=list.habitName;
     return Scaffold(
       backgroundColor: primaryColor,
       body: Stack(
         children: [
-          Lottie.asset(
+          Lottie.asset( 
             'assets/lottie/habit_bg.json',
             fit: BoxFit.cover,
           ),
@@ -43,7 +44,7 @@ class ScreenStartedHabit extends StatelessWidget {
               HabitsAppBar(index: startedHabitController.habitIndex.value),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Container(
+                child:Obx(() =>  Container(
                   height: size.height * 0.75,
                   width: size.width,
                   decoration: BoxDecoration(
@@ -57,7 +58,7 @@ class ScreenStartedHabit extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          list.habitName,
+                          analyseCtrl.habitName.value, 
                           style: titleStyle,
                         ),
                       ),
@@ -172,7 +173,7 @@ class ScreenStartedHabit extends StatelessWidget {
                       kHeight
                     ],
                   ),
-                ),
+                ),) 
               ),
             ],
           ),

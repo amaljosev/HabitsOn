@@ -21,6 +21,7 @@ Future<bool> getAllAnalyseDatas() async {
     final analyseDb = await Hive.openBox<AnalyseModel>('analyse_db');
     analyseCtrl.analyseList.clear();
     analyseCtrl.analyseList.addAll(analyseDb.values);
+
     return true;
   } catch (e) {
     return false;

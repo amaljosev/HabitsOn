@@ -11,10 +11,14 @@ class HabitOperationsController extends GetxController {
   RxInt daysCompleted = 0.obs;
   RxInt streakCount = 0.obs;
   RxInt higestStreak = 0.obs;
+  RxString habitName=''.obs;
+  RxString doItAt=''.obs;
+  RxList<String> weekDays=<String>[].obs;  
 
   @override
   void onInit() {
     super.onInit();
     getAllAnalyseDatas();
   }
+  
 }

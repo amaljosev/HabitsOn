@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import '../../model/habit_models/habit_model.dart';
 import '../core/constants.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
+final analyseCtrl = Get.find<HabitOperationsController>();
 
 class HabitDayDetailWidget extends StatelessWidget {
   const HabitDayDetailWidget({
@@ -20,7 +22,9 @@ class HabitDayDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    analyseCtrl.doItAt.value = habitCtrl.timingList[list.doItAt];
+    analyseCtrl.weekDays.value=list.selectedDays;
+    return Obx(() => Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Container(
@@ -30,7 +34,7 @@ class HabitDayDetailWidget extends StatelessWidget {
               color: primaryColor.withOpacity(0.5),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: Center(
-            child: Text(habitCtrl.timingList[list.doItAt],
+            child: Text(analyseCtrl.doItAt.value,
                 style: const TextStyle(fontWeight: FontWeight.bold)),
           ),
         ),
@@ -42,20 +46,20 @@ class HabitDayDetailWidget extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: Center(
               child: Text(
-            workoutDays.length == 7
+             analyseCtrl.weekDays.length == 7
                 ? 'Every Day'
-                : (workoutDays.contains('SAT') &&
-                        workoutDays.contains('SUN') &&
-                        workoutDays.length == 2
+                : ( analyseCtrl.weekDays.contains('SAT') &&
+                         analyseCtrl.weekDays.contains('SUN') &&
+                         analyseCtrl.weekDays.length == 2
                     ? 'Weekends'
-                    : (!workoutDays.contains('SAT') &&
-                            !workoutDays.contains('SUN')
+                    : (! analyseCtrl.weekDays.contains('SAT') && 
+                            ! analyseCtrl.weekDays.contains('SUN')
                         ? 'Working days'
                         : 'Mixed Days')),
             style: const TextStyle(fontWeight: FontWeight.bold),
           )),
         )
       ],
-    );
+    ));
   }
 }

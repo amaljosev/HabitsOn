@@ -127,7 +127,7 @@ class NewHabitsController extends GetxController {
           backgroundColorIndex: pickedColorIndex.value);
       final analyseData = AnalyseModel(
           id: DateTime.now().toString(),
-          habitName: habitNameCtrl.text, 
+          habitName: habitNameCtrl.text,
           targetDays: int.parse(targetCtrl.text),
           completedDays: analyseCtrl.daysCompleted.value,
           targetCategory: int.parse(counterWeelValue.value),
@@ -144,6 +144,11 @@ class NewHabitsController extends GetxController {
     }
 
     if (response.value) {
+      if (startedHCtrl.isModify.value) {
+        analyseCtrl.habitName.value = habitNameCtrl.text;
+        analyseCtrl.doItAt.value = timingList[pickedDayTimeIndex.value];
+        analyseCtrl.weekDays.value = selectDaysList;
+      }
       habitNameCtrl.text = '';
       targetCtrl.text = '';
       weekDays = {
