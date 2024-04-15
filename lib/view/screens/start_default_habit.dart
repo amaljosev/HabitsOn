@@ -32,6 +32,7 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
     if (startedHabitCtrl.isModify.value) {
       startedHabitCtrl.setDatas();
     }
+    analyseCtrl.counterGoalTargetIndex.value = analyseCtrl.counterTarget.value;
   }
 
   @override
@@ -43,7 +44,6 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: primaryColor,
       body: Container(
@@ -154,7 +154,7 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                               onPressed: () async {
                                 final bool response =
                                     await habitCtrl.onSubmit();
-                    
+
                                 if (response) {
                                   homeCtrl.page.value = 0;
                                   Get.back();

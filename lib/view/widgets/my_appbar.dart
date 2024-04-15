@@ -34,14 +34,15 @@ class HabitsAppBar extends StatelessWidget {
                   child: IconButton(
                       onPressed: () {
                         startedHabitController.isModify.value = true;
+
                         Get.toNamed('start_default_habit');
                       },
                       icon: const Icon(Icons.edit)),
                 ),
                 Card(
                   child: PopupMenuButton<Options>(
-                    onSelected: (value) =>
-                        startedHabitController.handleOptionSelected(value, index),
+                    onSelected: (value) => startedHabitController
+                        .handleOptionSelected(value, index),
                     itemBuilder: (context) => [
                       const PopupMenuItem(
                           value: Options.reset, child: Text('Reset')),

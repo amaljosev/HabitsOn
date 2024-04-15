@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
@@ -148,6 +149,16 @@ class NewHabitsController extends GetxController {
         analyseCtrl.habitName.value = habitNameCtrl.text;
         analyseCtrl.doItAt.value = timingList[pickedDayTimeIndex.value];
         analyseCtrl.weekDays.value = selectDaysList;
+        analyseCtrl.counterValue.value = categoryWeelValue.value;
+        analyseCtrl.counterTarget.value = int.parse(counterWeelValue.value);
+        analyseCtrl.targetDays.value = int.parse(targetCtrl.text);
+        for (var element in units) {
+          String val = element.toUpperCase();
+          if (val == analyseCtrl.counterValue.value.toUpperCase()) {
+            analyseCtrl.counterGoalCategoryIndex.value = units.indexOf(element);
+            break;
+          }
+        }
       }
       habitNameCtrl.text = '';
       targetCtrl.text = '';
