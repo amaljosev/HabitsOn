@@ -3,14 +3,14 @@ part 'habit_model.g.dart';
 
 @HiveType(typeId: 1)
 class HabitModel {
-  @HiveField(0) 
+  @HiveField(0)
   final String id;
   @HiveField(1)
   final String habitName;
   @HiveField(2)
   final int duration;
   @HiveField(3)
-  final List<String> selectedDays; 
+  final List<String> selectedDays;
   @HiveField(4)
   final String goalCount;
   @HiveField(5)
@@ -27,9 +27,13 @@ class HabitModel {
   final bool isComplete;
   @HiveField(11)
   final int backgroundColorIndex;
+  @HiveField(12)
+  final int goalCountIndex;
+  @HiveField(13)
+  final int goalNameIndex;
 
   HabitModel(
-      {required this.id, 
+      {required this.id,
       required this.habitName,
       required this.duration,
       required this.selectedDays,
@@ -40,6 +44,7 @@ class HabitModel {
       required this.startedDate,
       required this.latestDate,
       required this.isComplete,
-      required this.backgroundColorIndex});
+      required this.backgroundColorIndex,
+      required this.goalCountIndex,
+      required this.goalNameIndex});
 }
- 

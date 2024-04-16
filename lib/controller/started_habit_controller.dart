@@ -9,6 +9,7 @@ enum Options { reset, delete }
 
 final analyseCtrl = Get.find<HabitOperationsController>();
 final habitCtrl = Get.find<NewHabitsController>();
+final newHabitCtrl = Get.find<StartedHabitController>();
 
 class StartedHabitController extends GetxController {
   RxInt habitIndex = 0.obs;
@@ -31,10 +32,8 @@ class StartedHabitController extends GetxController {
   }
 
   void setDatas() {
-    habitCtrl.habitNameCtrl.text =
-        habitCtrl.habitsList[habitIndex.value].habitName;
-    habitCtrl.targetCtrl.text =
-        habitCtrl.habitsList[habitIndex.value].duration.toString();
+    habitCtrl.habitNameCtrl.text = analyseCtrl.habitName.value;
+    habitCtrl.targetCtrl.text = analyseCtrl.targetDays.value.toString();
     for (var key in habitCtrl.weekDays.keys.toList()) {
       if (!habitCtrl.habitsList[habitIndex.value].selectedDays.contains(key)) {
         habitCtrl.weekDays[key] = false.obs;
@@ -47,9 +46,9 @@ class StartedHabitController extends GetxController {
       }
     });
     habitCtrl.counterWeelValue.value =
-        habitCtrl.habitsList[habitIndex.value].goalCount.toString();
+        analyseCtrl.counterTarget.value.toString();
     habitCtrl.categoryWeelValue.value =
-        habitCtrl.habitsList[habitIndex.value].goalName.toString();
+        analyseCtrl.counterValue.value.toString();
     habitCtrl.pickedDayTimeIndex.value =
         habitCtrl.habitsList[habitIndex.value].doItAt;
     habitCtrl.pickedColorIndex.value =
@@ -57,9 +56,13 @@ class StartedHabitController extends GetxController {
   }
 
   void resetDatas() {
+    if (newHabitCtrl.isModify.value) {
+      habitCtrl.options.clear();
+    }
+    newHabitCtrl.isModify.value = false;
     habitCtrl.habitNameCtrl.text = '';
     habitCtrl.targetCtrl.text = '';
-    habitCtrl.options.clear();
+
     habitCtrl.weekDays = {
       'MON': true.obs,
       'TUE': true.obs,
@@ -73,10 +76,10 @@ class StartedHabitController extends GetxController {
     habitCtrl.counterWeelValue.value = '1';
     habitCtrl.categoryWeelValue.value = 'Hours';
     habitCtrl.pickedColorIndex.value = 1;
-
     analyseCtrl.daysCompleted.value = 0;
     analyseCtrl.goalCompleted.value = 0;
     analyseCtrl.higestStreak.value = 0;
     analyseCtrl.streakCount.value = 0;
+    newHabitCtrl.isModify.value = false;
   }
 }

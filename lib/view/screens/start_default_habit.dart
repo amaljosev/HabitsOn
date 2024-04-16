@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
@@ -8,7 +7,6 @@ import 'package:habitson/view/widgets/counter_widget.dart';
 import 'package:habitson/view/widgets/doitat_widget.dart';
 import 'package:habitson/view/widgets/my_form_widget.dart';
 import 'package:habitson/view/widgets/week_selector_widget.dart';
-import 'package:lottie/lottie.dart';
 import '../../controller/home_controller.dart';
 import '../core/constants.dart';
 
@@ -32,7 +30,6 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
     if (startedHabitCtrl.isModify.value) {
       startedHabitCtrl.setDatas();
     }
-    analyseCtrl.counterGoalTargetIndex.value = analyseCtrl.counterTarget.value;
   }
 
   @override
@@ -52,10 +49,10 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
         ),
         child: Stack(
           children: [
-            Lottie.asset(
-              'assets/lottie/habit_bg.json',
-              fit: BoxFit.cover,
-            ),
+            // Lottie.asset(
+            //   'assets/lottie/habit_bg.json',
+            //   fit: BoxFit.cover,
+            // ),
             SafeArea(
               child: Column(
                 children: [

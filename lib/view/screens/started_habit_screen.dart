@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
@@ -8,7 +7,6 @@ import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/habit_day_detail_widget.dart';
 import 'package:habitson/view/widgets/my_appbar.dart';
-import 'package:lottie/lottie.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
@@ -32,16 +30,17 @@ class ScreenStartedHabit extends StatelessWidget {
     analyseCtrl.daysCompleted.value = analyzeList.completedDays;
     analyseCtrl.targetDays.value = list.duration;
     analyseCtrl.streakCount.value = analyzeList.currentStreak;
-    analyseCtrl.higestStreak.value = analyzeList.bestStreak; 
-   
+    analyseCtrl.higestStreak.value = analyzeList.bestStreak;
+    analyseCtrl.counterGoalTargetIndex.value = list.goalCountIndex; 
+    analyseCtrl.counterGoalCategoryIndex.value = list.goalNameIndex; 
     return Scaffold(
       backgroundColor: primaryColor,
       body: Stack(
         children: [
-          Lottie.asset(
-            'assets/lottie/habit_bg.json',
-            fit: BoxFit.cover,
-          ),
+          // Lottie.asset(
+          //   'assets/lottie/habit_bg.json',
+          //   fit: BoxFit.cover,
+          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

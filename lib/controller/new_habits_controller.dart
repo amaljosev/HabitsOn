@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
@@ -112,7 +111,6 @@ class NewHabitsController extends GetxController {
           selectDaysList.add(key);
         }
       });
-
       final HabitModel habitData = HabitModel(
           id: DateTime.now().toString(),
           habitName: habitNameCtrl.text,
@@ -125,7 +123,9 @@ class NewHabitsController extends GetxController {
           startedDate: DateTime.now(),
           latestDate: DateTime.now(),
           isComplete: false,
-          backgroundColorIndex: pickedColorIndex.value);
+          backgroundColorIndex: pickedColorIndex.value,
+          goalCountIndex: analyseCtrl.counterGoalTargetIndex.value,
+          goalNameIndex: analyseCtrl.counterGoalCategoryIndex.value);
       final analyseData = AnalyseModel(
           id: DateTime.now().toString(),
           habitName: habitNameCtrl.text,
@@ -152,13 +152,7 @@ class NewHabitsController extends GetxController {
         analyseCtrl.counterValue.value = categoryWeelValue.value;
         analyseCtrl.counterTarget.value = int.parse(counterWeelValue.value);
         analyseCtrl.targetDays.value = int.parse(targetCtrl.text);
-        for (var element in units) {
-          String val = element.toUpperCase();
-          if (val == analyseCtrl.counterValue.value.toUpperCase()) {
-            analyseCtrl.counterGoalCategoryIndex.value = units.indexOf(element);
-            break;
-          }
-        }
+       
       }
       habitNameCtrl.text = '';
       targetCtrl.text = '';
@@ -171,7 +165,6 @@ class NewHabitsController extends GetxController {
         'SAT': true.obs,
         'SUN': true.obs
       };
-      weelValues.clear();
       pickedDayTimeIndex.value = 0;
       counterWeelValue.value = '1';
       categoryWeelValue.value = 'Hours';

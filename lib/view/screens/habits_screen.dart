@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/categories_controller.dart';
@@ -23,6 +22,7 @@ class ScreenHabits extends StatelessWidget {
         leading: categoriesCtrl.categoryList[index].icon,
         onTap: () {
           startedHabitCtrl.resetDatas();
+
           habitCtrl.weelValues.forEach((key, value) {
             if (key == categoriesCtrl.categoryList[index].title) {
               habitCtrl.options.clear();

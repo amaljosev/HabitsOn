@@ -33,8 +33,13 @@ class HabitsAppBar extends StatelessWidget {
                 Card(
                   child: IconButton(
                       onPressed: () {
-                        startedHabitController.isModify.value = true;
-
+                        startedHabitController.isModify.value = true; 
+                        habitCtrl.weelValues.forEach((key, value) {
+                          if (key == analyseCtrl.counterValue.value) { 
+                            habitCtrl.options.clear();
+                            habitCtrl.options.addAll(value);
+                          }
+                        });
                         Get.toNamed('start_default_habit');
                       },
                       icon: const Icon(Icons.edit)),
