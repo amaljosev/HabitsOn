@@ -9,6 +9,8 @@ import 'package:habitson/view/widgets/habit_day_detail_widget.dart';
 import 'package:habitson/view/widgets/my_appbar.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
+import '../widgets/habit_detail_widget.dart';
+
 final habitCtrl = Get.find<NewHabitsController>();
 final startedHabitCtrl = Get.find<StartedHabitController>();
 final analyseCtrl = Get.find<HabitOperationsController>();
@@ -20,7 +22,6 @@ class ScreenStartedHabit extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final list = habitCtrl.habitsList[startedHabitCtrl.habitIndex.value];
-    final List<String> workoutDays = list.selectedDays;
     final analyzeList =
         analyseCtrl.analyseList[startedHabitCtrl.habitIndex.value];
     analyseCtrl.habitName.value = list.habitName;
@@ -31,8 +32,8 @@ class ScreenStartedHabit extends StatelessWidget {
     analyseCtrl.targetDays.value = list.duration;
     analyseCtrl.streakCount.value = analyzeList.currentStreak;
     analyseCtrl.higestStreak.value = analyzeList.bestStreak;
-    analyseCtrl.counterGoalTargetIndex.value = list.goalCountIndex; 
-    analyseCtrl.counterGoalCategoryIndex.value = list.goalNameIndex; 
+    analyseCtrl.counterGoalTargetIndex.value = list.goalCountIndex;
+    analyseCtrl.counterGoalCategoryIndex.value = list.goalNameIndex;
     return Scaffold(
       backgroundColor: primaryColor,
       body: Stack(
@@ -67,8 +68,7 @@ class ScreenStartedHabit extends StatelessWidget {
                             ),
                           ),
                           kHeight,
-                          HabitDayDetailWidget(
-                              size: size, list: list, workoutDays: workoutDays),
+                          HabitDayDetailWidget(size: size),
                           kHeight,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -190,72 +190,6 @@ class ScreenStartedHabit extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class HabitCompletionDetailWidget extends StatelessWidget {
-  const HabitCompletionDetailWidget({
-    super.key,
-    required this.size,
-    required this.goalName,
-    required this.completedData,
-    required this.target,
-    required this.finishedOrStreak,
-    required this.targetOrStreak,
-  });
-
-  final Size size;
-
-  final String goalName;
-  final String finishedOrStreak;
-  final String completedData;
-  final String targetOrStreak;
-  final String target;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: size.height * 0.2,
-      width: size.width * 0.27,
-      decoration: BoxDecoration(
-          color: primaryColor.withOpacity(0.5),
-          borderRadius: const BorderRadius.all(Radius.circular(10))),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              goalName,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              finishedOrStreak,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: size.width * 0.05),
-            ),
-            Text(
-              completedData,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: size.width * 0.10),
-            ),
-            Row(
-              children: [
-                Text(
-                  targetOrStreak,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  " :  $target",
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }

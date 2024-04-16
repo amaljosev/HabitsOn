@@ -56,7 +56,7 @@ class StartedHabitController extends GetxController {
   }
 
   void resetDatas() {
-    if (newHabitCtrl.isModify.value) {
+    if (!newHabitCtrl.isModify.value) {
       habitCtrl.options.clear();
     }
     newHabitCtrl.isModify.value = false;
