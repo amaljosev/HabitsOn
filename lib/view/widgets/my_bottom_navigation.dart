@@ -6,7 +6,7 @@ import 'package:habitson/controller/started_habit_controller.dart';
 
 import '../core/constants.dart';
 
-class MyBottomNavigationWidget extends StatelessWidget { 
+class MyBottomNavigationWidget extends StatelessWidget {
   const MyBottomNavigationWidget({
     super.key,
   });
@@ -14,7 +14,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeCtrl = Get.find<HomeController>();
-    final sHCtrl=Get.put(StartedHabitController()); 
+    final sHCtrl = Get.put(StartedHabitController());
     return Obx(() => CurvedNavigationBar(
           key: homeCtrl.bottomNavigationKey,
           index: 0,
@@ -94,8 +94,9 @@ class MyBottomNavigationWidget extends StatelessWidget {
           onTap: (index) {
             if (homeCtrl.page.value == 2) {
               sHCtrl.resetDatas();
+              habitCtrl.options.clear();
             }
-            
+
             homeCtrl.page.value = index;
           },
           letIndexChange: (index) => true,

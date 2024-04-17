@@ -35,7 +35,9 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
   @override
   void dispose() {
     super.dispose();
-    startedHabitCtrl.resetDatas();
+    if (!startedHCtrl.isModify.value) {
+      startedHabitCtrl.resetDatas();
+    }
   }
 
   @override

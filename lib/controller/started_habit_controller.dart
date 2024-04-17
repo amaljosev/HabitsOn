@@ -80,6 +80,6 @@ class StartedHabitController extends GetxController {
     analyseCtrl.goalCompleted.value = 0;
     analyseCtrl.higestStreak.value = 0;
     analyseCtrl.streakCount.value = 0;
-    newHabitCtrl.isModify.value = false;
+    
   }
 }

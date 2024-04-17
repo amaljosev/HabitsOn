@@ -152,6 +152,7 @@ class NewHabitsController extends GetxController {
         analyseCtrl.counterValue.value = categoryWeelValue.value;
         analyseCtrl.counterTarget.value = int.parse(counterWeelValue.value);
         analyseCtrl.targetDays.value = int.parse(targetCtrl.text); 
+        startedHCtrl.isModify.value=false; 
       }
       habitNameCtrl.text = '';
       targetCtrl.text = '';

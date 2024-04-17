@@ -8,7 +8,6 @@ import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/habit_day_detail_widget.dart';
 import 'package:habitson/view/widgets/my_appbar.dart';
 import 'package:slide_to_act/slide_to_act.dart';
-
 import '../widgets/habit_detail_widget.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
@@ -25,7 +24,8 @@ class ScreenStartedHabit extends StatelessWidget {
     final analyzeList =
         analyseCtrl.analyseList[startedHabitCtrl.habitIndex.value];
     analyseCtrl.habitName.value = list.habitName;
-    analyseCtrl.counterValue.value = list.goalName;
+    analyseCtrl.counterValue.value = list.goalName;    
+    analyseCtrl.doItAt.value = habitCtrl.timingList[list.doItAt];                                                                                                                                              
     analyseCtrl.goalCompleted.value = analyzeList.completedCategory;
     analyseCtrl.counterTarget.value = int.parse(list.goalCount);
     analyseCtrl.daysCompleted.value = analyzeList.completedDays;
