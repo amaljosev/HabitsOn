@@ -50,6 +50,8 @@ Future<bool> updateAnalyseList(int id, AnalyseModel value) async {
   }
 }
 
+
+
 Future<int> calculateTotalAnalyseDatas() async {
   final analyseDb = await Hive.openBox<AnalyseModel>('analyse_db');
   return analyseDb.length;

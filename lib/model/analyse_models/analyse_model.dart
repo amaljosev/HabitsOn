@@ -20,17 +20,11 @@ class AnalyseModel {
   @HiveField(7)
   final int bestStreak;
   @HiveField(8)
-  final bool isTodayTaskComplete;
-  
+  final bool isTodayTaskComplete; 
+  @HiveField(9)
+  final DateTime latestUpdatedDate; 
 
-  AnalyseModel(
-      {required this.id,
-      required this.habitName,
-      required this.targetDays,
-      required this.completedDays,
-      required this.targetCategory,
-      required this.completedCategory,
-      required this.currentStreak,
-      required this.bestStreak,
-      required this.isTodayTaskComplete});
+  AnalyseModel({required this.id, required this.habitName, required this.targetDays, required this.completedDays, required this.targetCategory, required this.completedCategory, required this.currentStreak, required this.bestStreak, required this.isTodayTaskComplete, required this.latestUpdatedDate});
+
+
 }

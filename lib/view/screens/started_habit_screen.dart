@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
@@ -22,7 +21,6 @@ class ScreenStartedHabit extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     analyseCtrl.initializeDatas();
-
     return Scaffold(
       backgroundColor: primaryColor,
       body: Stack(

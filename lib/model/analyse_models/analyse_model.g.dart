@@ -26,13 +26,14 @@ class AnalyseModelAdapter extends TypeAdapter<AnalyseModel> {
       currentStreak: fields[6] as int,
       bestStreak: fields[7] as int,
       isTodayTaskComplete: fields[8] as bool,
+      latestUpdatedDate: fields[9] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, AnalyseModel obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -50,7 +51,9 @@ class AnalyseModelAdapter extends TypeAdapter<AnalyseModel> {
       ..writeByte(7)
       ..write(obj.bestStreak)
       ..writeByte(8)
-      ..write(obj.isTodayTaskComplete);
+      ..write(obj.isTodayTaskComplete)
+      ..writeByte(9)
+      ..write(obj.latestUpdatedDate);
   }
 
   @override

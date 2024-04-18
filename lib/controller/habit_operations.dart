@@ -27,6 +27,7 @@ class HabitOperationsController extends GetxController {
   Rx<DateTime> latestUpdatedDate = DateTime.now().obs;
   RxBool isTodayTaskComplete = false.obs;
   RxBool isHabitComplete = false.obs;
+  RxBool isDateChanged = false.obs;
 
   @override
   void onInit() {
@@ -34,9 +35,17 @@ class HabitOperationsController extends GetxController {
     getAllAnalyseDatas();
   }
 
+  @override
+  void onClose() {
+    super.onClose();
+    isDateChanged.value = false;
+    isTodayTaskComplete.value = false;
+  }
+
   void initializeDatas() {
     final list = newHabitCtrl.habitsList[habitCtrl.habitIndex.value];
     final analyzeList = analyseList[habitCtrl.habitIndex.value];
+    isDateChanged.value = isSameDay(analyzeList.latestUpdatedDate);
     habitName.value = list.habitName;
     counterValue.value = list.goalName;
     doItAt.value = newHabitCtrl.timingList[list.doItAt];
@@ -50,7 +59,18 @@ class HabitOperationsController extends GetxController {
     counterGoalCategoryIndex.value = list.goalNameIndex;
     weekDays.value = list.selectedDays;
     habitStartedDate.value = list.startedDate;
-    isTodayTaskComplete.value = analyzeList.isTodayTaskComplete;
+    if (!isDateChanged.value) {
+      isTodayTaskComplete.value = false;
+      goalCompleted.value = 0;
+    } else {
+      isTodayTaskComplete.value = analyzeList.isTodayTaskComplete;
+    }
+  }
+
+  bool isSameDay(DateTime latestDate) {
+    return DateTime.now().year == latestDate.year &&
+        DateTime.now().month == latestDate.month &&
+        DateTime.now().day == latestDate.day;
   }
 
   Future<bool> completeOneLap() async {
@@ -77,7 +97,8 @@ class HabitOperationsController extends GetxController {
           completedCategory: goalCompleted.value,
           currentStreak: streakCount.value,
           bestStreak: higestStreak.value,
-          isTodayTaskComplete: isTodayTaskComplete.value);
+          isTodayTaskComplete: isTodayTaskComplete.value,
+          latestUpdatedDate: DateTime.now());
       final response =
           await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
 

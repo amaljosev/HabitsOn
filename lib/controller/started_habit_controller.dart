@@ -59,9 +59,11 @@ class StartedHabitController extends GetxController {
         habitCtrl.habitsList[habitIndex.value].goalCountIndex;
     analyseCtrl.counterGoalCategoryIndex.value =
         habitCtrl.habitsList[habitIndex.value].goalNameIndex;
+        analyseCtrl.isHabitComplete.value=false;
   }
 
   void resetDatas() {
+    analyseCtrl.isHabitComplete.value=false;
     if (!newHabitCtrl.isModify.value) {
       habitCtrl.options.clear();
     }
@@ -86,5 +88,9 @@ class StartedHabitController extends GetxController {
     analyseCtrl.goalCompleted.value = 0;
     analyseCtrl.higestStreak.value = 0;
     analyseCtrl.streakCount.value = 0;
+    analyseCtrl.counterGoalCategoryIndex.value=0;
+    analyseCtrl.counterGoalTargetIndex.value=0;
+    analyseCtrl.isDateChanged.value=false;
+    
   }
 }

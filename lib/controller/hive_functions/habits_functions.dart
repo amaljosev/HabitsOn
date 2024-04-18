@@ -24,8 +24,7 @@ Future<bool> getallDatas() async {
   try {
     final habitsDB = await Hive.openBox<HabitModel>('habits_db');
     habitCtrl.habitsList.clear();
-    habitCtrl.habitsList.addAll(habitsDB.values); 
-
+    habitCtrl.habitsList.addAll(habitsDB.values);
     return true;
   } catch (e) {
     return false;
@@ -36,7 +35,7 @@ Future<bool> deleteData(int id) async {
   try {
     final habitsDB = await Hive.openBox<HabitModel>('habits_db');
     await habitsDB.deleteAt(id);
-    
+
     getallDatas();
     return true;
   } catch (e) {
@@ -56,6 +55,13 @@ Future<bool> updateList(int id, HabitModel value) async {
   }
 }
 
+Future<void> updateElementInBox(int index, dynamic newValue) async {
+  var habitsDB = await Hive.openBox('habits_db');
+  var objectToUpdate = habitsDB.getAt(index);
+  await habitsDB.putAt(index, objectToUpdate);
+  await habitsDB.close();
+}
+
 Future<int> calculateTotalHabitsStarted() async {
   final habitsDB = await Hive.openBox<HabitModel>('habits_db');
   return habitsDB.length;
@@ -64,11 +70,11 @@ Future<int> calculateTotalHabitsStarted() async {
 Future<bool> clearDatabase() async {
   try {
     final analyseDb = await Hive.openBox<AnalyseModel>('analyse_db');
-  final habitsDB = await Hive.openBox<HabitModel>('habits_db');
-  await habitsDB.clear();
-  await analyseDb.clear();
-  getallDatas();
-  return true;
+    final habitsDB = await Hive.openBox<HabitModel>('habits_db');
+    await habitsDB.clear();
+    await analyseDb.clear();
+    getallDatas();
+    return true;
   } catch (e) {
     return false;
   }

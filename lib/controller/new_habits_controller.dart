@@ -135,7 +135,8 @@ class NewHabitsController extends GetxController {
           completedCategory: analyseCtrl.goalCompleted.value,
           currentStreak: analyseCtrl.streakCount.value,
           bestStreak: analyseCtrl.higestStreak.value,
-          isTodayTaskComplete: analyseCtrl.isTodayTaskComplete.value);
+          isTodayTaskComplete: false,
+          latestUpdatedDate: DateTime.now());
 
       response.value = startedHCtrl.isModify.value
           ? await updateList(startedHCtrl.habitIndex.value, habitData).then(
