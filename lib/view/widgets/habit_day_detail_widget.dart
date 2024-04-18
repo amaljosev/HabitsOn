@@ -47,8 +47,8 @@ class HabitDayDetailWidget extends StatelessWidget {
                             analyseCtrl.weekDays.contains('SUN') &&
                             analyseCtrl.weekDays.length == 2
                         ? 'Weekends'
-                        : (!analyseCtrl.weekDays.contains('SAT') &&
-                                !analyseCtrl.weekDays.contains('SUN')
+                        : (!analyseCtrl.weekDays.contains('SAT') && 
+                                !analyseCtrl.weekDays.contains('SUN')&&analyseCtrl.weekDays.length == 5
                             ? 'Working days'
                             : 'Mixed Days')),
                 style: const TextStyle(fontWeight: FontWeight.bold),

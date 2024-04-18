@@ -28,7 +28,7 @@ class CounterWidget extends StatelessWidget {
                     : 0,
                 childCount: 100,
                 convertIndexToValue: (int index) {
-                  final value =  index + 1;
+                  final value = index + 1;
                   return SelectorWheelValue(
                     label: '$value',
                     value: value.toDouble(),
@@ -36,13 +36,8 @@ class CounterWidget extends StatelessWidget {
                   );
                 },
                 onValueChanged: (SelectorWheelValue<double> value) {
-                  if (value.index == 0) {
-                    habitCtrl.counterWeelValue.value = '1';
-                    analyseCtrl.counterGoalTargetIndex.value = 0;
-                  } else { 
-                    habitCtrl.counterWeelValue.value = value.label;
-                    analyseCtrl.counterGoalTargetIndex.value = value.index;
-                  }
+                  habitCtrl.counterWeelValue.value = value.label;
+                  analyseCtrl.counterGoalTargetIndex.value = value.index;
                 },
               ),
             ),
@@ -67,7 +62,7 @@ class CounterWidget extends StatelessWidget {
                     index: index,
                   );
                 },
-                onValueChanged: (SelectorWheelValue<dynamic> value) {
+                onValueChanged: (SelectorWheelValue<dynamic> value) { 
                   habitCtrl.categoryWeelValue.value = value.label;
                   analyseCtrl.counterGoalCategoryIndex.value = value.index;
                 },

@@ -53,6 +53,10 @@ class StartedHabitController extends GetxController {
         habitCtrl.habitsList[habitIndex.value].doItAt;
     habitCtrl.pickedColorIndex.value =
         habitCtrl.habitsList[habitIndex.value].backgroundColorIndex;
+    analyseCtrl.counterGoalTargetIndex.value =
+        habitCtrl.habitsList[habitIndex.value].goalCountIndex;
+    analyseCtrl.counterGoalCategoryIndex.value =
+        habitCtrl.habitsList[habitIndex.value].goalNameIndex;
   }
 
   void resetDatas() {
@@ -80,6 +84,5 @@ class StartedHabitController extends GetxController {
     analyseCtrl.goalCompleted.value = 0;
     analyseCtrl.higestStreak.value = 0;
     analyseCtrl.streakCount.value = 0;
-    
   }
 }

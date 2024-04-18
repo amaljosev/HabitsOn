@@ -20,20 +20,8 @@ class ScreenStartedHabit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final list = habitCtrl.habitsList[startedHabitCtrl.habitIndex.value];
-    final analyzeList =
-        analyseCtrl.analyseList[startedHabitCtrl.habitIndex.value];
-    analyseCtrl.habitName.value = list.habitName;
-    analyseCtrl.counterValue.value = list.goalName;    
-    analyseCtrl.doItAt.value = habitCtrl.timingList[list.doItAt];                                                                                                                                              
-    analyseCtrl.goalCompleted.value = analyzeList.completedCategory;
-    analyseCtrl.counterTarget.value = int.parse(list.goalCount);
-    analyseCtrl.daysCompleted.value = analyzeList.completedDays;
-    analyseCtrl.targetDays.value = list.duration;
-    analyseCtrl.streakCount.value = analyzeList.currentStreak;
-    analyseCtrl.higestStreak.value = analyzeList.bestStreak;
-    analyseCtrl.counterGoalTargetIndex.value = list.goalCountIndex;
-    analyseCtrl.counterGoalCategoryIndex.value = list.goalNameIndex;
+    analyseCtrl.initializeDatas(); 
+
     return Scaffold(
       backgroundColor: primaryColor,
       body: Stack(

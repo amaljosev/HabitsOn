@@ -30,5 +30,22 @@ class HabitOperationsController extends GetxController {
     getAllAnalyseDatas();
   }
 
+  void initializeDatas(){
+    final list = newHabitCtrl.habitsList[habitCtrl.habitIndex.value];
+    final analyzeList =
+        analyseList[habitCtrl.habitIndex.value];
+    habitName.value = list.habitName;
+    counterValue.value = list.goalName;
+    doItAt.value = newHabitCtrl.timingList[list.doItAt];
+    goalCompleted.value = analyzeList.completedCategory;
+    counterTarget.value = int.parse(list.goalCount);
+    daysCompleted.value = analyzeList.completedDays;
+    targetDays.value = list.duration;
+    streakCount.value = analyzeList.currentStreak;
+    higestStreak.value = analyzeList.bestStreak;
+    counterGoalTargetIndex.value = list.goalCountIndex;
+    counterGoalCategoryIndex.value = list.goalNameIndex;
+    weekDays.value=list.selectedDays;
+  } 
   
 }
