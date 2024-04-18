@@ -1,4 +1,4 @@
-
+import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
@@ -23,6 +23,10 @@ class HabitOperationsController extends GetxController {
   RxString counterValue = ''.obs;
   RxInt counterGoalCategoryIndex = 0.obs;
   RxInt counterGoalTargetIndex = 0.obs;
+  Rx<DateTime> habitStartedDate = DateTime.now().obs;
+  Rx<DateTime> latestUpdatedDate = DateTime.now().obs;
+  RxBool isTodayTaskComplete = false.obs;
+  RxBool isHabitComplete = false.obs;
 
   @override
   void onInit() {
@@ -30,10 +34,9 @@ class HabitOperationsController extends GetxController {
     getAllAnalyseDatas();
   }
 
-  void initializeDatas(){
+  void initializeDatas() {
     final list = newHabitCtrl.habitsList[habitCtrl.habitIndex.value];
-    final analyzeList =
-        analyseList[habitCtrl.habitIndex.value];
+    final analyzeList = analyseList[habitCtrl.habitIndex.value];
     habitName.value = list.habitName;
     counterValue.value = list.goalName;
     doItAt.value = newHabitCtrl.timingList[list.doItAt];
@@ -45,7 +48,42 @@ class HabitOperationsController extends GetxController {
     higestStreak.value = analyzeList.bestStreak;
     counterGoalTargetIndex.value = list.goalCountIndex;
     counterGoalCategoryIndex.value = list.goalNameIndex;
-    weekDays.value=list.selectedDays;
-  } 
-  
+    weekDays.value = list.selectedDays;
+    habitStartedDate.value = list.startedDate;
+    isTodayTaskComplete.value = analyzeList.isTodayTaskComplete;
+  }
+
+  Future<bool> completeOneLap() async {
+    goalCompleted.value += 1;
+    try {
+      if (counterTarget.value == goalCompleted.value) {
+        isTodayTaskComplete.value = true;
+        daysCompleted.value += 1;
+        streakCount.value += 1;
+        if (daysCompleted.value == targetDays.value) {
+          isHabitComplete.value = true;
+        }
+
+        if (higestStreak.value < streakCount.value) {
+          higestStreak.value += 1;
+        }
+      }
+      final habitData = AnalyseModel(
+          id: DateTime.now().toString(),
+          habitName: habitName.value,
+          targetDays: targetDays.value,
+          completedDays: daysCompleted.value,
+          targetCategory: counterTarget.value,
+          completedCategory: goalCompleted.value,
+          currentStreak: streakCount.value,
+          bestStreak: higestStreak.value,
+          isTodayTaskComplete: isTodayTaskComplete.value);
+      final response =
+          await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
+
+      return response;
+    } catch (e) {
+      return false;
+    }
+  }
 }

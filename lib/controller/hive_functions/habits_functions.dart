@@ -36,6 +36,7 @@ Future<bool> deleteData(int id) async {
   try {
     final habitsDB = await Hive.openBox<HabitModel>('habits_db');
     await habitsDB.deleteAt(id);
+    
     getallDatas();
     return true;
   } catch (e) {
@@ -60,10 +61,15 @@ Future<int> calculateTotalHabitsStarted() async {
   return habitsDB.length;
 }
 
-Future<void> clearDatabase() async {
-  final analyseDb = await Hive.openBox<AnalyseModel>('analyse_db');
+Future<bool> clearDatabase() async {
+  try {
+    final analyseDb = await Hive.openBox<AnalyseModel>('analyse_db');
   final habitsDB = await Hive.openBox<HabitModel>('habits_db');
   await habitsDB.clear();
   await analyseDb.clear();
   getallDatas();
+  return true;
+  } catch (e) {
+    return false;
+  }
 }

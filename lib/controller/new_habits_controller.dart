@@ -120,9 +120,9 @@ class NewHabitsController extends GetxController {
           goalName: categoryWeelValue.value.toUpperCase(),
           doItAt: pickedDayTimeIndex.value,
           streak: analyseCtrl.streakCount.value,
-          startedDate: DateTime.now(),
+          startedDate: analyseCtrl.habitStartedDate.value,
           latestDate: DateTime.now(),
-          isComplete: false,
+          isComplete: analyseCtrl.isHabitComplete.value,
           backgroundColorIndex: pickedColorIndex.value,
           goalCountIndex: analyseCtrl.counterGoalTargetIndex.value,
           goalNameIndex: analyseCtrl.counterGoalCategoryIndex.value);
@@ -134,7 +134,8 @@ class NewHabitsController extends GetxController {
           targetCategory: int.parse(counterWeelValue.value),
           completedCategory: analyseCtrl.goalCompleted.value,
           currentStreak: analyseCtrl.streakCount.value,
-          bestStreak: analyseCtrl.higestStreak.value);
+          bestStreak: analyseCtrl.higestStreak.value,
+          isTodayTaskComplete: analyseCtrl.isTodayTaskComplete.value);
 
       response.value = startedHCtrl.isModify.value
           ? await updateList(startedHCtrl.habitIndex.value, habitData).then(
@@ -151,8 +152,9 @@ class NewHabitsController extends GetxController {
         analyseCtrl.weekDays.value = selectDaysList;
         analyseCtrl.counterValue.value = categoryWeelValue.value;
         analyseCtrl.counterTarget.value = int.parse(counterWeelValue.value);
-        analyseCtrl.targetDays.value = int.parse(targetCtrl.text); 
-        startedHCtrl.isModify.value=false; 
+        analyseCtrl.targetDays.value = int.parse(targetCtrl.text);
+        analyseCtrl.isTodayTaskComplete.value = false;
+        startedHCtrl.isModify.value = false;
       }
       habitNameCtrl.text = '';
       targetCtrl.text = '';

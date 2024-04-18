@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
+import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/core/constants.dart';
@@ -20,7 +21,7 @@ class ScreenStartedHabit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    analyseCtrl.initializeDatas(); 
+    analyseCtrl.initializeDatas();
 
     return Scaffold(
       backgroundColor: primaryColor,
@@ -91,39 +92,51 @@ class ScreenStartedHabit extends StatelessWidget {
                             ],
                           ),
                           kHeight,
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 28.0),
-                            child: SlideAction(
-                              textStyle: titleStyle,
-                              animationDuration:
-                                  const Duration(milliseconds: 600),
-                              text: "Complete one Lap ",
-                              innerColor: Colors.deepOrange,
-                              outerColor: primaryColor,
-                              onSubmit: () async {
-                                log('submited');
-                                return true;
-                              },
-                            ),
-                          ),
-                          kHeight,
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 28.0),
-                            child: SlideAction(
-                              textStyle: titleStyle,
-                              animationDuration:
-                                  const Duration(milliseconds: 600),
-                              text: "Finish all Laps",
-                              innerColor: Colors.deepOrange,
-                              outerColor: primaryColor,
-                              onSubmit: () async {
-                                log('submited');
-                                return true;
-                              },
-                            ),
-                          ),
+                          analyseCtrl.isTodayTaskComplete.value
+                              ? const SizedBox(
+                                  child: Center(
+                                    child: Text('task completed'),
+                                  ),
+                                )
+                              : Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 28.0),
+                                      child: SlideAction(
+                                        textStyle: titleStyle,
+                                        animationDuration:
+                                            const Duration(milliseconds: 600),
+                                        text: "Complete one Lap ",
+                                        innerColor: Colors.deepOrange,
+                                        outerColor: primaryColor,
+                                        onSubmit: () async {
+                                          analyseCtrl.completeOneLap();
+                                        },
+                                      ),
+                                    ),
+                                    kHeight,
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 28.0),
+                                      child: SlideAction(
+                                        textStyle: titleStyle,
+                                        animationDuration:
+                                            const Duration(milliseconds: 600),
+                                        text: "Finish all Laps",
+                                        innerColor: Colors.deepOrange,
+                                        outerColor: primaryColor,
+                                        onSubmit: () async {
+                                          final res = await clearDatabase();
+
+                                          if (res) {
+                                            Get.back();
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
                           const Spacer(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

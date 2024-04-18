@@ -13,12 +13,15 @@ class AnalyseModel {
   final int completedDays;
   @HiveField(4)
   final int targetCategory;
-  @HiveField(5)
+  @HiveField(5) 
   final int completedCategory;
   @HiveField(6)
   final int currentStreak;
   @HiveField(7)
   final int bestStreak;
+  @HiveField(8)
+  final bool isTodayTaskComplete;
+  
 
   AnalyseModel(
       {required this.id,
@@ -28,5 +31,6 @@ class AnalyseModel {
       required this.targetCategory,
       required this.completedCategory,
       required this.currentStreak,
-      required this.bestStreak});
+      required this.bestStreak,
+      required this.isTodayTaskComplete});
 }

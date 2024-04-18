@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
+import 'package:habitson/controller/hive_functions/analyse_functions.dart';
 import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 
@@ -25,7 +26,8 @@ class StartedHabitController extends GetxController {
         log('reset');
         break;
       case Options.delete:
-        final bool response = await deleteData(index);
+        final bool response =
+            await deleteData(index).then((value) => deleteAnalyseData(index));
         response ? Get.back() : Get.back();
         break;
     }
