@@ -67,7 +67,7 @@ class MyBottomNavigationWidget extends StatelessWidget {
                         size: 35,
                       )
                     : const Icon(
-                        Icons.insert_chart_outlined_sharp,
+                        Icons.bar_chart,
                         color: primaryColor,
                         size: 35,
                       ),
