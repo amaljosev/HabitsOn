@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
-import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/habit_day_detail_widget.dart';
 import 'package:habitson/view/widgets/my_appbar.dart';
+import 'package:habitson/view/widgets/my_bottom_sheet.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../widgets/habit_detail_widget.dart';
 
@@ -109,7 +109,8 @@ class ScreenStartedHabit extends StatelessWidget {
                                         innerColor: Colors.deepOrange,
                                         outerColor: primaryColor,
                                         onSubmit: () async {
-                                          analyseCtrl.completeOneLap();
+                                          analyseCtrl.completeLap(
+                                              isOneLap: true);
                                         },
                                       ),
                                     ),
@@ -125,10 +126,12 @@ class ScreenStartedHabit extends StatelessWidget {
                                         innerColor: Colors.deepOrange,
                                         outerColor: primaryColor,
                                         onSubmit: () async {
-                                          final res = await clearDatabase();
-
-                                          if (res) {
-                                            Get.back();
+                                          analyseCtrl.completeLap(
+                                              isOneLap: false);
+                                          if (analyseCtrl
+                                              .isHabitComplete.value) {
+                                            Get.bottomSheet(MyBottomSheetWidget(
+                                                size: size));
                                           }
                                         },
                                       ),

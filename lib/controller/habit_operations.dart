@@ -1,6 +1,6 @@
-
 import 'package:get/get.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
+import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/model/analyse_models/analyse_model.dart';
@@ -28,6 +28,7 @@ class HabitOperationsController extends GetxController {
   RxBool isHabitComplete = false.obs;
   RxBool isDateChanged = false.obs;
   RxBool isStreakBreak = false.obs;
+  RxBool isGoHome = false.obs;
 
   @override
   void onInit() {
@@ -82,8 +83,9 @@ class HabitOperationsController extends GetxController {
         .isBefore(DateTime.now().subtract(const Duration(days: 2)));
   }
 
-  Future<bool> completeOneLap() async {
-    goalCompleted.value += 1;
+  Future<bool> completeLap({required bool isOneLap}) async {
+    goalCompleted.value +=
+        isOneLap ? 1 : (counterTarget.value - goalCompleted.value);
     try {
       if (counterTarget.value == goalCompleted.value) {
         isTodayTaskComplete.value = true;
@@ -108,12 +110,45 @@ class HabitOperationsController extends GetxController {
           bestStreak: higestStreak.value,
           isTodayTaskComplete: isTodayTaskComplete.value,
           latestUpdatedDate: DateTime.now());
+      final response = isHabitComplete.value
+          ? null
+          : await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
+
+      return response ?? false;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> resetHabit() async {
+    try {
+      goalCompleted.value = 0;
+      daysCompleted.value = 0;
+      isTodayTaskComplete.value = false;
+      isHabitComplete.value = false;
+      final habitData = AnalyseModel(
+          id: DateTime.now().toString(),
+          habitName: habitName.value,
+          targetDays: targetDays.value,
+          completedDays: daysCompleted.value,
+          targetCategory: counterTarget.value,
+          completedCategory: goalCompleted.value,
+          currentStreak: streakCount.value,
+          bestStreak: higestStreak.value,
+          isTodayTaskComplete: isTodayTaskComplete.value,
+          latestUpdatedDate: DateTime.now());
       final response =
           await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
-
       return response;
     } catch (e) {
       return false;
     }
+  }
+
+  Future<bool> clearFinishedHabit() async {
+    isTodayTaskComplete.value = false;
+    isHabitComplete.value = false;
+    return deleteData(habitCtrl.habitIndex.value)
+        .then((value) => deleteAnalyseData(habitCtrl.habitIndex.value));
   }
 }
