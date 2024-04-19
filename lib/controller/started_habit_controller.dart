@@ -63,6 +63,7 @@ class StartedHabitController extends GetxController {
   }
 
   void resetDatas() {
+    analyseCtrl.isStreakBreak.value = false;
     analyseCtrl.isHabitComplete.value=false;
     if (!newHabitCtrl.isModify.value) {
       habitCtrl.options.clear();

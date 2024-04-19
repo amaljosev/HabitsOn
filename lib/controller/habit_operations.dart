@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
@@ -28,6 +27,7 @@ class HabitOperationsController extends GetxController {
   RxBool isTodayTaskComplete = false.obs;
   RxBool isHabitComplete = false.obs;
   RxBool isDateChanged = false.obs;
+  RxBool isStreakBreak = false.obs;
 
   @override
   void onInit() {
@@ -46,6 +46,7 @@ class HabitOperationsController extends GetxController {
     final list = newHabitCtrl.habitsList[habitCtrl.habitIndex.value];
     final analyzeList = analyseList[habitCtrl.habitIndex.value];
     isDateChanged.value = isSameDay(analyzeList.latestUpdatedDate);
+    isStreakBreak.value = checkIsStreakBreak(analyzeList.latestUpdatedDate);
     habitName.value = list.habitName;
     counterValue.value = list.goalName;
     doItAt.value = newHabitCtrl.timingList[list.doItAt];
@@ -65,12 +66,20 @@ class HabitOperationsController extends GetxController {
     } else {
       isTodayTaskComplete.value = analyzeList.isTodayTaskComplete;
     }
+    if (isStreakBreak.value) {
+      streakCount.value = 0;
+    }
   }
 
   bool isSameDay(DateTime latestDate) {
     return DateTime.now().year == latestDate.year &&
         DateTime.now().month == latestDate.month &&
         DateTime.now().day == latestDate.day;
+  }
+
+  bool checkIsStreakBreak(DateTime latestDate) {
+    return latestDate
+        .isBefore(DateTime.now().subtract(const Duration(days: 2)));
   }
 
   Future<bool> completeOneLap() async {
