@@ -9,6 +9,7 @@ import 'package:habitson/view/widgets/my_form_widget.dart';
 import 'package:habitson/view/widgets/week_selector_widget.dart';
 import '../../controller/home_controller.dart';
 import '../core/constants.dart';
+import '../widgets/appbar_onlyback_widget.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
 final homeCtrl = Get.find<HomeController>();
@@ -58,19 +59,7 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
             SafeArea(
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Card(
-                            child: IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: const Icon(Icons.arrow_back))),
-                      ],
-                    ),
-                  ),
+                  const AppBarOnlyBack(),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),

@@ -7,7 +7,9 @@ import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/habit_day_detail_widget.dart';
 import 'package:habitson/view/widgets/my_appbar.dart';
 import 'package:habitson/view/widgets/my_bottom_sheet.dart';
+import 'package:lottie/lottie.dart';
 import 'package:slide_to_act/slide_to_act.dart';
+import '../widgets/habit_bottom_activity_widget.dart';
 import '../widgets/habit_detail_widget.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
@@ -25,10 +27,10 @@ class ScreenStartedHabit extends StatelessWidget {
       backgroundColor: primaryColor,
       body: Stack(
         children: [
-          // Lottie.asset(
-          //   'assets/lottie/habit_bg.json',
-          //   fit: BoxFit.cover,
-          // ),
+          Lottie.asset(
+            'assets/lottie/habit_bg.json',
+            fit: BoxFit.cover,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -142,45 +144,20 @@ class ScreenStartedHabit extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Column(
-                                children: [
-                                  Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(Icons.timer)),
-                                    ),
-                                  ),
-                                  const Text('Timer')
-                                ],
+                              BottomActivityWidget(
+                                icon: const Icon(Icons.timer),
+                                name: 'Timer',
+                                onPressed: () => Get.toNamed('timer'),
                               ),
-                              Column(
-                                children: [
-                                  Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(
-                                              Icons.bar_chart_rounded)),
-                                    ),
-                                  ),
-                                  const Text('Analayse')
-                                ],
+                              BottomActivityWidget(
+                                icon: const Icon(Icons.bar_chart_rounded),
+                                name: 'Analayse',
+                                onPressed: () {},
                               ),
-                              Column(
-                                children: [
-                                  Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(Icons.av_timer)),
-                                    ),
-                                  ),
-                                  const Text('Stopwatch')
-                                ],
+                              BottomActivityWidget(
+                                icon: const Icon(Icons.av_timer),
+                                name: 'Stopwatch',
+                                onPressed: () {},
                               ),
                             ],
                           ),
