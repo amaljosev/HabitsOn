@@ -39,9 +39,9 @@ class MyApp extends StatelessWidget {
         'home': (context) => const ScreenHome(),
         'started_habit': (context) => const ScreenStartedHabit(),
         'start_default_habit': (context) => const ScreenStartDefaultHabit(),
-        'timer': (context) =>   ScreenTimer(), 
+        'timer': (context) =>   const ScreenTimer(), 
       },
-      initialRoute: 'home',
+      initialRoute: 'home',  
     );
   }
 }

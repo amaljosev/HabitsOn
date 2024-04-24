@@ -7,6 +7,8 @@ class ActivitiesController extends GetxController {
   RxInt initialDuration = 0.obs;
   RxBool isRunning = false.obs;
   RxBool isPause = false.obs;
+  RxBool isStopWatch=true.obs; 
+  RxInt stopwatchDuration=86400.obs;
   final CountDownController controller = CountDownController();
 
   resetTimer() {
@@ -14,6 +16,6 @@ class ActivitiesController extends GetxController {
     initialDuration.value = 0;
     isRunning.value = false;
     isPause.value = false;
-    Get.back();
+    isStopWatch.value=false;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/activities_controller.dart';
 import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
@@ -7,11 +8,11 @@ import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/habit_day_detail_widget.dart';
 import 'package:habitson/view/widgets/my_appbar.dart';
 import 'package:habitson/view/widgets/my_bottom_sheet.dart';
-import 'package:lottie/lottie.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../widgets/habit_bottom_activity_widget.dart';
 import '../widgets/habit_detail_widget.dart';
 
+final activityCtrl = Get.put(ActivitiesController());
 final habitCtrl = Get.find<NewHabitsController>();
 final startedHabitCtrl = Get.find<StartedHabitController>();
 final analyseCtrl = Get.find<HabitOperationsController>();
@@ -27,10 +28,10 @@ class ScreenStartedHabit extends StatelessWidget {
       backgroundColor: primaryColor,
       body: Stack(
         children: [
-          Lottie.asset(
-            'assets/lottie/habit_bg.json',
-            fit: BoxFit.cover,
-          ),
+          // Lottie.asset(
+          //   'assets/lottie/habit_bg.json',
+          //   fit: BoxFit.cover,
+          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -147,7 +148,10 @@ class ScreenStartedHabit extends StatelessWidget {
                               BottomActivityWidget(
                                 icon: const Icon(Icons.timer),
                                 name: 'Timer',
-                                onPressed: () => Get.toNamed('timer'),
+                                onPressed: () {
+                                  activityCtrl.isStopWatch.value = false;
+                                  Get.toNamed('timer');
+                                },
                               ),
                               BottomActivityWidget(
                                 icon: const Icon(Icons.bar_chart_rounded),
@@ -157,7 +161,10 @@ class ScreenStartedHabit extends StatelessWidget {
                               BottomActivityWidget(
                                 icon: const Icon(Icons.av_timer),
                                 name: 'Stopwatch',
-                                onPressed: () {},
+                                onPressed: () {
+                                  activityCtrl.isStopWatch.value = true;
+                                  Get.toNamed('timer');
+                                },
                               ),
                             ],
                           ),
