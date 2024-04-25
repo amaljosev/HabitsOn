@@ -13,18 +13,29 @@ class AnalyseModel {
   final int completedDays;
   @HiveField(4)
   final int targetCategory;
-  @HiveField(5) 
+  @HiveField(5)
   final int completedCategory;
   @HiveField(6)
   final int currentStreak;
   @HiveField(7)
   final int bestStreak;
   @HiveField(8)
-  final bool isTodayTaskComplete; 
+  final bool isTodayTaskComplete;
   @HiveField(9)
-  final DateTime latestUpdatedDate; 
+  final DateTime latestUpdatedDate;
+  @HiveField(10)
+  final DateTime streakStartedDay;
 
-  AnalyseModel({required this.id, required this.habitName, required this.targetDays, required this.completedDays, required this.targetCategory, required this.completedCategory, required this.currentStreak, required this.bestStreak, required this.isTodayTaskComplete, required this.latestUpdatedDate});
-
-
+  AnalyseModel(
+      {required this.id,
+      required this.habitName,
+      required this.targetDays,
+      required this.completedDays,
+      required this.targetCategory,
+      required this.completedCategory,
+      required this.currentStreak,
+      required this.bestStreak,
+      required this.isTodayTaskComplete, 
+      required this.latestUpdatedDate,
+      required this.streakStartedDay});
 }

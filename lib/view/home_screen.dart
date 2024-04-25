@@ -36,7 +36,7 @@ class ScreenHome extends StatelessWidget {
                 ListView(
                   children: [
                     homeCtrl.page.value == 0
-                        ? const CalenderWidget()
+                        ? const CalenderWidget(isHome: true)
                         : const Row(),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),

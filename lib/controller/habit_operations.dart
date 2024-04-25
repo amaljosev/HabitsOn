@@ -24,6 +24,7 @@ class HabitOperationsController extends GetxController {
   RxInt counterGoalTargetIndex = 0.obs;
   Rx<DateTime> habitStartedDate = DateTime.now().obs;
   Rx<DateTime> latestUpdatedDate = DateTime.now().obs;
+  Rx<DateTime> streakStartedDate = DateTime.now().obs;
   RxBool isTodayTaskComplete = false.obs;
   RxBool isHabitComplete = false.obs;
   RxBool isDateChanged = false.obs;
@@ -48,6 +49,7 @@ class HabitOperationsController extends GetxController {
     final analyzeList = analyseList[habitCtrl.habitIndex.value];
     isDateChanged.value = isSameDay(analyzeList.latestUpdatedDate);
     isStreakBreak.value = checkIsStreakBreak(analyzeList.latestUpdatedDate);
+    streakStartedDate.value = analyzeList.streakStartedDay;
     habitName.value = list.habitName;
     counterValue.value = list.goalName;
     doItAt.value = newHabitCtrl.timingList[list.doItAt];
@@ -69,6 +71,7 @@ class HabitOperationsController extends GetxController {
     }
     if (isStreakBreak.value) {
       streakCount.value = 0;
+      streakStartedDate.value = DateTime.now();
     }
   }
 
@@ -89,8 +92,12 @@ class HabitOperationsController extends GetxController {
     try {
       if (counterTarget.value == goalCompleted.value) {
         isTodayTaskComplete.value = true;
+        if (streakCount.value == 0) {
+          streakStartedDate.value = DateTime.now();
+        }
         daysCompleted.value += 1;
         streakCount.value += 1;
+
         if (daysCompleted.value == targetDays.value) {
           isHabitComplete.value = true;
         }
@@ -109,7 +116,8 @@ class HabitOperationsController extends GetxController {
           currentStreak: streakCount.value,
           bestStreak: higestStreak.value,
           isTodayTaskComplete: isTodayTaskComplete.value,
-          latestUpdatedDate: DateTime.now());
+          latestUpdatedDate: DateTime.now(),
+          streakStartedDay: streakStartedDate.value);
       final response = isHabitComplete.value
           ? null
           : await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
@@ -136,7 +144,8 @@ class HabitOperationsController extends GetxController {
           currentStreak: streakCount.value,
           bestStreak: higestStreak.value,
           isTodayTaskComplete: isTodayTaskComplete.value,
-          latestUpdatedDate: DateTime.now());
+          latestUpdatedDate: DateTime.now(),
+          streakStartedDay: streakStartedDate.value);
       final response =
           await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
       return response;

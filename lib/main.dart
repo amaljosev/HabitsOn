@@ -10,6 +10,8 @@ import 'package:habitson/view/screens/started_habit_screen.dart';
 import 'package:habitson/view/screens/timer_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'view/screens/statistics_screen.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -39,9 +41,10 @@ class MyApp extends StatelessWidget {
         'home': (context) => const ScreenHome(),
         'started_habit': (context) => const ScreenStartedHabit(),
         'start_default_habit': (context) => const ScreenStartDefaultHabit(),
-        'timer': (context) =>   const ScreenTimer(), 
+        'timer': (context) => const ScreenTimer(),
+        'statistics': (context) => const ScreenStatistics(),
       },
-      initialRoute: 'home',  
+      initialRoute: 'home',
     );
   }
 }

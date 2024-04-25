@@ -4,6 +4,7 @@ import 'package:habitson/controller/activities_controller.dart';
 import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
+import 'package:habitson/controller/statistics_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/habit_day_detail_widget.dart';
 import 'package:habitson/view/widgets/my_appbar.dart';
@@ -16,6 +17,7 @@ final activityCtrl = Get.put(ActivitiesController());
 final habitCtrl = Get.find<NewHabitsController>();
 final startedHabitCtrl = Get.find<StartedHabitController>();
 final analyseCtrl = Get.find<HabitOperationsController>();
+final statiCtrl = Get.put(StatisticsController());
 
 class ScreenStartedHabit extends StatelessWidget {
   const ScreenStartedHabit({super.key});
@@ -156,7 +158,10 @@ class ScreenStartedHabit extends StatelessWidget {
                               BottomActivityWidget(
                                 icon: const Icon(Icons.bar_chart_rounded),
                                 name: 'Analayse',
-                                onPressed: () {},
+                                onPressed: () {
+                                  statiCtrl.setValues();
+                                  Get.toNamed('statistics');
+                                },
                               ),
                               BottomActivityWidget(
                                 icon: const Icon(Icons.av_timer),
