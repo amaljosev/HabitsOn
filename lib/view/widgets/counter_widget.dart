@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/core/constants.dart';
@@ -8,6 +9,7 @@ import 'package:selector_wheel/selector_wheel/selector_wheel.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
 final startedHCtrl = Get.find<StartedHabitController>();
+final analyseCtrl = Get.find<HabitOperationsController>();
 
 class CounterWidget extends StatelessWidget {
   const CounterWidget({

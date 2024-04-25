@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
 import 'package:habitson/controller/hive_functions/habits_functions.dart';
+import 'package:habitson/controller/statistics_controller.dart';
 import 'package:habitson/model/analyse_models/analyse_model.dart';
 import 'package:habitson/model/habit_models/habit_model.dart';
 import 'package:habitson/view/screens/home_screen_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+final statiCtrl = Get.find<StatisticsController>();
+final analyseCtrl = Get.find<HabitOperationsController>();
 
 class NewHabitsController extends GetxController {
+  RxInt habitCompletionCount = 0.obs;
+  RxInt totalStartedHabits = 0.obs;
+  RxInt totalCompletedHabits = 0.obs;
   @override
   void onInit() {
     super.onInit();
     getallDatas();
   }
+
+  RxInt totalRunningHabits = 5.obs;
 
   final habitNameCtrl = TextEditingController();
   final targetCtrl = TextEditingController();
@@ -90,6 +101,8 @@ class NewHabitsController extends GetxController {
   }
 
   Future<bool> onSubmit() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
     final List<String> selectDaysList = [];
 
     final RxBool response = false.obs;
@@ -148,6 +161,8 @@ class NewHabitsController extends GetxController {
     }
 
     if (response.value) {
+      prefs.setInt('total_habit_count', totalStartedHabits.value + 1);
+      statiCtrl.setCounts();
       if (startedHCtrl.isModify.value) {
         analyseCtrl.habitName.value = habitNameCtrl.text;
         analyseCtrl.doItAt.value = timingList[pickedDayTimeIndex.value];

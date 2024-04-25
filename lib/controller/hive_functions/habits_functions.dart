@@ -25,6 +25,7 @@ Future<bool> getallDatas() async {
     final habitsDB = await Hive.openBox<HabitModel>('habits_db');
     habitCtrl.habitsList.clear();
     habitCtrl.habitsList.addAll(habitsDB.values);
+    habitCtrl.totalRunningHabits.value = habitCtrl.habitsList.length;
     return true;
   } catch (e) {
     return false;

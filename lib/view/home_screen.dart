@@ -29,10 +29,10 @@ class ScreenHome extends StatelessWidget {
             ),
             child: Stack(
               children: [
-                Lottie.asset(
-                  'assets/lottie/main_bg.json',
-                  fit: BoxFit.cover,
-                ),
+                // Lottie.asset(
+                //   'assets/lottie/main_bg.json',
+                //   fit: BoxFit.cover,
+                // ),
                 ListView(
                   children: [
                     homeCtrl.page.value == 0
@@ -42,7 +42,7 @@ class ScreenHome extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Container(
                         height: homeCtrl.page.value == 0
-                            ? size.height * 0.73
+                            ? size.height * 0.80 
                             : size.height * 0.9,
                         decoration: BoxDecoration(
                           color: ThemeData.dark().primaryColor,

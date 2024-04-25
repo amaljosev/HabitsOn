@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:habitson/controller/categories_controller.dart';
 import 'package:habitson/controller/chart_controller.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
+import 'package:habitson/controller/statistics_controller.dart';
 import 'habit_operations.dart';
 import 'started_habit_controller.dart';
 
@@ -12,11 +13,14 @@ class HomeController extends GetxController {
   GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
   @override
   void onInit() {
-    super.onInit(); 
-    Get.put(StartedHabitController()); 
-    Get.put(NewHabitsController());  
+    super.onInit();
+    Get.put(StartedHabitController());
+    Get.put(NewHabitsController());
     Get.put(HabitOperationsController());
     Get.put(CategoriesController());
     Get.put(ChartController());
+    Get.put(StatisticsController());
   }
+  
+  
 }

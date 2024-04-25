@@ -4,6 +4,7 @@ import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/model/analyse_models/analyse_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final habitCtrl = Get.find<StartedHabitController>();
 final newHabitCtrl = Get.find<NewHabitsController>();
@@ -25,6 +26,7 @@ class HabitOperationsController extends GetxController {
   Rx<DateTime> habitStartedDate = DateTime.now().obs;
   Rx<DateTime> latestUpdatedDate = DateTime.now().obs;
   Rx<DateTime> streakStartedDate = DateTime.now().obs;
+
   RxBool isTodayTaskComplete = false.obs;
   RxBool isHabitComplete = false.obs;
   RxBool isDateChanged = false.obs;
@@ -87,6 +89,7 @@ class HabitOperationsController extends GetxController {
   }
 
   Future<bool> completeLap({required bool isOneLap}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     goalCompleted.value +=
         isOneLap ? 1 : (counterTarget.value - goalCompleted.value);
     try {
@@ -99,6 +102,8 @@ class HabitOperationsController extends GetxController {
         streakCount.value += 1;
 
         if (daysCompleted.value == targetDays.value) {
+          prefs.setInt('total_habit_complete_count',
+              newHabitCtrl.totalCompletedHabits.value + 1); 
           isHabitComplete.value = true;
         }
 

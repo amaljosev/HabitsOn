@@ -10,5 +10,4 @@ class ChartController extends GetxController {
     67.1.obs,
     27.6.obs
   ].obs;
-
 }

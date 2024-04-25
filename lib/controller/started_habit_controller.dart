@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
@@ -23,7 +22,7 @@ class StartedHabitController extends GetxController {
     selectedOption.value = option;
     switch (option) {
       case Options.reset:
-        log('reset');
+        analyseCtrl.resetHabit();
         break;
       case Options.delete:
         final bool response =

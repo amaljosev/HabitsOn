@@ -1,19 +1,83 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:habitson/controller/habit_operations.dart';
+import 'package:habitson/controller/new_habits_controller.dart';
+import 'package:habitson/controller/statistics_controller.dart';
 
-import 'package:habitson/view/widgets/my_bar_graph.dart';
+import '../core/constants.dart';
+import '../widgets/my_bar_graph.dart';
 
-class ScreenAnalyse extends StatelessWidget {
+final analyseCtrl = Get.find<HabitOperationsController>();
+final newHabitCtrl = Get.find<NewHabitsController>();
+final statiCtrl = Get.find<StatisticsController>();
+
+class ScreenAnalyse extends StatelessWidget { 
   const ScreenAnalyse({super.key});
 
   @override
   Widget build(BuildContext context) {
+    
+    final size = MediaQuery.of(context).size;
     return ListView(
       children: [
-        SizedBox(
-          height: 100,
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Statistics', style: titleStyle),
+            ],
+          ),
         ),
-        SizedBox(height: 200, child: MyBarGraph()),
         SizedBox(
+          height: 200,
+          width: double.infinity,
+          child: ListView.builder(
+            padding: const EdgeInsets.all(8),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              final data = statiCtrl.stati.keys.toList()[index];
+              return Card(
+                child: SizedBox(
+                  height: 200,
+                  width: 150,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(data,
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                        Obx(() => Text( 
+                          statiCtrl.stati[data]!.value.toString(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: size.width * 0.15),
+                        ), )
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+            itemCount:  statiCtrl.stati.length,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Most Active Days', style: titleStyle),
+            ],
+          ),
+        ),
+        const SizedBox(height: 200, child: MyBarGraph()),
+        const SizedBox(
           height: 200,
         ),
       ],
