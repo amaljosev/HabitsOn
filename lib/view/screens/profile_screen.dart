@@ -23,16 +23,11 @@ class ScreenProfile extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Container(
-              height: size.height * 0.45,
-              width: size.width,
-              decoration: const BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.all(Radius.circular(30))),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Card(
+              child:  Padding(
+                padding: EdgeInsets.all(8.0), 
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

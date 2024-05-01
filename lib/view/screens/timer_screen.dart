@@ -14,7 +14,7 @@ class ScreenTimer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => PopScope(
+    return Obx(() => PopScope( 
           canPop: true,
           onPopInvoked: (didPop) => activityCtrl.resetTimer(),
           child: Scaffold(
