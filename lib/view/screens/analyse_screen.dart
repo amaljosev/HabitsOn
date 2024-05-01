@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
@@ -13,15 +11,15 @@ final analyseCtrl = Get.find<HabitOperationsController>();
 final newHabitCtrl = Get.find<NewHabitsController>();
 final statiCtrl = Get.find<StatisticsController>();
 
-class ScreenAnalyse extends StatelessWidget { 
+class ScreenAnalyse extends StatelessWidget {
   const ScreenAnalyse({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context) { 
     final size = MediaQuery.of(context).size;
     return ListView(
       children: [
+        kHeight,
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 18.0),
           child: Row(
@@ -52,19 +50,21 @@ class ScreenAnalyse extends StatelessWidget {
                         Text(data,
                             style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold)),
-                        Obx(() => Text( 
-                          statiCtrl.stati[data]!.value.toString(),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: size.width * 0.15),
-                        ), )
+                        Obx(
+                          () => Text(
+                            statiCtrl.stati[data]!.value.toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: size.width * 0.15),
+                          ),
+                        )
                       ],
                     ),
                   ),
                 ),
               );
             },
-            itemCount:  statiCtrl.stati.length,
+            itemCount: statiCtrl.stati.length,
           ),
         ),
         Padding(
@@ -76,9 +76,13 @@ class ScreenAnalyse extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 200, child: MyBarGraph()),
-        const SizedBox(
-          height: 200,
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Card(
+              child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: SizedBox(height: 200, child: MyBarGraph()),
+          )),
         ),
       ],
     );
