@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/view/screens/forms/new_habits_screen.dart';
 
-import '../core/constants.dart';
+import '../../core/constants.dart'; 
 
 class DoItAtWidget extends StatelessWidget {
   const DoItAtWidget({

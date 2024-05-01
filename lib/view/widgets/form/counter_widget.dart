@@ -26,7 +26,7 @@ class CounterWidget extends StatelessWidget {
               height: 100,
               child: SelectorWheel(
                 selectedItemIndex: startedHCtrl.isModify.value
-                    ? analyseCtrl.counterGoalTargetIndex.value
+                    ? analyseCtrl.counterGoalTargetIndex.value 
                     : 0,
                 childCount: 100,
                 convertIndexToValue: (int index) {

@@ -14,7 +14,7 @@ class ScreenTimer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => PopScope( 
+    return Obx(() => PopScope(
           canPop: true,
           onPopInvoked: (didPop) => activityCtrl.resetTimer(),
           child: Scaffold(
@@ -95,7 +95,8 @@ class ScreenTimer extends StatelessWidget {
                           button(
                             title: "Restart",
                             onPressed: () => activityCtrl.controller
-                                .restart(duration: activityCtrl.duration.value),
+                                .restart(duration: activityCtrl.isStopWatch.value
+                                              ?  86400: activityCtrl.duration.value),
                           ),
                         ],
                       ),

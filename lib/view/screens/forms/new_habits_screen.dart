@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:habitson/controller/home_controller.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/view/core/constants.dart';
-import 'package:habitson/view/widgets/color_picker_widget.dart';
-import 'package:habitson/view/widgets/counter_widget.dart';
-import 'package:habitson/view/widgets/doitat_widget.dart';
-import 'package:habitson/view/widgets/my_form_widget.dart';
-import 'package:habitson/view/widgets/week_selector_widget.dart';
+import 'package:habitson/view/widgets/form/color_picker_widget.dart';
+import 'package:habitson/view/widgets/form/counter_widget.dart';
+import 'package:habitson/view/widgets/habit/doitat_widget.dart';
+import 'package:habitson/view/widgets/form/my_form_widget.dart';
+import 'package:habitson/view/widgets/form/week_selector_widget.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
 final homeCtrl = Get.find<HomeController>();

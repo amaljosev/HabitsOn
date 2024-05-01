@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:habitson/controller/habit_operations.dart';
+import 'package:habitson/controller/habit_operations.dart'; 
 import 'package:habitson/controller/new_habits_controller.dart';
-import '../core/constants.dart';
+import '../../core/constants.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
 final analyseCtrl = Get.find<HabitOperationsController>();

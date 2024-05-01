@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:habitson/view/widgets/individual_bar.dart';
+import 'package:habitson/model/graph_model/individual_bar.dart';
 
 class BarData {
   final RxDouble sundayValue;

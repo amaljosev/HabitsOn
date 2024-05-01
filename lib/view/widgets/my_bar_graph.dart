@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/chart_controller.dart';
 import 'package:habitson/view/core/constants.dart';
-import 'package:habitson/view/widgets/bar_data.dart';
+import 'package:habitson/model/graph_model/bar_data.dart';
 
 final graphCtrl = Get.find<ChartController>();
 
