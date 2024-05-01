@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants.dart'; 
 
 class HabitCompletionDetailWidget extends StatelessWidget {
   const HabitCompletionDetailWidget({
@@ -23,12 +22,7 @@ class HabitCompletionDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: size.height * 0.2,
-      width: size.width * 0.27,
-      decoration: BoxDecoration(
-          color: primaryColor.withOpacity(0.5),
-          borderRadius: const BorderRadius.all(Radius.circular(10))),
+    return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
