@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/home_controller.dart';
 import 'package:habitson/view/core/constants.dart';
-import 'package:habitson/view/screens/analyse_screen.dart';
-import 'package:habitson/view/screens/habits_screen.dart';
-import 'package:habitson/view/screens/home_screen_widget.dart';
-import 'package:habitson/view/screens/new_habits_screen.dart';
-import 'package:habitson/view/screens/profile_screen.dart';
+import 'package:habitson/view/screens/home/analyse_screen.dart';
+import 'package:habitson/view/screens/home/habits_screen.dart';
+import 'package:habitson/view/screens/home/home_screen_widget.dart';
+import 'package:habitson/view/screens/forms/new_habits_screen.dart';
+import 'package:habitson/view/screens/home/profile_screen.dart';
 import 'package:habitson/view/widgets/calender_widget.dart';
 import 'package:habitson/view/widgets/my_bottom_navigation.dart';
 import 'package:lottie/lottie.dart';
@@ -17,7 +17,7 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final homeCtrl = Get.put(HomeController()); 
+    final homeCtrl = Get.put(HomeController());
 
     return Obx(() => Scaffold(
           bottomNavigationBar: const MyBottomNavigationWidget(),
@@ -42,10 +42,10 @@ class ScreenHome extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Container(
                         height: homeCtrl.page.value == 0
-                            ? size.height * 0.80 
+                            ? size.height * 0.80
                             : size.height * 0.9,
                         decoration: BoxDecoration(
-                          color: ThemeData.dark().primaryColor,
+                          color: Theme.of(context).primaryColor,
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20),

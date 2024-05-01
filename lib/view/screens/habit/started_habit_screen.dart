@@ -10,8 +10,8 @@ import 'package:habitson/view/widgets/habit_day_detail_widget.dart';
 import 'package:habitson/view/widgets/my_appbar.dart';
 import 'package:habitson/view/widgets/my_bottom_sheet.dart';
 import 'package:slide_to_act/slide_to_act.dart';
-import '../widgets/habit_bottom_activity_widget.dart';
-import '../widgets/habit_detail_widget.dart';
+import '../../widgets/habit_bottom_activity_widget.dart';
+import '../../widgets/habit_detail_widget.dart';
 
 final activityCtrl = Get.put(ActivitiesController());
 final habitCtrl = Get.find<NewHabitsController>();

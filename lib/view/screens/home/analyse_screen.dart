@@ -4,8 +4,8 @@ import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/statistics_controller.dart';
 
-import '../core/constants.dart';
-import '../widgets/my_bar_graph.dart';
+import '../../core/constants.dart';
+import '../../widgets/my_bar_graph.dart';
 
 final analyseCtrl = Get.find<HabitOperationsController>();
 final newHabitCtrl = Get.find<NewHabitsController>();

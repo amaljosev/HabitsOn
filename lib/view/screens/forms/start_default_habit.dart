@@ -7,9 +7,9 @@ import 'package:habitson/view/widgets/counter_widget.dart';
 import 'package:habitson/view/widgets/doitat_widget.dart';
 import 'package:habitson/view/widgets/my_form_widget.dart';
 import 'package:habitson/view/widgets/week_selector_widget.dart';
-import '../../controller/home_controller.dart';
-import '../core/constants.dart';
-import '../widgets/appbar_onlyback_widget.dart';
+import '../../../controller/home_controller.dart';
+import '../../core/constants.dart';
+import '../../widgets/appbar_onlyback_widget.dart';
 
 final habitCtrl = Get.find<NewHabitsController>();
 final homeCtrl = Get.find<HomeController>();

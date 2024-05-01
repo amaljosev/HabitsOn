@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:habitson/view/screens/home_screen_widget.dart';
+import 'package:habitson/view/screens/home/home_screen_widget.dart';
 
 import '../core/constants.dart';
 

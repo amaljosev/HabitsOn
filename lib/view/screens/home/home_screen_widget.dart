@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/core/constants.dart';
-import 'package:habitson/view/screens/new_habits_screen.dart';
+import 'package:habitson/view/screens/forms/new_habits_screen.dart';
 
 final habitCtrl = Get.find<NewHabitsController>(); 
 final startedHCtrl=Get.find<StartedHabitController>();

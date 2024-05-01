@@ -6,7 +6,7 @@ import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/statistics_controller.dart';
 import 'package:habitson/model/analyse_models/analyse_model.dart';
 import 'package:habitson/model/habit_models/habit_model.dart';
-import 'package:habitson/view/screens/home_screen_widget.dart';
+import 'package:habitson/view/screens/home/home_screen_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final statiCtrl = Get.find<StatisticsController>();
