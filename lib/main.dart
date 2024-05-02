@@ -9,6 +9,8 @@ import 'package:habitson/view/screens/home_screen.dart';
 import 'package:habitson/view/screens/forms/start_default_habit.dart';
 import 'package:habitson/view/screens/habit/started_habit_screen.dart';
 import 'package:habitson/view/screens/habit/timer_screen.dart';
+import 'package:habitson/view/screens/me/help_screen.dart';
+import 'package:habitson/view/screens/me/privacy_policy_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'model/graph_models/graph_model.dart';
@@ -52,6 +54,8 @@ class MyApp extends StatelessWidget {
         'start_default_habit': (context) => const ScreenStartDefaultHabit(),
         'timer': (context) => const ScreenTimer(),
         'statistics': (context) => const ScreenStatistics(),
+        'help': (context) => const ScreenHelp(), 
+        'privacy': (context) => const ScreenPrivacyPolicy(),  
       },
       initialRoute: '/',
     );

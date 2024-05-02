@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:habitson/view/core/constants.dart';
 
 class ScreenProfile extends StatelessWidget {
@@ -6,7 +7,6 @@ class ScreenProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: Column(
@@ -16,38 +16,32 @@ class ScreenProfile extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'ME',
+                  'About',
                   style: titleStyle,
                 ),
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Card(
-              child:  Padding(
-                padding: EdgeInsets.all(8.0), 
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    ListTile(
-                      title: Text('Total Habits Started'),
+                     ListTile(
+                      title: const Text('Privacy Policy'),
+                      onTap: () => Get.toNamed('privacy'), 
                     ),
-                    Divider(),
+                    const Divider(),
                     ListTile(
-                      title: Text('Total Habits Completed'),
+                      title: const Text('Help'),
+                      onTap: () => Get.toNamed('help'),
                     ),
-                    Divider(),
-                    ListTile(
-                      title: Text('Highest Streak'),
-                    ),
-                    Divider(),
-                    ListTile(
-                      title: Text('Privacy Policy'),
-                    ),
-                    Divider(),
-                    ListTile(
-                      title: Text('Settings'),
+                    const Divider(),
+                    const ListTile(
+                      title: Text('Share App'),
                     ),
                   ],
                 ),
