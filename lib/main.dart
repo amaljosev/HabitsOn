@@ -11,6 +11,7 @@ import 'package:habitson/view/screens/habit/started_habit_screen.dart';
 import 'package:habitson/view/screens/habit/timer_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'model/graph_models/graph_model.dart';
 import 'view/screens/boarding/boarding_screens.dart';
 import 'view/screens/habit/statistics_screen.dart';
 
@@ -23,6 +24,9 @@ Future<void> main() async {
   }
   if (!Hive.isAdapterRegistered(AnalyseModelAdapter().typeId)) {
     Hive.registerAdapter(AnalyseModelAdapter());
+  }
+  if (!Hive.isAdapterRegistered(GraphModelAdapter().typeId)) {
+    Hive.registerAdapter(GraphModelAdapter());
   }
 
   runApp(const MyApp());

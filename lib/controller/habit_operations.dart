@@ -1,13 +1,19 @@
 import 'package:get/get.dart';
+import 'package:habitson/controller/chart_controller.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
 import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/model/analyse_models/analyse_model.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../model/graph_models/graph_model.dart';
+import 'hive_functions/graph_functions.dart';
 
 final habitCtrl = Get.find<StartedHabitController>();
 final newHabitCtrl = Get.find<NewHabitsController>();
+final chartCtrl = Get.find<ChartController>();
 
 class HabitOperationsController extends GetxController {
   RxList<AnalyseModel> analyseList = <AnalyseModel>[].obs;
@@ -103,7 +109,7 @@ class HabitOperationsController extends GetxController {
 
         if (daysCompleted.value == targetDays.value) {
           prefs.setInt('total_habit_complete_count',
-              newHabitCtrl.totalCompletedHabits.value + 1); 
+              newHabitCtrl.totalCompletedHabits.value + 1);
           isHabitComplete.value = true;
         }
 
@@ -126,9 +132,11 @@ class HabitOperationsController extends GetxController {
       final response = isHabitComplete.value
           ? null
           : await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
-
+          if (isTodayTaskComplete.value) {
+        await updateMostActiveDayCount();
+      } 
       return response ?? false;
-    } catch (e) {
+    } catch (e) {     
       return false;
     }
   }
@@ -153,6 +161,7 @@ class HabitOperationsController extends GetxController {
           streakStartedDay: streakStartedDate.value);
       final response =
           await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
+      
       return response;
     } catch (e) {
       return false;
@@ -164,5 +173,50 @@ class HabitOperationsController extends GetxController {
     isHabitComplete.value = false;
     return deleteData(habitCtrl.habitIndex.value)
         .then((value) => deleteAnalyseData(habitCtrl.habitIndex.value));
+  }
+
+  Future<bool> updateMostActiveDayCount() async {
+    try {
+      String currentDayName = DateFormat('EEEE').format(DateTime.now());
+      switch (currentDayName) {
+        case 'Monday':
+          chartCtrl.weekChart[1].value += 0.1;
+          break;
+        case 'Tuesday':
+          chartCtrl.weekChart[2].value += 0.1;
+          break;
+        case 'Wednesday':
+          chartCtrl.weekChart[3].value += 0.1;
+          break;
+        case 'Thursday':
+          chartCtrl.weekChart[4].value += 0.1;
+          break;
+        case 'Friday':
+          chartCtrl.weekChart[5].value += 0.1;
+          break;
+        case 'Saturday':
+          chartCtrl.weekChart[6].value += 0.1;
+          break;
+        case 'Sunday':
+          chartCtrl.weekChart[0].value += 0.1;
+          break;
+        default:
+          chartCtrl.weekChart[1].value += 0.0;
+      }
+      final graphData = GraphModel(
+          id: DateTime.now(),
+          sundayCount: chartCtrl.weekChart[0].value,
+          mondayCount: chartCtrl.weekChart[1].value, 
+          tuesdayCount: chartCtrl.weekChart[2].value,
+          wednesdayCount: chartCtrl.weekChart[3].value,
+          thursdayCount: chartCtrl.weekChart[4].value,
+          fridayCount: chartCtrl.weekChart[5].value,
+          saturdayCount: chartCtrl.weekChart[6].value);
+      await updategraphList(graphData);
+      chartCtrl.setGraph();
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }

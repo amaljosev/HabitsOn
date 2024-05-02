@@ -6,7 +6,9 @@ import 'package:habitson/controller/chart_controller.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/statistics_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../model/graph_models/graph_model.dart';
 import 'habit_operations.dart';
+import 'hive_functions/graph_functions.dart';
 import 'started_habit_controller.dart';
 
 class HomeController extends GetxController {
@@ -20,6 +22,7 @@ class HomeController extends GetxController {
     Get.put(NewHabitsController());
     Get.put(HabitOperationsController());
     Get.put(CategoriesController());
+    getAllgraphDatas();
     Get.put(ChartController());
     Get.put(StatisticsController());
   }
@@ -42,15 +45,15 @@ class HomeController extends GetxController {
   }
 
   createGraph() async {
-    // final graph = GraphModel(
-    //     id: DateTime.now(),
-    //     sundayCount: 0.0,
-    //     mondayCount: 0.0,
-    //     tuesdayCount: 0.0,
-    //     wednesdayCount: 0.0,
-    //     thursdayCount: 0.0,
-    //     fridayCount: 0.0,
-    //     saturdayCount: 0.0);
-    // await addTograph(graph);
+    final graph = GraphModel(
+        id: DateTime.now(),
+        sundayCount: 0.0,
+        mondayCount: 0.0,
+        tuesdayCount: 0.0,
+        wednesdayCount: 0.0,
+        thursdayCount: 0.0,
+        fridayCount: 0.0,
+        saturdayCount: 0.0);
+    await addTograph(graph);
   }
 }
