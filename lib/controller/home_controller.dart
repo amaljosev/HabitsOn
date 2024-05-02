@@ -32,7 +32,7 @@ class HomeController extends GetxController {
     final loginInfo = prefs.getBool('is_first');
     await Future.delayed(const Duration(seconds: 3));
     if (loginInfo != null && loginInfo != false) {
-      Get.toNamed('home');
+      Get.offAndToNamed('home');
     } else {
       Get.toNamed('boarding');
     }
