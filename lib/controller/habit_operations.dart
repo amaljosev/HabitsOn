@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:habitson/controller/chart_controller.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
@@ -5,6 +7,7 @@ import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/model/analyse_models/analyse_model.dart';
+import 'package:habitson/view/widgets/my_bottom_sheet.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,6 +42,7 @@ class HabitOperationsController extends GetxController {
   RxBool isStreakBreak = false.obs;
   RxBool isGoHome = false.obs;
 
+  RxBool onetime = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -111,6 +115,9 @@ class HabitOperationsController extends GetxController {
           prefs.setInt('total_habit_complete_count',
               newHabitCtrl.totalCompletedHabits.value + 1);
           isHabitComplete.value = true;
+          onetime.value = true;
+          Get.bottomSheet(const MyBottomSheetWidget());
+          timer();
         }
 
         if (higestStreak.value < streakCount.value) {
@@ -132,11 +139,11 @@ class HabitOperationsController extends GetxController {
       final response = isHabitComplete.value
           ? null
           : await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
-          if (isTodayTaskComplete.value) {
+      if (isTodayTaskComplete.value) {
         await updateMostActiveDayCount();
-      } 
+      }
       return response ?? false;
-    } catch (e) {     
+    } catch (e) {
       return false;
     }
   }
@@ -161,7 +168,7 @@ class HabitOperationsController extends GetxController {
           streakStartedDay: streakStartedDate.value);
       final response =
           await updateAnalyseList(habitCtrl.habitIndex.value, habitData);
-      
+
       return response;
     } catch (e) {
       return false;
@@ -206,7 +213,7 @@ class HabitOperationsController extends GetxController {
       final graphData = GraphModel(
           id: DateTime.now(),
           sundayCount: chartCtrl.weekChart[0].value,
-          mondayCount: chartCtrl.weekChart[1].value, 
+          mondayCount: chartCtrl.weekChart[1].value,
           tuesdayCount: chartCtrl.weekChart[2].value,
           wednesdayCount: chartCtrl.weekChart[3].value,
           thursdayCount: chartCtrl.weekChart[4].value,
@@ -218,5 +225,10 @@ class HabitOperationsController extends GetxController {
     } catch (e) {
       return false;
     }
+  }
+
+  Future<void> timer() async {
+    await Future.delayed(const Duration(seconds: 3));
+    onetime.value = false;
   }
 }
