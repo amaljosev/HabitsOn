@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/home_controller.dart';
@@ -29,10 +30,16 @@ class ScreenHome extends StatelessWidget {
             ),
             child: Stack(
               children: [
-                // Lottie.asset(
-                //   'assets/lottie/main_bg.json',
-                //   fit: BoxFit.cover,
-                // ),
+                ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Lottie.asset(
+                      'assets/lottie/main_bg.json',
+                      fit: BoxFit.cover,
+                    ),
+                    
+                  ],
+                ),
                 ListView(
                   children: [
                     homeCtrl.page.value == 0

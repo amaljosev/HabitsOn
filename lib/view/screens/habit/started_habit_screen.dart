@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -33,10 +34,15 @@ class ScreenStartedHabit extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  // Lottie.asset(
-                  //   'assets/lottie/habit_bg.json',
-                  //   fit: BoxFit.cover,
-                  // ),
+                  ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Lottie.asset(
+                        'assets/lottie/habit_bg.json',
+                        fit: BoxFit.cover,
+                      ),
+                    ],
+                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

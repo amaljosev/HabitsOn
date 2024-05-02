@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
@@ -7,6 +8,7 @@ import 'package:habitson/view/widgets/form/counter_widget.dart';
 import 'package:habitson/view/widgets/habit/doitat_widget.dart';
 import 'package:habitson/view/widgets/form/my_form_widget.dart';
 import 'package:habitson/view/widgets/form/week_selector_widget.dart';
+import 'package:lottie/lottie.dart';
 import '../../../controller/home_controller.dart';
 import '../../core/constants.dart';
 import '../../widgets/appbar_onlyback_widget.dart';
@@ -52,10 +54,15 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
         ),
         child: Stack(
           children: [
-            // Lottie.asset(
-            //   'assets/lottie/habit_bg.json',
-            //   fit: BoxFit.cover,
-            // ),
+            ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                Lottie.asset(
+                  'assets/lottie/habit_bg.json',
+                  fit: BoxFit.cover,
+                ),
+              ],
+            ),
             SafeArea(
               child: Column(
                 children: [
