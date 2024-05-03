@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../core/constants.dart';
@@ -79,40 +81,64 @@ class PrivacyPolicyWidget extends StatelessWidget {
             kHeight,
             Column(
               children: [
-                Text(
-                  ''' HabitsOn only stores app data on your local device. This includes information such as:''',
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.gideonRoman(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        ''' HabitsOn only stores app data on your local device. This includes information such as:''',
+                        textAlign: TextAlign.justify,
+                        style: GoogleFonts.gideonRoman(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 kHeight,
-                Text(
-                  '● Habit names and descriptions: The names and descriptions of the habits you track.',
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.gideonRoman(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '● Habit names and descriptions: The names and descriptions of the habits you track.',
+                        textAlign: TextAlign.justify,
+                        style: GoogleFonts.gideonRoman(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 kHeight,
-                Text(
-                  '● Habit completion history: Whether you completed or missed a habit for a specific date.',
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.gideonRoman(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '● Habit completion history: Whether you completed or missed a habit for a specific date.',
+                        textAlign: TextAlign.justify,
+                        style: GoogleFonts.gideonRoman(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 kHeight,
-                Text(
-                  '● Streak data: Your current streak for each habit.',
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.gideonRoman(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '● Streak data: Your current streak for each habit.',
+                        textAlign: TextAlign.justify,
+                        style: GoogleFonts.gideonRoman(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

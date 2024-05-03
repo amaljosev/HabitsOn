@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
@@ -8,24 +9,22 @@ final analyseCtrl = Get.find<HabitOperationsController>();
 
 class HabitDayDetailWidget extends StatelessWidget {
   const HabitDayDetailWidget({
-    super.key,
-    required this.size,
+    super.key
   });
 
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
     return Obx(() => Row(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
               child: Card(
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                     child: Text(analyseCtrl.doItAt.value,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                        style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 14.sp)),
                   ),
                 ),
               ),
@@ -33,7 +32,7 @@ class HabitDayDetailWidget extends StatelessWidget {
             Card(
               child: Center(
                   child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: Text(
                   analyseCtrl.weekDays.length == 7
                       ? 'Every Day'
@@ -46,7 +45,7 @@ class HabitDayDetailWidget extends StatelessWidget {
                                   analyseCtrl.weekDays.length == 5
                               ? 'Working days'
                               : 'Mixed Days')),
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 14.sp), 
                 ),
               )),
             )

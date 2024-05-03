@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
@@ -22,8 +23,8 @@ class CounterWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
-              width: 100,
-              height: 100,
+              width: 100.w,
+              height: 100.h,
               child: SelectorWheel(
                 selectedItemIndex: startedHCtrl.isModify.value
                     ? analyseCtrl.counterGoalTargetIndex.value 
@@ -44,13 +45,13 @@ class CounterWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 100,
-              height: 100,
+              width: 100.w,
+              height: 100.h,
               child: SelectorWheel(
                 selectedItemIndex: startedHCtrl.isModify.value
                     ? analyseCtrl.counterGoalCategoryIndex.value
                     : 0,
-                width: 100,
+                width: 100.w,
                 childCount: habitCtrl.options.isEmpty
                     ? habitCtrl.units.length
                     : habitCtrl.options.length,

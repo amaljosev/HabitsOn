@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/view/screens/forms/new_habits_screen.dart';
 
@@ -11,10 +12,9 @@ class DoItAtWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: size.height * 0.07,
+      height: 50.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => Obx(() => InkWell(
@@ -25,7 +25,7 @@ class DoItAtWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Container(
-                  width: 100,
+                  width: 100.w,
                   decoration: BoxDecoration(
                       color: habitCtrl.pickedDayTimeIndex.value==index 
                           ? primaryColor
@@ -39,7 +39,7 @@ class DoItAtWidget extends StatelessWidget {
                         color:  habitCtrl.pickedDayTimeIndex.value==index 
                             ? secondaryColor 
                             : Colors.black,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,fontSize: 15),
                   )),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/activities_controller.dart';
 import 'package:habitson/view/core/constants.dart';
@@ -40,8 +41,8 @@ class ScreenTimer extends StatelessWidget {
                               children: [
                                 Text('Set Duration', style: titleStyle),
                                 SizedBox(
-                                  width: 100,
-                                  height: 100,
+                                  width: 100.w,
+                                  height: 100.h, 
                                   child: SelectorWheel(
                                     childCount: 100,
                                     convertIndexToValue: (int index) {
@@ -117,10 +118,10 @@ class ScreenTimer extends StatelessWidget {
             shape: const CircleBorder(side: BorderSide(color: primaryColor))),
         onPressed: onPressed,
         child: Padding(
-          padding: const EdgeInsets.all(38.0),
+          padding:  EdgeInsets.symmetric(horizontal: 38.w, vertical: 38.h),
           child: Text(
             title,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white), 
           ),
         ),
       ),

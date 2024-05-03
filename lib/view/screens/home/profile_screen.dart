@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/view/core/constants.dart';
 
@@ -8,11 +9,11 @@ class ScreenProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(18.0),
+      padding:  EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding:  EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h), 
             child: Row(
               children: [
                 Text(
@@ -23,10 +24,10 @@ class ScreenProfile extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding:  EdgeInsets.symmetric(vertical: 8.0.h),
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

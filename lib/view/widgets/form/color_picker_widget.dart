@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/view/screens/home/home_screen_widget.dart';
 
@@ -9,28 +10,28 @@ class ColorPickerWidget extends StatelessWidget {
     super.key,
   });
 
-
   @override
   Widget build(BuildContext context) {
-        final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: size.height * 0.1,
+      height: 60.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => Padding(
-          padding: EdgeInsets.all(size.width * 0.015),
+          padding: EdgeInsets.all(6).w,
           child: Obx(() => InkWell(
-            onTap: () => habitCtrl.pickedColorIndex.value=index,     
-            child: CircleAvatar( 
-              backgroundColor: secondaryColor,
-              child: CircleAvatar( 
-                radius: 18,
-                backgroundColor: habitCtrl.colors[index], 
-                child:habitCtrl.pickedColorIndex.value==index? const Icon(Icons.check):null,    
-              ),
-            ), 
-          )),
+                onTap: () => habitCtrl.pickedColorIndex.value = index,
+                child: CircleAvatar(
+                  backgroundColor: secondaryColor,
+                  child: CircleAvatar(
+                    radius: 18.w, 
+                    backgroundColor: habitCtrl.colors[index],
+                    child: habitCtrl.pickedColorIndex.value == index
+                        ? const Icon(Icons.check)
+                        : null,
+                  ),
+                ),
+              )),
         ),
         itemCount: habitCtrl.colors.length,
       ),

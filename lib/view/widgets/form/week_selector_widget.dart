@@ -28,7 +28,7 @@ class WeekDayWidget extends StatelessWidget {
                 : Colors.grey,
             child: Text(
               title,
-              style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold, 
+              style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold,  
                   color: habitCtrl.weekDays.values.toList()[index].value
                       ? secondaryColor 
                       : Colors.black),

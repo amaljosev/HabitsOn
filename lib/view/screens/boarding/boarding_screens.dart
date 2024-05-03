@@ -30,7 +30,7 @@ class ScreenBoarding extends StatelessWidget {
                         onPressed: () async {
                           homeCtrl
                               .setLoginData()
-                              .then((value) => Get.toNamed('home'));
+                              .then((value) => Get.offAndToNamed('home'));
                         },
                         child: const Text('Agree and Continue'))
                   ],

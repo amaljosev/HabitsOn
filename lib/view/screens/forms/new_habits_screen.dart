@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/home_controller.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
@@ -17,10 +18,9 @@ class ScreenNewHabits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
 
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding:  EdgeInsets.symmetric(horizontal: 15.w), 
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       children: [
         kHeight,
@@ -46,16 +46,17 @@ class ScreenNewHabits extends StatelessWidget {
           controller: habitCtrl.targetCtrl,
           isTarget: true,
         ),
+        kHeight, 
         Text(
           'Select Days',
           style: titleStyle,
         ),
         SizedBox(
-          height: size.height * 0.1,
+          height: 80.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.all(size.width * 0.015),
+              padding: EdgeInsets.all(6).w, 
               child: WeekDayWidget(
                 title: habitCtrl.weekDays.keys.toList()[index],
                 index: index,
@@ -71,7 +72,7 @@ class ScreenNewHabits extends StatelessWidget {
         const CounterWidget(),
         kHeight,
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           child: Text(
             'Do it at',
             style: titleStyle,
@@ -80,7 +81,7 @@ class ScreenNewHabits extends StatelessWidget {
         const DoItAtWidget(),
         kHeight,
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           child: Text(
             'Pick a color',
             style: titleStyle,
@@ -97,8 +98,8 @@ class ScreenNewHabits extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,
-              shape: const ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)))),
+              shape:  ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.r)))), 
           child: const Text(
             'Start',
             style: TextStyle(color: secondaryColor),

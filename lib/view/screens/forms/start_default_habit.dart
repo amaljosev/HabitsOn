@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
@@ -44,7 +45,6 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: primaryColor,
       body: Container(
@@ -68,15 +68,15 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                   const AppBarOnlyBack(),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                       child: Container(
                         decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor,
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(15),
-                                topRight: Radius.circular(15))),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(15.r),
+                                topRight: Radius.circular(15.r))),
                         child: ListView(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
                           keyboardDismissBehavior:
                               ScrollViewKeyboardDismissBehavior.onDrag,
                           children: [
@@ -102,16 +102,17 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                               controller: habitCtrl.targetCtrl,
                               isTarget: true,
                             ),
+                            kHeight,
                             Text(
                               'Select Days',
                               style: titleStyle,
                             ),
                             SizedBox(
-                              height: size.height * 0.1,
+                              height: 80.h,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) => Padding(
-                                  padding: EdgeInsets.all(size.width * 0.015),
+                                  padding: EdgeInsets.all(6).w,
                                   child: WeekDayWidget(
                                     title:
                                         habitCtrl.weekDays.keys.toList()[index],
@@ -128,22 +129,25 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                             const CounterWidget(),
                             kHeight,
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8.w, vertical: 8.h),
                               child: Text(
                                 'Do it at',
-                                style: titleStyle,
+                                style: titleStyle, 
                               ),
                             ),
                             const DoItAtWidget(),
                             kHeight,
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8.w, vertical: 8.h),
                               child: Text(
                                 'Pick a color',
                                 style: titleStyle,
                               ),
                             ),
                             const ColorPickerWidget(),
+                            kHeight, 
                             ElevatedButton(
                               onPressed: () async {
                                 final bool response =
@@ -152,19 +156,18 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                                 if (response) {
                                   homeCtrl.page.value = 0;
                                   Get.back();
-                                } else {
-                                  Get.snackbar('Something went Wrong',
-                                      'Please check the given details and try again');
                                 }
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: primaryColor,
-                                  shape: const ContinuousRectangleBorder(
+                                  shape: ContinuousRectangleBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(15)))),
-                              child: const Text(
+                                          Radius.circular(15.r)))),
+                                          
+                              child: Text(
                                 'Start',
-                                style: TextStyle(color: secondaryColor),
+                                style: TextStyle(
+                                    color: secondaryColor, fontSize: 15.sp),
                               ),
                             ),
                             kHeight,

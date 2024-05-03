@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habitson/controller/habit_operations.dart';
@@ -25,16 +26,17 @@ class ScreenStatistics extends StatelessWidget {
             kHeight,
             Text('STATSTICS', style: titleStyle),
             kHeight,
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+             Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
               child: Card(
                   child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: CalenderWidget(
                   isHome: false,
                 ),
               )),
             ),
+            kHeight,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -44,18 +46,18 @@ class ScreenStatistics extends StatelessWidget {
                       'DAYS',
                       style: GoogleFonts.comicNeue(
                         fontWeight: FontWeight.w800,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                       ),
                     ),
                     Card(
-                      elevation: 5,
+                      elevation: 5, 
                       child: Padding(
-                        padding: const EdgeInsets.all(18.0),
+                        padding:  EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
                         child: CircularPercentIndicator(
                           animation: true,
                           animateFromLastPercent: true,
-                          radius: 60.0,
-                          lineWidth: 9.0,
+                          radius: 60.0.r,
+                          lineWidth: 9.0.w, 
                           percent: statiCtrl.daysPercentage.value,
                           center: Text(
                               "${(statiCtrl.daysPercentage.value * 100).toStringAsFixed(0)}%"),
@@ -71,18 +73,18 @@ class ScreenStatistics extends StatelessWidget {
                       analyseCtrl.counterValue.value,
                       style: GoogleFonts.comicNeue(
                         fontWeight: FontWeight.w800,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                       ),
                     ),
                     Card(
                       elevation: 5,
                       child: Padding(
-                        padding: const EdgeInsets.all(18.0),
+                        padding:  EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
                         child: CircularPercentIndicator(
                           animation: true,
                           animateFromLastPercent: true,
-                          radius: 60.0,
-                          lineWidth: 9.0,
+                          radius: 60.0.r,
+                          lineWidth: 9.0.w, 
                           percent: statiCtrl.goalPercentage.value,
                           center: Text(
                               "${(statiCtrl.goalPercentage.value * 100).toStringAsFixed(0)}%"),

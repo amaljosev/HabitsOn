@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
@@ -15,13 +16,13 @@ class ScreenAnalyse extends StatelessWidget {
   const ScreenAnalyse({super.key});
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ListView(
       children: [
         kHeight,
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18.0),
+          padding: EdgeInsets.symmetric(vertical: 18.0.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -30,26 +31,26 @@ class ScreenAnalyse extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 200,
+          height: 200.h,
           width: double.infinity,
           child: ListView.builder(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               final data = statiCtrl.stati.keys.toList()[index];
               return Card(
                 child: SizedBox(
-                  height: 200,
-                  width: 150,
+                  height: 200.h,
+                  width: 150.w,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(data,
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                fontSize: 18.sp, fontWeight: FontWeight.bold)),
                         Obx(
                           () => Text(
                             statiCtrl.stati[data]!.value.toString(),
@@ -68,7 +69,7 @@ class ScreenAnalyse extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18.0),
+          padding: EdgeInsets.symmetric(vertical: 18.0.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -76,12 +77,12 @@ class ScreenAnalyse extends StatelessWidget {
             ],
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           child: Card(
               child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: SizedBox(height: 200, child: MyBarGraph()),
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+            child: SizedBox(height: 200.h, child: MyBarGraph()),
           )),
         ),
       ],

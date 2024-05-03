@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/home_controller.dart';
 import 'package:habitson/view/core/constants.dart';
@@ -16,14 +17,10 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final homeCtrl = Get.put(HomeController());
-
     return Obx(() => Scaffold(
           bottomNavigationBar: const MyBottomNavigationWidget(),
           body: Container(
-            height: size.height,
-            width: size.width,
             decoration: const BoxDecoration(
               color: primaryColor,
             ),
@@ -36,7 +33,6 @@ class ScreenHome extends StatelessWidget {
                       'assets/lottie/main_bg.json',
                       fit: BoxFit.cover,
                     ),
-                    
                   ],
                 ),
                 ListView(
@@ -47,9 +43,9 @@ class ScreenHome extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Container(
-                        height: homeCtrl.page.value == 0
-                            ? size.height * 0.80
-                            : size.height * 0.9,
+                        height: homeCtrl.page.value == 0 
+                            ? 700.h
+                            : 735.h,
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
                           borderRadius: const BorderRadius.only(

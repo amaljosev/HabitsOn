@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/activities_controller.dart';
 import 'package:habitson/controller/habit_operations.dart';
@@ -47,15 +48,17 @@ class ScreenStartedHabit extends StatelessWidget {
                       HabitsAppBar(
                           index: startedHabitController.habitIndex.value),
                       Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                           child: Container(
-                            height: size.height * 0.75,
-                            width: size.width,
+                            height: analyseCtrl.isTodayTaskComplete.value
+                                ? 650.h
+                                : 600.h, 
+                            width: 400.w,
                             decoration: BoxDecoration(
                                 color: Theme.of(context).primaryColor,
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(15))),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(15.r),
+                                    topRight: Radius.circular(15.r))),
                             child: ListView(
                               children: [
                                 Row(
@@ -66,13 +69,14 @@ class ScreenStartedHabit extends StatelessWidget {
                                           analyseCtrl.habitName.value,
                                           style: titleStyle,
                                           overflow: TextOverflow.clip,
+                                          
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
                                 kHeight,
-                                HabitDayDetailWidget(size: size),
+                                HabitDayDetailWidget(),
                                 kHeight,
                                 Row(
                                   mainAxisAlignment:
@@ -118,8 +122,9 @@ class ScreenStartedHabit extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 13.w,
+                                                      vertical: 13.h),
                                                   child: Text(
                                                     "Congratulations! You've successfully completed your daily habit. Keep up the great work!",
                                                     style: TextStyle(
@@ -133,8 +138,8 @@ class ScreenStartedHabit extends StatelessWidget {
                                             ],
                                           ),
                                           SizedBox(
-                                            height: size.height * 0.15,
-                                            width: size.width * 0.15,
+                                            height: 100.h,
+                                            width: 100.w,
                                             child: Center(
                                               child: Lottie.asset(
                                                   'assets/lottie/Animation - 1714655026642.json'),
@@ -144,8 +149,9 @@ class ScreenStartedHabit extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10.w,
+                                                      vertical: 10.h),
                                                   child: Center(
                                                     child: Text(
                                                       "See you tomorrow",
@@ -165,8 +171,8 @@ class ScreenStartedHabit extends StatelessWidget {
                                     : Column(
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 28.0),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 28.0.w),
                                             child: SlideAction(
                                               textStyle: titleStyle,
                                               animationDuration: const Duration(
@@ -182,8 +188,8 @@ class ScreenStartedHabit extends StatelessWidget {
                                           ),
                                           kHeight,
                                           Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 28.0),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 28.0.w),
                                             child: SlideAction(
                                               textStyle: titleStyle,
                                               animationDuration: const Duration(
@@ -199,6 +205,7 @@ class ScreenStartedHabit extends StatelessWidget {
                                           ),
                                         ],
                                       ),
+                                kHeight,
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,

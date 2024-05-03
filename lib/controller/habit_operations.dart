@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:habitson/controller/chart_controller.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
@@ -110,9 +109,11 @@ class HabitOperationsController extends GetxController {
         daysCompleted.value += 1;
         streakCount.value += 1;
 
-        if (daysCompleted.value == targetDays.value) {
+        if (daysCompleted.value == targetDays.value) { 
+          newHabitCtrl.totalCompletedHabits.value = await 
+              prefs.getInt('total_habit_complete_count') ?? 0; 
           prefs.setInt('total_habit_complete_count',
-              newHabitCtrl.totalCompletedHabits.value + 1);
+              newHabitCtrl.totalCompletedHabits.value += 1);
           isHabitComplete.value = true;
           onetime.value = true;
           Get.bottomSheet(const MyBottomSheetWidget());
