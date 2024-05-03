@@ -34,7 +34,7 @@ class HomeController extends GetxController {
     if (loginInfo != null && loginInfo != false) {
       Get.offAndToNamed('home');
     } else {
-      Get.toNamed('boarding');
+      Get.offAndToNamed('boarding'); 
     }
   }
 

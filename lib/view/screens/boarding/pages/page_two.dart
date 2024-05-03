@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+
 
 class PageTwo extends StatelessWidget {
   const PageTwo({super.key});
@@ -32,6 +35,17 @@ class PageTwo extends StatelessWidget {
                         color: Colors.white)),
               ],
             ),
+            Spacer(),
+            Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SizedBox(
+                  height: 200.h,
+                  width: 200.w,
+                  child: Lottie.asset(
+                      'assets/lottie/Animation - 1714743586965.json')),
+            ],
+          ),
           ],
         ));
   }

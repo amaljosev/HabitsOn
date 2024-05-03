@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class PageOne extends StatelessWidget {
   const PageOne({super.key});
@@ -24,7 +26,7 @@ class PageOne extends StatelessWidget {
               style: GoogleFonts.dangrek(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white)), 
+                  color: Colors.white)),
           const SizedBox(
             height: 130,
           ),
@@ -70,7 +72,18 @@ class PageOne extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.white)),
             ],
-          )
+          ),
+          Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SizedBox(
+                  height: 200.h,
+                  width: 200.w,
+                  child: Lottie.asset(
+                      'assets/lottie/Animation - 1714743586965.json')),
+            ],
+          ),
         ],
       ),
     );

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
-import 'package:habitson/view/core/constants.dart';
+import 'package:habitson/view/core/constants.dart'; 
 import 'package:habitson/view/screens/forms/new_habits_screen.dart';
 
 final habitCtrl = Get.find<NewHabitsController>(); 
@@ -48,10 +48,11 @@ class ScreenHomeWidget extends StatelessWidget {
                 final list = habitCtrl.habitsList[index];
                 return ListTile(
                   title: InkWell(
-                    onTap: () {
+                    onTap: () async{
                       startedHCtrl.habitIndex.value=index;
                       Get.toNamed('started_habit'
                         );
+                      
                     },
                     child: Container(
                       height: 50,

@@ -91,7 +91,8 @@ flutter:
     - assets/lottie/ 
     - assets/video/
     - assets/img/
-    - assets/lottie/Animation - 1714650494172.json  
+    - assets/lottie/Animation - 1714650494172.json 
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

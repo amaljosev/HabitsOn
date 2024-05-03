@@ -45,7 +45,7 @@ class ScreenHome extends StatelessWidget {
                       child: Container(
                         height: homeCtrl.page.value == 0 
                             ? 700.h
-                            : 735.h,
+                            : 750.h, 
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
                           borderRadius: const BorderRadius.only(
