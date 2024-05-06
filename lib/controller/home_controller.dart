@@ -5,6 +5,11 @@ import 'package:habitson/controller/categories_controller.dart';
 import 'package:habitson/controller/chart_controller.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/statistics_controller.dart';
+import 'package:habitson/view/screens/forms/new_habits_screen.dart';
+import 'package:habitson/view/screens/home/analyse_screen.dart';
+import 'package:habitson/view/screens/home/habits_screen.dart';
+import 'package:habitson/view/screens/home/home_screen_widget.dart';
+import 'package:habitson/view/screens/home/profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../model/graph_models/graph_model.dart';
 import 'habit_operations.dart';
@@ -13,6 +18,17 @@ import 'started_habit_controller.dart';
 
 class HomeController extends GetxController {
   RxInt page = 0.obs;
+  List<Widget> widgetOptions = <Widget>[
+    const ScreenHomeWidget(),
+    const ScreenHabits(),
+    const ScreenNewHabits(),
+    const ScreenAnalyse(),
+    const ScreenProfile()
+  ];
+  void onItemTapped(int index) {
+    page.value = index;
+  }
+
   GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
   @override
   void onInit() {
@@ -34,7 +50,7 @@ class HomeController extends GetxController {
     if (loginInfo != null && loginInfo != false) {
       Get.offAndToNamed('home');
     } else {
-      Get.offAndToNamed('boarding'); 
+      Get.offAndToNamed('boarding');
     }
   }
 

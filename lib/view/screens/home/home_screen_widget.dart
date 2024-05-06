@@ -1,19 +1,21 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
-import 'package:habitson/view/core/constants.dart'; 
+import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/screens/forms/new_habits_screen.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
-final habitCtrl = Get.find<NewHabitsController>(); 
-final startedHCtrl=Get.find<StartedHabitController>();
+final habitCtrl = Get.find<NewHabitsController>();
+final startedHCtrl = Get.find<StartedHabitController>();
+final analyseCtrl = Get.find<HabitOperationsController>();
 
 class ScreenHomeWidget extends StatelessWidget {
   const ScreenHomeWidget({super.key});
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Obx(() => Column(
           children: [
@@ -46,15 +48,14 @@ class ScreenHomeWidget extends StatelessWidget {
                 child: ListView.builder(
               itemBuilder: (context, index) {
                 final list = habitCtrl.habitsList[index];
-                return ListTile(
-                  title: InkWell(
-                    onTap: () async{
-                      startedHCtrl.habitIndex.value=index;
-                      Get.toNamed('started_habit'
-                        );
-                      
-                    },
-                    child: Container(
+                final analyzeList = analyseCtrl.analyseList[index];
+                return InkWell(
+                  onTap: () async {
+                    startedHCtrl.habitIndex.value = index;
+                    Get.toNamed('started_habit');
+                  },
+                  child: ListTile(
+                    title: Container(
                       height: 50,
                       decoration: BoxDecoration(
                           color: habitCtrl.colors[list.backgroundColorIndex],
@@ -77,6 +78,16 @@ class ScreenHomeWidget extends StatelessWidget {
                         ],
                       ),
                     ),
+                    trailing: Card(
+                        child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: analyzeList.isTodayTaskComplete
+                          ? Icon(Icons.check, color: Colors.green)
+                          : CircularPercentIndicator(
+                              radius: 12,
+                              percent: analyzeList.completedCategory /
+                                  analyzeList.targetCategory),
+                    )),
                   ),
                 );
               },
