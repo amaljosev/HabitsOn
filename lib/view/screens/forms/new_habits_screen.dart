@@ -18,9 +18,8 @@ class ScreenNewHabits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ListView(
-      padding:  EdgeInsets.symmetric(horizontal: 15.w), 
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       children: [
         kHeight,
@@ -46,7 +45,7 @@ class ScreenNewHabits extends StatelessWidget {
           controller: habitCtrl.targetCtrl,
           isTarget: true,
         ),
-        kHeight, 
+        kHeight,
         Text(
           'Select Days',
           style: titleStyle,
@@ -56,7 +55,7 @@ class ScreenNewHabits extends StatelessWidget {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.all(6).w, 
+              padding: EdgeInsets.all(6).w,
               child: WeekDayWidget(
                 title: habitCtrl.weekDays.keys.toList()[index],
                 index: index,
@@ -94,12 +93,13 @@ class ScreenNewHabits extends StatelessWidget {
             response
                 ? homeCtrl.page.value = 0
                 : Get.snackbar('Something went Wrong',
-                    'Please check the given details and try again');
+                    'Please check the given details and try again',
+                    duration: Duration(seconds: 1));
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,
-              shape:  ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15.r)))), 
+              shape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.r)))),
           child: const Text(
             'Start',
             style: TextStyle(color: secondaryColor),

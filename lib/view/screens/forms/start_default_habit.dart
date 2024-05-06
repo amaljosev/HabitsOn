@@ -35,13 +35,13 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
     }
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    if (!startedHCtrl.isModify.value) {
-      startedHabitCtrl.resetDatas();
-    }
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   if (!startedHCtrl.isModify.value) {
+  //     startedHabitCtrl.resetDatas();
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +133,7 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                                   horizontal: 8.w, vertical: 8.h),
                               child: Text(
                                 'Do it at',
-                                style: titleStyle, 
+                                style: titleStyle,
                               ),
                             ),
                             const DoItAtWidget(),
@@ -147,25 +147,47 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                               ),
                             ),
                             const ColorPickerWidget(),
-                            kHeight, 
+                            kHeight,
                             ElevatedButton(
                               onPressed: () async {
-                                final bool response =
-                                    await habitCtrl.onSubmit();
-
-                                if (response) {
-                                  homeCtrl.page.value = 0;
-                                  Get.back();
-                                }
+                                startedHCtrl.isModify.value
+                                    ? Get.dialog(
+                                        AlertDialog(
+                                          title: Text('Attention ⚠️'),
+                                          content: Text(
+                                              'Editing this habit will replace the old data with the new data. Are you sure you want to proceed? Also reset complition count.'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: Text('Cancel'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () async {
+                                                await habitCtrl.onSubmit();
+                                                Get.back();
+                                                Get.back();
+                                              },
+                                              child: Text('Confirm'),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : await habitCtrl.onSubmit().then((value) {
+                                        homeCtrl.page.value = 0;
+                                        Get.back();
+                                      });
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: primaryColor,
                                   shape: ContinuousRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15.r)))),
-                                          
                               child: Text(
-                                'Start',
+                                startedHCtrl.isModify.value
+                                    ? 'Update'
+                                    : 'Start',
                                 style: TextStyle(
                                     color: secondaryColor, fontSize: 15.sp),
                               ),

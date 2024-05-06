@@ -81,7 +81,9 @@ class ScreenHomeWidget extends StatelessWidget {
                     trailing: Card(
                         child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: analyzeList.isTodayTaskComplete
+                      child: analyzeList.completedCategory /
+                                  analyzeList.targetCategory ==
+                              1.0
                           ? Icon(Icons.check, color: Colors.green)
                           : CircularPercentIndicator(
                               radius: 12,

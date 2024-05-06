@@ -111,8 +111,8 @@ class NewHabitsController extends GetxController {
     } else if (targetCtrl.text.isEmpty) {
       Get.snackbar('Target Days',
           'Please Enter a target in days eg:10 ten stands for 10 days');
-    } else if (int.parse(targetCtrl.text) > 100) {
-      Get.snackbar('Target', 'Give target within 100 days');
+    } else if (int.parse(targetCtrl.text) > 365) {
+      Get.snackbar('Target', 'Give target within 365 days');
     } else if (int.parse(targetCtrl.text) <= 0) {
       Get.snackbar('Target', 'Give at least one day');
     } else if (areAllValuesFalse(weekDays)) {
@@ -143,12 +143,14 @@ class NewHabitsController extends GetxController {
           id: DateTime.now().toString(),
           habitName: habitNameCtrl.text,
           targetDays: int.parse(targetCtrl.text),
-          completedDays: analyseCtrl.daysCompleted.value,
+          completedDays:
+              startedHCtrl.isModify.value ? 0 : analyseCtrl.daysCompleted.value,
           targetCategory: int.parse(counterWeelValue.value),
-          completedCategory: analyseCtrl.goalCompleted.value,
+          completedCategory:
+              startedHCtrl.isModify.value ? 0 : analyseCtrl.goalCompleted.value,
           currentStreak: analyseCtrl.streakCount.value,
           bestStreak: analyseCtrl.higestStreak.value,
-          isTodayTaskComplete: false,
+          isTodayTaskComplete: false, 
           latestUpdatedDate: DateTime.now(),
           streakStartedDay: analyseCtrl.streakStartedDate.value);
 
