@@ -46,7 +46,7 @@ class HomeController extends GetxController {
   Future<void> isFirstTime() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final loginInfo = prefs.getBool('is_first');
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
     if (loginInfo != null && loginInfo != false) {
       Get.offAndToNamed('home');
     } else {

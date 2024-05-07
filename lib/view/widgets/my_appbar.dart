@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
+import 'package:habitson/controller/hive_functions/analyse_functions.dart';
+import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import '../../controller/started_habit_controller.dart';
 
@@ -24,7 +26,8 @@ class HabitsAppBar extends StatelessWidget {
           children: [
             Card(
               child: IconButton(
-                  onPressed: () {
+                  onPressed: () async{
+                    getallDatas().then((value) => getAllAnalyseDatas()); 
                     startedHabitController.resetDatas();
                     Get.back();
                   },

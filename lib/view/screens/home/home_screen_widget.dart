@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habitson/controller/habit_operations.dart';
@@ -49,6 +50,8 @@ class ScreenHomeWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 final list = habitCtrl.habitsList[index];
                 final analyzeList = analyseCtrl.analyseList[index];
+                analyseCtrl.isDateChanged.value =
+                    analyseCtrl.isSameDay(analyzeList.latestUpdatedDate);
                 return InkWell(
                   onTap: () async {
                     startedHCtrl.habitIndex.value = index;
@@ -81,14 +84,16 @@ class ScreenHomeWidget extends StatelessWidget {
                     trailing: Card(
                         child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: analyzeList.completedCategory /
-                                  analyzeList.targetCategory ==
-                              1.0
-                          ? Icon(Icons.check, color: Colors.green)
-                          : CircularPercentIndicator(
-                              radius: 12,
-                              percent: analyzeList.completedCategory /
-                                  analyzeList.targetCategory),
+                      child: analyseCtrl.isDateChanged.value
+                          ? analyzeList.completedCategory /
+                                      analyzeList.targetCategory ==
+                                  1.0
+                              ? Icon(Icons.check, color: Colors.green)
+                              : CircularPercentIndicator(
+                                  radius: 12.r,
+                                  percent: analyzeList.completedCategory /
+                                      analyzeList.targetCategory)
+                          : CircularPercentIndicator(radius: 12),
                     )),
                   ),
                 );

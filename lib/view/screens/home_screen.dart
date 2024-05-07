@@ -26,10 +26,9 @@ class ScreenHome extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 children: [
                   Lottie.asset(
-                    'assets/lottie/main_bg.json', 
+                    'assets/lottie/main_bg.json',
                     fit: BoxFit.cover,
                   ),
-
                 ],
               ),
               ListView(
