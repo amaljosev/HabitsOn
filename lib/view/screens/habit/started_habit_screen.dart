@@ -52,7 +52,7 @@ class ScreenStartedHabit extends StatelessWidget {
                           child: Container(
                             height: analyseCtrl.isTodayTaskComplete.value
                                 ? 650.h
-                                : 600.h, 
+                                : 600.h,
                             width: 400.w,
                             decoration: BoxDecoration(
                                 color: Theme.of(context).primaryColor,
@@ -69,7 +69,6 @@ class ScreenStartedHabit extends StatelessWidget {
                                           analyseCtrl.habitName.value,
                                           style: titleStyle,
                                           overflow: TextOverflow.clip,
-                                          
                                         ),
                                       ),
                                     ),

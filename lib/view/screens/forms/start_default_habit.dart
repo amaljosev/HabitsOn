@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/habit_operations.dart';
+import 'package:habitson/controller/hive_functions/analyse_functions.dart';
+import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/started_habit_controller.dart';
 import 'package:habitson/view/widgets/form/color_picker_widget.dart';
@@ -16,6 +19,7 @@ import '../../widgets/appbar_onlyback_widget.dart';
 final habitCtrl = Get.find<NewHabitsController>();
 final homeCtrl = Get.find<HomeController>();
 final startedHabitCtrl = Get.find<StartedHabitController>();
+final analyseCtrl = Get.find<HabitOperationsController>();
 
 class ScreenStartDefaultHabit extends StatefulWidget {
   const ScreenStartDefaultHabit({super.key});
@@ -166,7 +170,14 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                                             TextButton(
                                               onPressed: () async {
                                                 await habitCtrl.onSubmit();
-                                                Get.back();
+                                                await getallDatas()
+                                                    .then((value) =>
+                                                        getAllAnalyseDatas())
+                                                    .then((value) => analyseCtrl
+                                                        .initializeDatas()
+                                                        .then((value) =>
+                                                            Get.back()));
+
                                                 Get.back();
                                               },
                                               child: Text('Confirm'),

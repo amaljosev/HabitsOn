@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/hive_functions/analyse_functions.dart';
+import 'package:habitson/controller/hive_functions/habits_functions.dart';
 
 class AppBarOnlyBack extends StatelessWidget {
   const AppBarOnlyBack({
@@ -15,7 +16,8 @@ class AppBarOnlyBack extends StatelessWidget {
         children: [
           Card(
               child: IconButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    await getallDatas().then((value) => getAllAnalyseDatas());
                     Get.back();
                   },
                   icon: const Icon(Icons.arrow_back))),

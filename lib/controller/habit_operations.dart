@@ -54,34 +54,39 @@ class HabitOperationsController extends GetxController {
     isTodayTaskComplete.value = false;
   }
 
-  void initializeDatas() {
-    final list = newHabitCtrl.habitsList[habitCtrl.habitIndex.value];
-    final analyzeList = analyseList[habitCtrl.habitIndex.value];
-    isDateChanged.value = isSameDay(analyzeList.latestUpdatedDate);
-    isStreakBreak.value = checkIsStreakBreak(analyzeList.latestUpdatedDate);
-    streakStartedDate.value = analyzeList.streakStartedDay;
-    habitName.value = list.habitName;
-    counterValue.value = list.goalName;
-    doItAt.value = newHabitCtrl.timingList[list.doItAt];
-    goalCompleted.value = analyzeList.completedCategory;
-    counterTarget.value = int.parse(list.goalCount);
-    daysCompleted.value = analyzeList.completedDays;
-    targetDays.value = list.duration;
-    streakCount.value = analyzeList.currentStreak;
-    higestStreak.value = analyzeList.bestStreak;
-    counterGoalTargetIndex.value = list.goalCountIndex;
-    counterGoalCategoryIndex.value = list.goalNameIndex;
-    weekDays.value = list.selectedDays;
-    habitStartedDate.value = list.startedDate;
-    if (!isDateChanged.value) {
-      isTodayTaskComplete.value = false;
-      goalCompleted.value = 0;
-    } else {
-      isTodayTaskComplete.value = analyzeList.isTodayTaskComplete;
-    }
-    if (isStreakBreak.value) {
-      streakCount.value = 0;
-      streakStartedDate.value = DateTime.now();
+  Future<bool> initializeDatas() async {
+    try {
+      final list = newHabitCtrl.habitsList[habitCtrl.habitIndex.value];
+      final analyzeList = analyseList[habitCtrl.habitIndex.value];
+      isDateChanged.value = isSameDay(analyzeList.latestUpdatedDate);
+      isStreakBreak.value = checkIsStreakBreak(analyzeList.latestUpdatedDate);
+      streakStartedDate.value = analyzeList.streakStartedDay;
+      habitName.value = list.habitName;
+      counterValue.value = list.goalName;
+      doItAt.value = newHabitCtrl.timingList[list.doItAt];
+      goalCompleted.value = analyzeList.completedCategory;
+      counterTarget.value = int.parse(list.goalCount);
+      daysCompleted.value = analyzeList.completedDays;
+      targetDays.value = list.duration;
+      streakCount.value = analyzeList.currentStreak;
+      higestStreak.value = analyzeList.bestStreak;
+      counterGoalTargetIndex.value = list.goalCountIndex;
+      counterGoalCategoryIndex.value = list.goalNameIndex;
+      weekDays.value = list.selectedDays;
+      habitStartedDate.value = list.startedDate;
+      if (!isDateChanged.value) {
+        isTodayTaskComplete.value = false;
+        goalCompleted.value = 0;
+      } else {
+        isTodayTaskComplete.value = analyzeList.isTodayTaskComplete;
+      }
+      if (isStreakBreak.value) {
+        streakCount.value = 0;
+        streakStartedDate.value = DateTime.now();
+      }
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 
@@ -109,9 +114,9 @@ class HabitOperationsController extends GetxController {
         daysCompleted.value += 1;
         streakCount.value += 1;
 
-        if (daysCompleted.value == targetDays.value) { 
-          newHabitCtrl.totalCompletedHabits.value = await 
-              prefs.getInt('total_habit_complete_count') ?? 0; 
+        if (daysCompleted.value == targetDays.value) {
+          newHabitCtrl.totalCompletedHabits.value =
+              await prefs.getInt('total_habit_complete_count') ?? 0;
           prefs.setInt('total_habit_complete_count',
               newHabitCtrl.totalCompletedHabits.value += 1);
           isHabitComplete.value = true;
