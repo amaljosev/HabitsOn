@@ -11,4 +11,4 @@ Widget kWidth = SizedBox(width: 20.w);
 
 const Color primaryColor = Color.fromARGB(255, 72, 41, 127);
 const Color secondaryColor = Colors.white;
-final Color grayShade = Colors.grey.shade800;
+final Color grayShade = Colors.grey.shade800; 

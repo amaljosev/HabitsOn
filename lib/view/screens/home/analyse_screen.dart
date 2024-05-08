@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:habitson/controller/habit_operations.dart';
 import 'package:habitson/controller/new_habits_controller.dart';
 import 'package:habitson/controller/statistics_controller.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../core/constants.dart';
 import '../../widgets/my_bar_graph.dart';
@@ -85,6 +86,37 @@ class ScreenAnalyse extends StatelessWidget {
             child: SizedBox(height: 200.h, child: MyBarGraph()),
           )),
         ),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 18.0.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Today Completion Rate', style: titleStyle),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            child: Padding(
+              padding: EdgeInsets.all(18.0),
+              child: Row(
+                children: [ 
+                  Expanded(
+                    child: LinearPercentIndicator(
+                      animation: true,
+                      lineHeight: 8,
+                      percent: statiCtrl.completionRate.value,
+                      barRadius: Radius.circular(5),
+                      backgroundColor: grayShade,
+                    ),
+                  ),
+                  Text('${statiCtrl.completionRate.value * 100.round()}%')  
+                ],
+              ),
+            ),
+          ),
+        )
       ],
     );
   }

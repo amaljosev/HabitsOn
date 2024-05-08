@@ -49,14 +49,12 @@ class MyBarGraph extends StatelessWidget {
                 BarChartRodData(
                     toY: data.y,
                     width: 25,
-                    color: Colors.white,
+                    color: Colors.red,
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
                         topRight: Radius.circular(15)),
                     backDrawRodData: BackgroundBarChartRodData(
-                        show: true,
-                        toY: 100,
-                        color: primaryColor.withOpacity(0.5)))
+                        show: true, toY: 100, color: grayShade))
               ]))
           .toList(),
     ));

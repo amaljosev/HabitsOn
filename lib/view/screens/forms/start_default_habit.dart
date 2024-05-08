@@ -173,7 +173,12 @@ class _ScreenStartDefaultHabitState extends State<ScreenStartDefaultHabit> {
                                                 await getallDatas()
                                                     .then((value) =>
                                                         getAllAnalyseDatas())
-                                                    .then((value) => analyseCtrl
+                                                    .then((value) async {
+                                                  statiCtrl.completionRate
+                                                          .value =
+                                                      await statiCtrl
+                                                          .processHabitCompletion();
+                                                }).then((value) => analyseCtrl
                                                         .initializeDatas()
                                                         .then((value) =>
                                                             Get.back()));

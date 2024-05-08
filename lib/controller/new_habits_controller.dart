@@ -150,7 +150,7 @@ class NewHabitsController extends GetxController {
               startedHCtrl.isModify.value ? 0 : analyseCtrl.goalCompleted.value,
           currentStreak: analyseCtrl.streakCount.value,
           bestStreak: analyseCtrl.higestStreak.value,
-          isTodayTaskComplete: false, 
+          isTodayTaskComplete: false,
           latestUpdatedDate: DateTime.now(),
           streakStartedDay: analyseCtrl.streakStartedDate.value);
 
@@ -163,8 +163,10 @@ class NewHabitsController extends GetxController {
     }
 
     if (response.value) {
-      prefs.setInt('total_habit_count', totalStartedHabits.value + 1);
-      statiCtrl.setCounts();
+      if (!startedHCtrl.isModify.value) {
+        prefs.setInt('total_habit_count', totalStartedHabits.value + 1);
+        statiCtrl.setCounts();
+      }
       if (startedHCtrl.isModify.value) {
         analyseCtrl.habitName.value = habitNameCtrl.text;
         analyseCtrl.doItAt.value = timingList[pickedDayTimeIndex.value];
