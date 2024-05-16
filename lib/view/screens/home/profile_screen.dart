@@ -86,7 +86,7 @@ class ScreenProfile extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const Text('VERSON : 1.0.0'),
+            const Text('VERSON : 1.0.1'),
             kHeight
           ],
         ),
