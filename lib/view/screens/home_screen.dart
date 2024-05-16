@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/home_controller.dart';
-import 'package:habitson/view/core/constants.dart';
 import 'package:habitson/view/widgets/calender_widget.dart';
 import 'package:habitson/view/widgets/my_bottom_navigation.dart';
 import 'package:lottie/lottie.dart';

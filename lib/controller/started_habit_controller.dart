@@ -71,6 +71,7 @@ class StartedHabitController extends GetxController {
     }
 
     newHabitCtrl.isModify.value = false;
+    analyseCtrl.isNoHabitDay.value = false;
     habitCtrl.habitNameCtrl.text = '';
     habitCtrl.targetCtrl.text = '';
 

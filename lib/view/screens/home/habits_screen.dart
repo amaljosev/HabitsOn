@@ -15,27 +15,31 @@ class ScreenHabits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 18, right: 18, left: 18),
-      itemBuilder: (context, index) => ListTile(
-        title: Text(categoriesCtrl.categoryList[index].title),
-        leading: categoriesCtrl.categoryList[index].icon,
-        onTap: () {
-          startedHabitCtrl.resetDatas();
-
-          habitCtrl.weelValues.forEach((key, value) {
-            if (key == categoriesCtrl.categoryList[index].title) {
-              habitCtrl.options.clear();
-              habitCtrl.options.addAll(value);
-            }
-          });
-          habitCtrl.habitNameCtrl.text =
-              categoriesCtrl.categoryList[index].title;
-          startedHabitCtrl.isModify.value = false;
-          Get.toNamed('start_default_habit');
-        },
+    return PopScope(
+       canPop: false,
+      onPopInvoked: (didPop) => homeCtrl.page.value = 0, 
+      child: ListView.builder(
+        padding: const EdgeInsets.only(top: 18, right: 18, left: 18),
+        itemBuilder: (context, index) => ListTile(
+          title: Text(categoriesCtrl.categoryList[index].title),
+          leading: categoriesCtrl.categoryList[index].icon,
+          onTap: () {
+            startedHabitCtrl.resetDatas();
+      
+            habitCtrl.weelValues.forEach((key, value) {
+              if (key == categoriesCtrl.categoryList[index].title) {
+                habitCtrl.options.clear();
+                habitCtrl.options.addAll(value);
+              }
+            });
+            habitCtrl.habitNameCtrl.text =
+                categoriesCtrl.categoryList[index].title;
+            startedHabitCtrl.isModify.value = false;
+            Get.toNamed('start_default_habit');
+          },
+        ),
+        itemCount: categoriesCtrl.categoryList.length,
       ),
-      itemCount: categoriesCtrl.categoryList.length,
     );
   }
 }

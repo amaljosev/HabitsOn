@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:habitson/controller/chart_controller.dart';
 import 'package:habitson/controller/hive_functions/analyse_functions.dart';
@@ -39,6 +41,7 @@ class HabitOperationsController extends GetxController {
   RxBool isDateChanged = false.obs;
   RxBool isStreakBreak = false.obs;
   RxBool isGoHome = false.obs;
+  RxBool isNoHabitDay = false.obs;
 
   RxBool onetime = false.obs;
   @override
@@ -73,6 +76,8 @@ class HabitOperationsController extends GetxController {
       counterGoalTargetIndex.value = list.goalCountIndex;
       counterGoalCategoryIndex.value = list.goalNameIndex;
       weekDays.value = list.selectedDays;
+      log(weekDays.toString());
+      checkIsNoHabitDay(weekDays);
       habitStartedDate.value = list.startedDate;
       if (!isDateChanged.value) {
         isTodayTaskComplete.value = false;
@@ -87,6 +92,23 @@ class HabitOperationsController extends GetxController {
       return true;
     } catch (e) {
       return false;
+    }
+  }
+
+  checkIsNoHabitDay(RxList<String> weekDays) {
+    String dayName = DateFormat('EEE').format(DateTime.now());
+    List<String> weekList = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    if (weekDays.length == 7) {
+      isNoHabitDay.value=false;
+    } else {
+      weekList.forEach((element) {
+        if (!weekDays.contains(element)) {
+          if (dayName.toUpperCase()==element) {
+           isNoHabitDay.value=true; 
+          }
+          
+        }
+      });
     }
   }
 
