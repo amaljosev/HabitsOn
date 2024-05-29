@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitson/controller/hive_functions/habits_functions.dart';
 import 'package:habitson/controller/home_controller.dart';
+import 'package:habitson/controller/notification/notification_controller.dart';
 import 'package:habitson/view/core/constants.dart';
 
 class ScreenProfile extends StatelessWidget {
@@ -11,11 +12,12 @@ class ScreenProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeCtrl = Get.find<HomeController>();
+    final notificationCtrl = Get.find<NotificationHelper>();
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) => homeCtrl.page.value = 0,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 18.h),
         child: Column(
           children: [
             Padding(
@@ -23,7 +25,7 @@ class ScreenProfile extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'About',
+                    'Settings',
                     style: titleStyle,
                   ),
                 ],
@@ -37,6 +39,24 @@ class ScreenProfile extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      Obx(
+                        () => ListTile(
+                          title: Row(
+                            children: [
+                              const Text('Notifications'),
+                              Spacer(),
+                              Switch(
+                                value: notificationCtrl.isNotify.value,
+                                onChanged: (value) async {
+                                  notificationCtrl
+                                      .cancelAllNotifications(value);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Divider(),
                       ListTile(
                         title: const Text('Privacy Policy'),
                         onTap: () => Get.toNamed('privacy'),
@@ -86,7 +106,7 @@ class ScreenProfile extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const Text('VERSON : 1.0.1'),
+            const Text('VERSON : 1.0.2'),
             kHeight
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:habitson/controller/notification/notification_controller.dart';
 import 'package:habitson/view/screens/forms/new_habits_screen.dart';
 import 'package:habitson/view/widgets/privacy_policy_widget.dart';
 
@@ -11,6 +12,7 @@ class ScreenBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notificationCtrl = Get.find<NotificationHelper>();
     return Scaffold(
       body: PageView(
         children: [
@@ -28,7 +30,8 @@ class ScreenBoarding extends StatelessWidget {
                     ),
                     ElevatedButton(
                         onPressed: () async {
-                          homeCtrl
+                          await notificationCtrl.scheduleDailyNotification();
+                          await homeCtrl
                               .setLoginData()
                               .then((value) => Get.offAndToNamed('home'));
                         },

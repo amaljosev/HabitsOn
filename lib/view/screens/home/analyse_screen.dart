@@ -22,7 +22,7 @@ class ScreenAnalyse extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final homeCtrl = Get.find<HomeController>();
     return PopScope(
-       canPop: false,
+      canPop: false,
       onPopInvoked: (didPop) => homeCtrl.page.value = 0,
       child: ListView(
         children: [
@@ -56,7 +56,8 @@ class ScreenAnalyse extends StatelessWidget {
                         children: [
                           Text(data,
                               style: TextStyle(
-                                  fontSize: 18.sp, fontWeight: FontWeight.bold)),
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold)),
                           Obx(
                             () => Text(
                               statiCtrl.stati[data]!.value.toString(),
@@ -106,17 +107,19 @@ class ScreenAnalyse extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(18.0),
                 child: Row(
-                  children: [ 
+                  children: [
                     Expanded(
                       child: LinearPercentIndicator(
                         animation: true,
                         lineHeight: 8,
-                        percent: statiCtrl.completionRate.value,
-                        barRadius: Radius.circular(5),
-                        backgroundColor: grayShade,
+                        percent: statiCtrl.completionRate.value.isNaN
+                            ? 0.0
+                            : statiCtrl.completionRate.value,
+                        barRadius: Radius.circular(5), 
                       ),
                     ),
-                    Text('${statiCtrl.completionRate.value * 100.round()}%')  
+                    Text(
+                        '${(statiCtrl.completionRate.value.isNaN ? 0.0 : statiCtrl.completionRate.value) * 100.round()}%')
                   ],
                 ),
               ),

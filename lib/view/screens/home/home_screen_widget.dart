@@ -28,7 +28,9 @@ class ScreenHomeWidget extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ElevatedButton.icon(
-                            onPressed: () => homeCtrl.page.value = 1,
+                            onPressed: () {
+                              homeCtrl.page.value = 1;
+                            },
                             icon: const Icon(Icons.add),
                             label: const Text(
                               'START A HABIT',

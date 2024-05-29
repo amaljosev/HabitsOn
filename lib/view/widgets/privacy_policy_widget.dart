@@ -167,6 +167,30 @@ class PrivacyPolicyWidget extends StatelessWidget {
             kHeight,
             Row(
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Notifications',
+                    style: GoogleFonts.comicNeue(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            kHeight,  
+            Text(
+              '''We have recently updated our app to include daily notifications. These notifications are designed to enhance your user experience by providing timely updates and relevant information. You have full control over these notifications and can choose to enable or disable them at any time through the settings menu within the app. Your privacy is important to us, and no personal information is collected or shared through these notifications.''',
+              textAlign: TextAlign.justify,
+              style: GoogleFonts.gideonRoman(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+            kHeight,
+            Row(
+              children: [
                 Text(
                   'Changes to This Privacy Policy',
                   style: GoogleFonts.comicNeue(
